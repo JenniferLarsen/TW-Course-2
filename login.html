@@ -1,74 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>ImPastas SignUp Form</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<script src="login.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="reset.css">
+	<link rel="stylesheet" href="navbar.css">
+	<link rel="stylesheet" href="login.css">
 
-<link rel="stylesheet" href="reset.css">
-<link rel="stylesheet" href="about.css">
-<link rel="stylesheet" href="login.css">
-<!-- //Custom Theme files -->
-<!-- Icons -->
+	<title>The ImPastas</title>
 
-<!-- //web font -->
+	<div class="navbar">
+		<a href="index.html">Home</a>
+		<a href="about.html">About</a>
+		<a href="user-profile.html">User Profile</a>
+		<a href="results.html">Results</a>
+		<a href="login.html">Login/Signup</a>
+		<title>The ImPastas</title>
+	</div>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+		integrity="sha384-GLhlTQ8i6NDmPylBp8PuHJSN4JQF+QDFUgFu7gozG1CqA/6D5Srh" crossorigin="anonymous">
+
 
 
 </head>
+
 <body>
-    <div class="navbar">
-        <a href="index.html">
-			<img src="./images/home-icon.png" alt="Home Icon">Home</a>
-        <a href="about.html">
-			<img src="./images/about-icon.png" alt="About Icon">About</a>
-        <a href="user-profile.html">
-			<img src="./images/profile-icon.png" alt="User Profile Icon">User Profile</a>
-        <a href="results.html">
-			<img src="./images/results-icon.png" alt="Results Icon">Results</a>
-        <a href="login.html">
-			<img src="./images/login-icon.png" alt="Signup Icon">Login/Signup</a>
-    </div>
-	<div class="main-w3layouts wrapper">
-		<h1>Sign Up</Form></h1>
-		<div class="main-agileinfo">
-			<div class="agileits-top">
-				<form onsubmit="signUp()" method="post" id="formInfo">
-					<input id="username" class="text" type="text" name="Username" placeholder="Username" required="">
-					<input id ="email" class="text email" type="email" name="email" placeholder="Email" required="">
-					<input id="password" class="text" type="password" name="password" placeholder="Password" required="">
-					<input id="confirmPassword" class="text w3lpass" type="password" name="password" placeholder="Confirm Password" required="">
-					<div class="wthree-text">
-						<label class="anim">
-							<input type="checkbox" class="checkbox" required="">
-							<span>I Agree To The Terms & Conditions</span>
-						</label>
-						<div class="clear"> </div>
-					</div>
-					<input type="submit" value="SIGNUP">
-				</form>
-				<p>Don't have an Account? <a href="#"> Login Now!</a></p>
+	<h2>Sign in/up Form</h2>
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+			<form action="#">
+				<h1>Create Account</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+				</div>
+				<span>or use your email for registration</span>
+				<input type="text" placeholder="Name" />
+				<input type="email" placeholder="Email" />
+				<input type="password" placeholder="Password" />
+				<button>Sign Up</button>
+			</form>
+		</div>
+		<div class="form-container sign-in-container">
+			<form action="#">
+				<h1>Sign in</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+				</div>
+				<span>or use your account</span>
+				<input type="email" placeholder="Email" />
+				<input type="password" placeholder="Password" />
+				<a href="#">Forgot your password?</a>
+				<button>Sign In</button>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Welcome Back!</h1>
+					<p>To keep connected with us please login with your personal info</p>
+					<button class="ghost" id="signIn">Sign In</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Hello, Friend!</h1>
+					<p>Enter your personal details and start journey with us</p>
+					<button class="ghost" id="signUp">Sign Up</button>
+				</div>
 			</div>
 		</div>
-		<!-- copyright -->
-		<div class="colorlibcopy-agile">
-			<p>© ImPastas</p>
-		</div>
-		<!-- //copyright -->
-		<ul class="colorlib-bubbles">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
 	</div>
-	<!-- //main -->
+
+	<footer>
+		<p>
+			Created with <i class="fa fa-heart"></i> by
+			<a target="_blank" href="https://florin-pop.com">Florin Pop</a>
+			- Read how I created this and how you can join the challenge
+			<a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
+		</p>
+	</footer>
+	<script src="login.js"></script>
 </body>
+
 </html>
