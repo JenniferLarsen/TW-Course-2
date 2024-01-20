@@ -229,29 +229,18 @@ input {
 }
 
 footer {
-    background-color: #222;
+    background-color: #ff7300;
     color: #fff;
-    font-size: 14px;
+    /* font-size: 14px; */
     bottom: 0;
     position: fixed;
     left: 0;
     right: 0;
     text-align: center;
-    z-index: 999;
+	font-family: Arial, sans-serif;
+    /* z-index: 999; */
 }
 
-footer p {
-    margin: 10px 0;
-}
-
-footer i {
-    color: red;
-}
-
-footer a {
-    color: #3c97bf;
-    text-decoration: none;
-}
 
 .fa {
 	padding: 20px;
