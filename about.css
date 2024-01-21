@@ -1,3 +1,14 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+
 /* Style for the navigation bar */
 .navbar {
     display: flex;
@@ -23,13 +34,38 @@
 /* Style for the content area */
 .content {
     margin: 20px;
+    margin-left: 450px;
+    margin-right: 450px;
     text-align: center;
     font-family: 'Times New Roman', serif;
+              
 }
 
 .content h1 {
     color: #333;
-    font-size: 2em;
+    font-size: 54px;
+}
+
+h1, h2 {
+    font-size: 36px;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    padding-top: 10px;
+    padding-bottom: 36px;
+}
+
+h2 {
+    padding-bottom: 21px;
+}
+
+#quote {
+    padding-top: 45px;
+}
+
+p {
+    padding-bottom: 21px;
 }
 
 .content p {
@@ -38,6 +74,13 @@
     line-height: 1.5;
     max-width: 600px;
     margin: auto; /* Centers the text block */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    background-color: #ff7300;
 }
 
 /* Responsive design: Adjusts the navbar for smaller screens */
