@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="navbar.css">
     <title>Pantry Cookbook</title>
 </head>
 <body>
@@ -12,13 +12,34 @@
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="user-profile.html">User Profile</a>
-        <a href="results.html">Results</a>
         <a href="login.html">Login/Signup</a>
     </nav>
     <div class="content">
-        <h1>The Impastas</h1>
-        <p>Welcome to our Pantry Recipe Finder Site!</p>
+        <h1>Pantry Cookbook</h1>
+        <p>Welcome to our Pantry Recipe Finder!</p>
+        <p>Here you can search for recipes your whole family will enjoy! 
+            You can search using all of the ingredients you already have on hand for a budget friendly dinner.
+            Or if you prefer, you can just search for a recipe by name.
+        </p>
+        <p>Feel free to create your user account using our Login/Signup link at the top of the page. This way you can save your favorite recipes or 
+            your ingredients list from your pantry to make finding your favorite recipes easier or to help create new favorites from what you
+            already have.
+        </p>
+        <h3>
+            Happy Cooking!
+        <h3>
     </div>
+    <div class="image-container">
+        <img src="images/pasta.jpg" alt="Woman cooking pasta">
+        <img src="images/counter.jpg" alt="Prepared food on counter">
+    </div>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for recipes...">
+        <input type="text" id="ingredientsInput" placeholder="Enter ingredients...">
+        <button onclick="performSearch()">Search</button>
+    </div>
+    <div id="searchResults"></div>
     <footer>&copy; The Impastas 2024</footer>
+    <script src="search.js"></script>
 </body>
 </html>
