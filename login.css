@@ -238,6 +238,8 @@ footer {
     right: 0;
     text-align: center;
 	font-family: Arial, sans-serif;
+	padding: 20px;
+    margin-top: auto;
     /* z-index: 999; */
 }
 
