@@ -1,30 +1,9 @@
-require('dotenv').config();
-const apiKey = process.env.API_KEY;
-
-const express = require('express');
-const app = express();
-const port = 3000; // choose any available port
-
-// Define a route
-app.get('/', (req, res) => {
-    res.send('Hello, Express!');
-});
-
-// Start the server
-app.listen(port, () => {
-    console.log(`Server is listening at http://localhost:${port}`);
-});
-
-const performSearchButton = document.getElementById('performSearch');
 const searchInput = document.getElementById('searchInput');
 const ingredientsInput = document.getElementById('ingredientsInput');
 const searchResultsContainer = document.getElementById('searchResults');
+const performSearchButton = document.getElementById('performSearch');
 
-fetch('https://api.edamam.com/api/recipes/v2?type=public&app_id=7e56dd2d&app_key=685541325d49119c9bfd59298f854231')
-  .then((res) => res.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('Error:', error));
-
+// Attach the event listener to the search button
 performSearchButton.addEventListener('click', () => {
     performSearch();
 });
@@ -32,25 +11,44 @@ performSearchButton.addEventListener('click', () => {
 function performSearch() {
     const searchTerm = searchInput.value;
     const ingredients = ingredientsInput.value;
-    const searchResults = getSearchResults(searchTerm, ingredients);
-    displayResults(searchResults);
-}
 
-function getSearchResults(searchTerm, ingredients) {
-    // Replace this with our actual search logic (e.g., API request, database query)
-    const dummyResults = [
-        "Recipe 1",
-        "Recipe 2",
-        "Recipe 3"
-    ];
+    // Check if either searchTerm or ingredients is provided
+    if (!searchTerm && !ingredients) {
+        console.error('At least one of search term or ingredients must be provided.');
+        return;
+    }
 
-    return dummyResults;
+    // Construct the API URL based on the available inputs
+    let apiUrl = 'http://localhost:3000/api/search?';
+    if (searchTerm) {
+        apiUrl += `term=${searchTerm}`;
+    }
+    if (ingredients) {
+        apiUrl += `${searchTerm ? '&' : ''}ingredients=${ingredients}`;
+    }
+
+    // Make the API request
+    fetch(apiUrl, {
+        method: 'GET',
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            displayResults(data.results);
+        })
+        .catch(error => console.error('Error:', error));
 }
 
 function displayResults(results) {
-    searchResultsContainer.innerHTML = ''; // Clear previous results
+    // Clear previous results
+    searchResultsContainer.innerHTML = '';
 
-    if (results.length === 0) {
+    if (!results || results.length === 0) {
         searchResultsContainer.innerHTML = 'No results found.';
     } else {
         const ul = document.createElement('ul');
@@ -64,9 +62,3 @@ function displayResults(results) {
 }
 
 
-/*Application ID
-7e56dd2d
-
-Application Keys
-cab991bd72c7cc71873919863969a51e	—
-*/
