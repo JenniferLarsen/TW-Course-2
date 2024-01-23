@@ -14,7 +14,7 @@ body {
     font-size: 18px;
     display: flex;
     flex-direction: column;
-   
+   background-color: hsla(29, 85%, 59%, .08);
 }
 
 .content {
@@ -42,7 +42,7 @@ body {
 .search-container {
     text-align: center;
     margin-bottom: 20px;
-    background-color: #FF4B2B;
+    background-color: #589858;
 }
 .search-container input[type="text"] {
     height: 35px;
@@ -55,7 +55,7 @@ body {
 }
 
 button {
-    background-color: blue;
+    background-color:  #5f0f40ff;
     color: white;
     height: 35px;
     font-size: 18px;
@@ -66,4 +66,5 @@ footer {
     padding: 20px;
     margin-top: auto;
     background-color: #ff7300;
+    color: white;
 }
