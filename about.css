@@ -21,9 +21,17 @@ body {
 .navbar a {
     color: white;
     text-decoration: none;
-    padding: 10px;
+    padding: 15px;    
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
+    font-size: 24px;
+}
+
+.navbar p {
+    padding: 10px;
+    font-size: 39px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: hsla(323, 73%, 22%, 1);
 }
 
 .navbar a:hover {
@@ -36,7 +44,7 @@ body {
     margin: 20px;
     margin-left: 450px;
     margin-right: 450px;
-    text-align: center;
+    
     font-family: 'Times New Roman', serif;
               
 }
@@ -76,12 +84,47 @@ p {
     margin: auto; /* Centers the text block */
 }
 
+  
+  #team p {
+    margin-right: 20px; /* Add some space between the <p> elements (adjust as needed) */
+  }
+  
+
 footer {
     text-align: center;
     padding: 20px;
     margin-top: auto;
     background-color: #ff7300;
 }
+
+#team {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Distribute elements evenly along the horizontal axis */
+}
+
+.team-member {
+    text-align: center; /* Center-align the content */
+    flex-basis: calc(25% - 20px); /* Adjust width as needed (25% for four members, subtracting margin) */
+}
+
+.team-member img {
+    display: block; /* Make the image a block element to control its size */
+    margin: 0 auto 10px; /* Center the image and add some space below it */
+    width: 200px;
+    height: auto;
+    border-radius: 20%;
+}
+
+.qrCode {
+    padding-top: 20px;
+}
+
+.qrCode img {
+    width: 300px; /* Set the desired width */
+    height: auto; /* Let the height adjust to maintain the aspect ratio */
+}
+
 
 /* Responsive design: Adjusts the navbar for smaller screens */
 @media (max-width: 600px) {
