@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'cookbook';
+    src: url('fonts/Black-Bones.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'heading';
+    src: url('fonts/Quicksand-Regular.ttf') format('truetype');
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -15,7 +25,7 @@ body {
     justify-content: space-around;
     background-color:#ff7300;
     padding: 10px;
-    font-family: Arial, sans-serif;
+    font-family: 'heading', sans-serif;
 }
 
 .navbar a {
@@ -24,13 +34,13 @@ body {
     padding: 15px;    
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
-    font-size: 24px;
+    font-size: 24px;    
 }
 
 .navbar p {
-    padding: 10px;
-    font-size: 39px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 3px;
+    font-size: 45px;
+    font-family: 'cookbook', sans-serif;
     color: hsla(323, 73%, 22%, 1);
 }
 
@@ -44,7 +54,8 @@ body {
     margin: 20px;
     margin-left: 450px;
     margin-right: 450px;
-    
+    background-color: #dbfff4;
+    border-radius: 5px;
     font-family: 'Times New Roman', serif;
               
 }
@@ -66,6 +77,8 @@ h1 {
 
 h2 {
     padding-bottom: 21px;
+    font-family: 'heading', sans-serif;
+    font-weight: bold;
 }
 
 #quote {
