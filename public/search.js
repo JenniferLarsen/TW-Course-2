@@ -1,5 +1,4 @@
-const config = require('../private/config');
-
+// Client-side JavaScript
 const searchInput = document.getElementById('searchInput');
 const ingredientsInput = document.getElementById('ingredientsInput');
 const searchResultsContainer = document.getElementById('searchResults');
@@ -21,29 +20,27 @@ function performSearch() {
     }
 
     // Construct the API URL based on the available inputs
-    let apiUrl = '/api/search?'; // Updated to use relative path
-    if (searchTerm) {
-        apiUrl += `term=${searchTerm}`;
-    }
-    if (ingredients) {
-        apiUrl += `${searchTerm ? '&' : ''}ingredients=${ingredients}`;
-    }
+    let apiUrl = '/api/search';
 
     // Make the API request
     fetch(apiUrl, {
-        method: 'GET',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ term: searchTerm, ingredients }),
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            displayResults(data.results);
-        })
-        .catch(error => console.error('Error:', error));
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Data received from server:', data);
+        displayResults(data.hits); // Display hits from the server
+    })
+    .catch(error => console.error('Error:', error));
 }
 
 function displayResults(results) {
@@ -56,7 +53,19 @@ function displayResults(results) {
         const ul = document.createElement('ul');
         results.forEach(function (result) {
             const li = document.createElement('li');
-            li.textContent = result;
+
+            // Create a link for each recipe
+            const link = document.createElement('a');
+            link.textContent = result.recipe.label;
+
+            // Extract the recipe ID from the URI
+            const recipeId = result.recipe.uri.split('_')[1];
+            
+            // Construct the link using the recipe ID
+            link.href = `http://www.edamam.com/ontologies/edamam.owl#recipe_${recipeId}`;
+            link.target = '_blank';  // Open link in a new tab
+
+            li.appendChild(link);
             ul.appendChild(li);
         });
         searchResultsContainer.appendChild(ul);
