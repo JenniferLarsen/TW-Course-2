@@ -38,8 +38,8 @@ function performSearch() {
             return response.json();
         })
         .then(data => {
-            console.log(data);
-            displayResults(data.results);
+            console.log(data.hits);
+            displayResults(data.hits);
         })
         .catch(error => console.error('Error:', error));
 }
@@ -54,7 +54,19 @@ function displayResults(results) {
         const ul = document.createElement('ul');
         results.forEach(function (result) {
             const li = document.createElement('li');
-            li.textContent = result;
+
+            // Create a link for each recipe
+            const link = document.createElement('a');
+            link.textContent = result.recipe.label;
+
+            // Extract the recipe ID from the URI
+            const recipeId = result.recipe.uri.split('_')[1];
+            
+            // Construct the link using the recipe ID
+            link.href = `http://www.edamam.com/ontologies/edamam.owl#recipe_${recipeId}`;
+            link.target = '_blank';  // Open link in a new tab
+
+            li.appendChild(link);
             ul.appendChild(li);
         });
         searchResultsContainer.appendChild(ul);
