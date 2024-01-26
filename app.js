@@ -48,7 +48,8 @@ app.route('/api/search')
             const edamamData = await edamamResponse.json();
     
             // Log the entire response data
-            console.log('Edamam Data:', edamamData);
+            // Uncomment below line for testing - remove when testing complete
+            // console.log('Edamam Data:', edamamData);
     
             // Return the hits to the client
             res.status(200).json({ hits: edamamData.hits });
