@@ -63,7 +63,7 @@ function displayResults(results) {
             const recipeId = result.recipe.uri.split('_')[1];
             
             // Construct the link using the recipe ID
-            link.href = `http://www.edamam.com/ontologies/edamam.owl#recipe_${recipeId}`;
+            link.href = result.recipe.url;
             link.target = '_blank';  // Open link in a new tab
 
             li.appendChild(link);
