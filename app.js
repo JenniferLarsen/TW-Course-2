@@ -21,18 +21,9 @@ const edamamAppKey = process.env.API_KEY;
 app.route('/api/search')
     .get(async (req, res) => {
         const { term, ingredients } = req.query;
-        // Handle the GET request logic here
-        // ...
+        console.log('Search Term:', term);
+        console.log('Ingredients:', ingredients);
 
-        res.status(200).json({ "hits": [] });
-    })
-    .post(async (req, res) => {
-        const { term, ingredients } = req.body;
-        // Console log lines to be used for testing only - remove when testing is complete (Uncomment to use).
- /*     console.log('Search Term:', term); // Log search term
-        console.log('Ingredients:', ingredients); // Log ingredients */
-    
-        // Handle the POST request logic here
         try {
             let apiUrl;
             if (term) {
@@ -42,23 +33,18 @@ app.route('/api/search')
             } else {
                 throw new Error('At least one of search term or ingredients must be provided.');
             }
-    
-            // console.log('API URL:', apiUrl);  // Log the constructed API URL
+
+            console.log('API URL:', apiUrl);
             const edamamResponse = await fetch(apiUrl);
             const edamamData = await edamamResponse.json();
-    
-            // Log the entire response data
-            // Uncomment below line for testing - remove when testing complete
-            // console.log('Edamam Data:', edamamData);
-    
-            // Return the hits to the client
+            console.log('Edamam Data:', edamamData);
+
             res.status(200).json({ hits: edamamData.hits });
         } catch (error) {
             console.error('Error making Edamam API request:', error);
             res.status(500).json({ error: 'Internal server error' });
         }
     });
-    
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 
