@@ -80,19 +80,20 @@ function performSearch() {
   const category = categoryDropdown.value;
   let selections;
 
-  // Check if either searchTerm, ingredients, or category with selection is provided
-  if (!(searchTerm || ingredients || (category && selections))) {
-    console.error(
-      "At least one of search term, ingredients, or category with selection must be provided."
-    );
-    return;
-  } else if (category === "ingredients") {
+  if (category === "ingredients") {
     // For ingredients category, get the input value
     selections = ingredients;
-  } else if (category && selections) {
+  } else {
     // For other categories, get the selected option value
-    selections = selectionsContainer.querySelector("select").value;
+    const selectionsDropdown = document.getElementById("selections");
+    selections = selectionsDropdown ? selectionsDropdown.value : null;
   }
+
+  console.log("Debug - Search Term:", searchTerm);
+  console.log("Debug - Ingredients:", ingredients);
+  console.log("Debug - Category:", category);
+  console.log("Debug - Selections:", selections);
+
 
   //These are for testing only - remove when testing complete
   console.log("Search Term:", searchTerm);
@@ -104,13 +105,11 @@ function performSearch() {
   let apiUrl = "http://localhost:3000/api/search?";
 
   if (searchTerm) {
-    apiUrl += `term=${encodeURIComponent(searchTerm)}`;
+    apiUrl += `term=${encodeURIComponent(searchTerm)}&`;
   }
-
+  
   if (ingredients) {
-    apiUrl += `${searchTerm ? "&" : ""}ingredients=${encodeURIComponent(
-      ingredients
-    )}`;
+    apiUrl += `ingredients=${encodeURIComponent(ingredients)}&`;
   } else if (category === "ingredients" && selections) {
     apiUrl += `ingredients=${encodeURIComponent(selections)}&`;
   } else if (category && selections) {
