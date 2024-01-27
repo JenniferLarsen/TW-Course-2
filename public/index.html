@@ -33,13 +33,100 @@
         <img src="images/pasta.jpg" alt="Woman cooking pasta">
         <img src="images/counter.jpg" alt="Prepared food on counter">
     </div>
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search for recipes...">
-        <input type="text" id="ingredientsInput" placeholder="Enter ingredients...">
-        <button id="performSearch">Search</button>
-    </div>
+    <form id="searchForm" class="search-container">
+        <div>
+            <input type="text" id="searchInput" placeholder="Search for recipes...">
+            <input type="text" id="ingredientsInput" placeholder="Enter ingredients...">
+        </div>
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+            <option value="">Select Category</option>
+            <option value="diet">Diet</option>
+            <option value="health">Health</option>
+            <option value="cuisineType">Cuisine Type</option>
+            <option value="mealType">Meal Type</option>
+            <option value="dishType">Dish Type</option>
+        </select>
+        <label for="selections">Selections:</label>
+        <div id="selectionsContainer">
+            <!-- This container will hold either the input field or the selections dropdown -->
+        </div>
+        <button type="button" id="performSearch">Search</button>
+    </form>
+    
     <div id="searchResults"></div>
     <footer>&copy; The Impastas 2024</footer>
     <script src="search.js"></script>
+    <script>
+           let selectionsDropdown;
+            // Define the options for each category
+            const categoryOptions = {
+                diet: ['balanced', 'high-fiber', 'high-protein', 'low-carb', 'low-fat', 'low-sodium'],
+                health: ['alcohol-cocktail', 'alcohol-free', 'celery-free', 'gluten-free', 'vegan', 'crustacean-free', 'dairy-free', 'DASH',
+                    'egg-free', 'fish-free', 'fodmap-free', 'gluten-free', 'immuno-supportive', 'keto-friendly', 'kidney-friendly', 'kosher',
+                    'low-potassium', 'low-sugar', 'lupine-free', 'Mediterranean', 'mollusk-free', 'mustard-free', 'no-oil-added',
+                    'paleo', 'peanut-free', 'pescatarian', 'pork-free', 'red-meat-free', 'sesame-free', 'shellfish-free', 'soy-free', 'sugar-conscious',
+                    'sulfite-free', 'tree-nut-free', 'vegan', 'vegetarian', 'wheat-free'],
+                cuisineType: ['American', 'Asian', 'British', 'Caribbean', 'Central Europe', 'Chinese', 'Eastern Europe', 'French', 'Indian', 'Italian', 'Japanese',
+                    'Kosher', 'Mediterranean', 'Mexican', 'Middle Eastern', 'Nordic', 'South American', 'South East Asian'],
+                mealType: ['Breakfast', 'Dinner', 'Lunch', 'Snack', 'Teatime'],
+                dishType: ['Biscuits and cookies', 'Bread', 'Cereals', 'Condiments and sauces', 'Desserts', 'Drinks', 'Main course', 'Pancake', 'Preps', 'Preserve',
+                    'Salad', 'Sandwiches', 'Soup', 'Starter']
+            };
+    
+            // Event listener for when the category dropdown changes
+            categoryDropdown.addEventListener('change', updateSelections);
+    
+            // Initial population of selections based on the default category
+            updateSelections();
+    
+            // Function to update the selections container based on the selected category
+            function updateSelections() {
+                const selectedCategory = categoryDropdown.value;
+                const options = categoryOptions[selectedCategory];
+                selectionsDropdown = document.createElement('select');
+                selectionsDropdown.id = 'selections';
+                selectionsContainer.appendChild(selectionsDropdown);
+
+
+                // Clear existing content in the selections container
+                selectionsContainer.innerHTML = '';
+
+                if (!selectedCategory) {
+                    // If no category is selected, do nothing or handle it as needed
+                    return;
+                }
+
+                if (selectedCategory === 'ingredients') {
+                    // Create an input field for ingredients
+                    const ingredientsInput = document.createElement('input');
+                    ingredientsInput.type = 'text';
+                    ingredientsInput.placeholder = 'Enter ingredients (comma-separated)';
+                    ingredientsInput.id = 'ingredientsInput';
+                    ingredientsInput.name = 'ingredientsInput';
+                    selectionsContainer.appendChild(ingredientsInput);
+                } else {
+                    // Create a selections dropdown for other categories
+                    const selectionsDropdown = document.createElement('select');
+                    selectionsDropdown.id = 'selections';
+                    selectionsContainer.appendChild(selectionsDropdown);
+
+                    // Add an empty option at the beginning
+                    const emptyOption = document.createElement('option');
+                    emptyOption.value = '';
+                    emptyOption.textContent = 'Select...';
+                    selectionsDropdown.appendChild(emptyOption);
+
+                    // Populate the selections dropdown with the new options
+                    options.forEach(option => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = option;
+                        optionElement.textContent = option;
+                        selectionsDropdown.appendChild(optionElement);
+                    });
+                 }
+            }
+
+    </script>
 </body>
 </html>
