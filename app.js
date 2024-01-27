@@ -29,17 +29,13 @@ app.route("/api/search").get(async (req, res) => {
   try {
     let apiUrl;
     if (term) {
-      apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(
-        term
-      )}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
+        apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(term)}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
     } else if (ingredients) {
-      apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(
-        ingredients
-      )}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
+        apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(ingredients)}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
+    } else if (category && selections) {
+        apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(term)}&app_id=${edamamAppId}&app_key=${edamamAppKey}&${category}=${encodeURIComponent(selections)}`;
     } else {
-      throw new Error(
-        "At least one of search term or ingredients must be provided."
-      );
+        throw new Error("At least one of search term, ingredients, or category and selection must be provided.");
     }
 
     console.log("API URL:", apiUrl);
