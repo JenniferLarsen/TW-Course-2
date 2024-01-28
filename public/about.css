@@ -23,7 +23,7 @@ body {
 .navbar {
     display: flex;
     justify-content: space-around;
-    background-color:#ff7300;
+    background-color: #ef933dff;
     padding: 10px;
     font-family: 'heading', sans-serif;
 }
@@ -45,8 +45,8 @@ body {
 }
 
 .navbar a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color:#FBE1C9;
+    color: hsla(323, 73%, 22%, 1);
 }
 
 /* Style for the content area */
@@ -54,14 +54,14 @@ body {
     margin: 20px;
     margin-left: 450px;
     margin-right: 450px;
-    background-color: #dbfff4;
+    background-color: #e5ffdb;
     border-radius: 5px;
     font-family: 'Times New Roman', serif;
               
 }
 
 .content h1 {
-    color: #333;
+    color: hsla(323, 73%, 22%, 1);
     font-size: 54px;
 }
 
@@ -73,12 +73,14 @@ h1, h2 {
 h1 {
     padding-top: 10px;
     padding-bottom: 36px;
+    font-family: 'heading', sans-serif;
 }
 
 h2 {
     padding-bottom: 21px;
     font-family: 'heading', sans-serif;
     font-weight: bold;
+    color: hsla(120, 52%, 58%, 1);
 }
 
 #quote {
@@ -107,7 +109,7 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: auto;
-    background-color: #ff7300;
+    background-color:  #ef933dff;
 }
 
 #team {
