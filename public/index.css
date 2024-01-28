@@ -10,11 +10,12 @@
     }
 }
 
+
 body {
     font-size: 18px;
     display: flex;
     flex-direction: column;
-   background-color: hsla(29, 85%, 59%, .08);
+    background-color: hsla(29, 85%, 59%, .08);
 }
 
 .content {
@@ -61,10 +62,3 @@ button {
     font-size: 18px;
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: auto;
-    background-color: #ff7300;
-    color: white;
-}
