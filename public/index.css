@@ -45,6 +45,7 @@ body {
     margin-bottom: 20px;
     background-color: #589858;
 }
+
 .search-container input[type="text"] {
     height: 35px;
     width: 300px; 
@@ -53,6 +54,13 @@ body {
 
 #searchResults {
     text-align: center;
+}
+
+#category,
+#selections {
+    width: 200px; /* Set the desired width */
+    height: 30px; /* Set the desired height */
+    font-size: 18px;
 }
 
 button {
