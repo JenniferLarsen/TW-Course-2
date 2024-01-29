@@ -38,8 +38,9 @@ app.route("/api/search").get(async (req, res) => {
         ingredients
       )}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
     } else if (category && selections) {
-      apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(
-        category)}&${encodeURIComponent(selections)}&app_id=${edamamAppId}&app_key=${edamamAppKey}}`;
+      apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&${encodeURIComponent(
+        category)}=${encodeURIComponent(selections)}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
+        
     } else {
       throw new Error(
         "At least one of search term, ingredients, or category and selection must be provided."
