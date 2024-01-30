@@ -1,0 +1,69 @@
+
+.navbar p {
+    margin: 0%;
+}
+
+
+body {
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    background-color: hsla(29, 85%, 59%, .08);
+    margin: 0;
+}
+
+.content {
+    flex: 1; 
+    text-align: center;
+}
+
+.content p {
+    margin-bottom: 20px !important; 
+}
+
+.image-container {
+    display: flex;
+    justify-content: center; /* Center images horizontally */
+    align-items: center; /* Center images vertically */
+    margin: 0px 50px 20px 0px; /* Adjust the top and bottom margins */
+}
+
+.image-container img {
+    height: 300px;
+    width: 400px; /* Adjust the width of the images */
+    margin: 0 10px; /* Adjust the margin between the images */
+}
+
+.search-container {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #589858;
+}
+.search-container input[type="text"] {
+    height: 35px;
+    width: 300px; 
+    font-size: 18px;
+}
+
+#searchResults {
+    text-align: center;
+}
+
+button {
+    background-color:  #5f0f40ff;
+    color: white;
+    height: 35px;
+    font-size: 18px;
+}
+
+/* Responsive design: Adjusts the navbar for smaller screens */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        margin-bottom: 10px;
+    }
+}

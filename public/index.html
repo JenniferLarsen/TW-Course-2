@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="index.css">
+    <title>Pantry Cookbook</title>
+</head>
+<body>
+    <div class="navbar">
+        <p>The Pantry Cookbook</p>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="user-profile.html">User Profile</a>
+        <a href="login.html">Login/Signup</a>
+    </div>
+    <div class="content">
+        <h1>Pantry Cookbook</h1>
+        <p>Welcome to our Pantry Recipe Finder!</p>
+        <p>Here you can search for recipes your whole family will enjoy! 
+            You can search using all of the ingredients you already have on hand for a budget friendly dinner.
+            Or if you prefer, you can just search for a recipe by name.
+        </p>
+        <p>Feel free to create your user account using our Login/Signup link at the top of the page. This way you can save your favorite recipes or 
+            your ingredients list from your pantry to make finding your favorite recipes easier or to help create new favorites from what you
+            already have.
+        </p>
+        <h3>
+            Happy Cooking!
+        <h3>
+    </div>
+    <div class="image-container">
+        <img src="images/pasta.jpg" alt="Woman cooking pasta">
+        <img src="images/counter.jpg" alt="Prepared food on counter">
+    </div>
+    <form id="searchForm" class="search-container">
+        <div>
+            <input type="text" id="searchInput" placeholder="Search for recipes...">
+            <input type="text" id="ingredientsInput" placeholder="Enter ingredients...">
+        </div>
+        <div>
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                <option value="">Select Category</option>
+                <option value="diet">Diet</option>
+                <option value="health">Health</option>
+                <option value="cuisineType">Cuisine Type</option>
+                <option value="mealType">Meal Type</option>
+                <option value="dishType">Dish Type</option>
+            </select>
+        </div>
+        <div>
+            <label for="selections">Selections:</label>
+        </div>
+        <div id="selectionsContainer">
+            <!-- This container will hold either the input field or the selections dropdown -->
+        </div>
+        <button type="button" id="performSearch">Search</button>
+    </form>
+    
+    <div id="searchResults"></div>
+    <footer>&copy; The Impastas 2024</footer>
+    <script src="search.js"></script>
+</body>
+</html>

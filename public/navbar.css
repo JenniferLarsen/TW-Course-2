@@ -1,0 +1,84 @@
+/* Custom fonts */
+
+@font-face {
+    font-family: 'cookbook';
+    src: url('fonts/Black-Bones.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'heading';
+    src: url('fonts/Quicksand-Regular.ttf') format('truetype');
+}
+
+/* Style for the navigation bar */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #ef933dff;
+    padding: 10px;
+    font-family: 'heading', sans-serif;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px;    
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 24px;
+    display: grid;
+    place-items: center;    
+}
+
+.navbar p {    
+    font-size: 45px;
+    font-family: 'cookbook', sans-serif;
+    color: hsla(323, 73%, 22%, 1);
+}
+
+.navbar a:hover {
+    background-color:#FBE1C9;
+    color: hsla(323, 73%, 22%, 1);
+}
+
+/* Style for the content area */
+.content {
+    margin: 20px;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+}
+
+.content h1 {
+    color: #333;
+    font-size: 2em;
+}
+
+.content p {
+    color: #666;
+    font-size: 1em;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: auto; /* Centers the text block */
+}
+
+/*Style for the footer */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    background-color:  #ef933dff;
+    color: white;
+}
+
+/* Responsive design: Adjusts the navbar for smaller screens */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar a {
+        margin-bottom: 10px;
+    }
+}
