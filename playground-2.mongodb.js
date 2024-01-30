@@ -5,6 +5,32 @@
 const database = 'ImPastas';
 const collection = 'UserInfo';
 
+const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
+
+const uri = 'mongodb+srv://djlarsen1999:ImPastas@impastas.rrdymwc.mongodb.net/';
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB!');
+});
+
+// User Schema with Passport-local-mongoose plugin
+const userSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+});
+
+userSchema.plugin(passportLocalMongoose);
+
+const User = mongoose.model('User', userSchema);
+
+module.exports = { mongoose, User };
+
+
 // The current database to use.
 use(database);
 
