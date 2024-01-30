@@ -25,11 +25,12 @@
     padding: 15px;    
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
-    font-size: 24px;    
+    font-size: 24px;
+    display: grid;
+    place-items: center;    
 }
 
-.navbar p {
-    padding: 3px;
+.navbar p {    
     font-size: 45px;
     font-family: 'cookbook', sans-serif;
     color: hsla(323, 73%, 22%, 1);
