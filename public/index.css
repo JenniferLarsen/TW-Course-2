@@ -1,13 +1,6 @@
-/* Responsive design: Adjusts the navbar for smaller screens */
-@media (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        align-items: center;
-    }
 
-    nav a {
-        margin-bottom: 10px;
-    }
+.navbar p {
+    margin: 0%;
 }
 
 
@@ -16,6 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: hsla(29, 85%, 59%, .08);
+    margin: 0;
 }
 
 .content {
@@ -45,7 +39,6 @@ body {
     margin-bottom: 20px;
     background-color: #589858;
 }
-
 .search-container input[type="text"] {
     height: 35px;
     width: 300px; 
@@ -56,13 +49,6 @@ body {
     text-align: center;
 }
 
-#category,
-#selections {
-    width: 200px; /* Set the desired width */
-    height: 30px; /* Set the desired height */
-    font-size: 18px;
-}
-
 button {
     background-color:  #5f0f40ff;
     color: white;
@@ -70,3 +56,14 @@ button {
     font-size: 18px;
 }
 
+/* Responsive design: Adjusts the navbar for smaller screens */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        margin-bottom: 10px;
+    }
+}
