@@ -1,0 +1,36 @@
+body{
+    background-color: white;
+}
+main{
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+}
+#bar-filter div{
+    display: flex;
+    flex-direction: column;
+}
+#search-results{
+    display: inline-flex;
+    padding: 20px;
+}
+img{
+    /* display: block; Make the image a block element to control its size */
+    /* margin: 0 auto 10px; Center the image and add some space below it */
+    width: 150px;
+    /* height: 125px; */
+    border-radius: 65% 0 0 0;
+    /* border: none; */
+}
+.card{
+    background-color: #c2f8c2;
+    border-radius: 65% 0 0 0;
+    width: 150px;
+    height: auto;
+}
+.my-card__media {
+    background-image: url("./images/pasta.jpg");
+    width: 200px;
+    height: 200px;
+  }
+

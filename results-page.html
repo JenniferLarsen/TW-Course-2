@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="results.css">
+    <title>Recipe Results Page</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <h1 href ="index.html" id="prj-name"> Pantry Cookbook</h1>
+            <section>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="#" id="current-page">Account</a>
+                <a href="results.html">Search</a>
+                <a href="login.html">Login/Signup</a>
+            </section>
+        </nav>
+    </header> 
+
+    <main>
+        <section id="search-filter">
+            <div class="mdc-touch-target-wrapper">
+                <button id="filter-btn" class="mdc-button mdc-button--raised">
+                  <span class="mdc-button__ripple"></span>
+                  <span class="mdc-button__touch"></span>
+                  <span class="mdc-button__label">Filter</span>
+                </button>
+              </div>
+              <div id="search-submit">
+                <label classs ="search-bar" class="mdc-text-field mdc-text-field--outlined">
+                    <span class="mdc-notched-outline">
+                      <span class="mdc-notched-outline__leading"></span>
+                      <span class="mdc-notched-outline__notch">
+                        <span class="mdc-floating-label" id="search-bar">Search Recipe</span>
+                      </span>
+                      <span class="mdc-notched-outline__trailing"></span>
+                    </span>
+                    <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id">
+                  </label>
+                  <button id="submit-btn" class="mdc-button mdc-button--raised">
+                    <span class="mdc-button__ripple"></span>
+                    <span class="mdc-button__touch"></span>
+                    <span class="mdc-button__label">sbmt</span>
+                  </button>
+              </div>
+              
+        </section>
+
+        <section>
+            filter selections
+        </section>
+        <section id="search-results">
+            content/ results
+            <!-- <div class="mdc-card mdc-card--outlined">
+                <div class="my-card__media mdc-card__media mdc-card__media--16-9">
+                    <div class="mdc-card__media-content">Title</div>
+                </div>
+              </div>
+              <div class="mdc-card__actions">
+                <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
+                   aria-pressed="false"
+                   aria-label="Add to favorites"
+                   title="Add to favorites">
+                 <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">favorite</i>
+                 <i class="material-icons mdc-icon-button__icon">favorite_border</i>
+                </button>
+                <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
+                <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
+              </div> -->
+
+            <div class="card">
+                <img src="./images/pasta.jpg" alt="Food Image">
+                <h4 class="card">Food Name</h3>
+                <p class="card">food Description here with a little lorem ipsum</p>
+            </div>
+            <div class="card">
+                <img src="./images/pasta.jpg" alt="Food Image">
+                <h4>Food Name2</h3>
+                <p>Food Description here with a little lorem ipsum</p>
+            </div>
+            <div class="card">
+                <img src="./images/pasta.jpg" alt="Food Image">
+                <h4 class="card">Food Name3</h3>
+                <p class="card">Food Description here with a little lorem ipsum</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <span>&copy; TechWise Cohort II: The ImPastas 2024</span>
+    </footer>
+</body>
