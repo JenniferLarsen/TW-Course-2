@@ -8,7 +8,9 @@ const collection = 'UserInfo';
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 
-const uri = 'mongodb+srv://djlarsen1999:ImPastas@impastas.rrdymwc.mongodb.net/';
+require("dotenv").config();
+
+const uri = DB_URL;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
