@@ -13,6 +13,10 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
@@ -27,6 +31,11 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Define the /login route
+app.get('/login', (req, res) => {
+  res.sendFile('login.html', { root: path.join(__dirname, 'public') });
+});
 
 // Configure Passport to use the local strategy
 passport.use(User.createStrategy());
@@ -84,6 +93,10 @@ app.route("/api/search").get(async (req, res) => {
 });
 
 app.use("/", express.static(path.join(__dirname, "public")));
+
+app.get('/login', function(req, res, next) {
+  res.render('login');
+});
 
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
