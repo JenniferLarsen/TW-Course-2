@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./authRoutes');
 const session = require('express-session');
 const passport = require('passport');
-const { mongoose, User } = require('./db') //TODO - Update path - not sure what to.
+require('./passport-config');
+const { mongoose, User } = require('./db')
 const cors = require("cors");
 const fetch = require("node-fetch");
 const path = require("path");
