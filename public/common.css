@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'cookbook';
+    src: url('fonts/Black-Bones.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'heading';
+    src: url('fonts/Quicksand-Regular.ttf') format('truetype');
+}
+
 .root{
     /* CSS HEX */
     --mantis: #568F56;
