@@ -1,6 +1,7 @@
 /* global use, db */
 // MongoDB Playground
 // Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+require('dotenv').config();
 
 const database = 'ImPastas';
 const collection = 'UserInfo';
@@ -8,9 +9,7 @@ const collection = 'UserInfo';
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 
-require("dotenv").config();
-
-const uri = DB_URL;
+const uri = process.env.DB_URL;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
@@ -26,17 +25,13 @@ const userSchema = new mongoose.Schema({
   password: String,
 });
 
-userSchema.plugin(passportLocalMongoose);
-
 const User = mongoose.model('User', userSchema);
+
+userSchema.plugin(passportLocalMongoose);
 
 module.exports = { mongoose, User };
 
-
-// The current database to use.
-use(database);
-
-// Create a new collection.
+// Create a new collection.  - May not need this
 db.createCollection(collection);
 
 // The prototype form to create a collection:
