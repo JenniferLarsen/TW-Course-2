@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'cookbook';
+    src: url('fonts/Black-Bones.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'heading';
+    src: url('fonts/Quicksand-Regular.ttf') format('truetype');
+}
 
 .navbar p {
     margin: 0%;
@@ -15,10 +24,19 @@ body {
 .content {
     flex: 1; 
     text-align: center;
+    background-color: #e5ffdb;
 }
 
 .content p {
     margin-bottom: 20px !important; 
+}
+
+.content h1,h2,h3,h4 {
+    font-family: 'heading', sans-serif;
+}
+
+.content h1 {
+    color: #5F0F40;
 }
 
 .image-container {
