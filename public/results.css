@@ -14,17 +14,20 @@ main{
     display: inline-flex;
     padding: 20px;
 }
+#search-results div {
+    margin: 20px;
+}
 img{
     /* display: block; Make the image a block element to control its size */
     /* margin: 0 auto 10px; Center the image and add some space below it */
     width: 150px;
     /* height: 125px; */
-    border-radius: 65% 0 0 0;
+    border-radius: 65% 3% 0 0;
     /* border: none; */
 }
 .card{
     background-color: #c2f8c2;
-    border-radius: 65% 0 0 0;
+    border-radius: 57% 5% 3% 3%;
     width: 150px;
     height: auto;
 }

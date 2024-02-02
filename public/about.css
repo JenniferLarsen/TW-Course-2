@@ -10,22 +10,7 @@
 
 html, body {
     height: 100%;
-    margin: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    }
-
-/* Style for the navigation bar */
-.navbar {
-    display: flex;
-    justify-content: space-around;
-    background-color: #ef933dff;
-    padding: 10px;
-    font-family: 'heading', sans-serif;
+    
 }
 
 .navbar a {
@@ -38,7 +23,7 @@ body {
 }
 
 .navbar p {
-    padding: 3px;
+    margin-top: 24px;
     font-size: 45px;
     font-family: 'cookbook', sans-serif;
     color: hsla(323, 73%, 22%, 1);
@@ -51,13 +36,20 @@ body {
 
 /* Style for the content area */
 .content {
-    margin: 20px;
-    margin-left: 450px;
-    margin-right: 450px;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 50px;
+    padding-bottom: 12vh;        
+    margin-left: 300px;
+    margin-right: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     background-color: #e5ffdb;
     border-radius: 5px;
-    font-family: 'Times New Roman', serif;
-              
+    font-family: 'Times New Roman', serif;    
+    min-height: 100vh;
 }
 
 .content h1 {
@@ -68,28 +60,29 @@ body {
 h1, h2 {
     font-size: 36px;
     font-family: Arial, sans-serif;
+    text-align: center;
 }
 
 h1 {
+    margin-top: 20px;
+    margin-bottom: 30px;
     padding-top: 10px;
     padding-bottom: 36px;
     font-family: 'heading', sans-serif;
 }
 
 h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding-bottom: 21px;
     font-family: 'heading', sans-serif;
     font-weight: bold;
     color: hsla(120, 52%, 58%, 1);
 }
 
-#quote {
-    padding-top: 45px;
-}
 
-p {
-    padding-bottom: 21px;
-}
+
+
 
 .content p {
     color: #666;
@@ -97,6 +90,7 @@ p {
     line-height: 1.5;
     max-width: 600px;
     margin: auto; /* Centers the text block */
+    margin-bottom: 20px;
 }
 
   
@@ -107,9 +101,14 @@ p {
 
 footer {
     text-align: center;
-    padding: 20px;
-    margin-top: auto;
+    padding: 20px;   
     background-color:  #ef933dff;
+    color: white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%; 
+    height: 2vh;
 }
 
 #team {
@@ -129,17 +128,23 @@ footer {
     width: 200px;
     height: auto;
     border-radius: 20%;
+    margin: 20px;
 }
 
 .qrCode {
-    padding-top: 20px;
+    margin-top: 20px;
 }
 
 .qrCode img {
+    
     width: 300px; /* Set the desired width */
     height: auto; /* Let the height adjust to maintain the aspect ratio */
 }
 
+#quote {
+    margin: 5px;
+    text-align: center;
+}
 
 /* Responsive design: Adjusts the navbar for smaller screens */
 @media (max-width: 600px) {

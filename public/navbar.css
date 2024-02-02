@@ -17,6 +17,7 @@
     background-color: #ef933dff;
     padding: 10px;
     font-family: 'heading', sans-serif;
+    height: 10vh;
 }
 
 .navbar a {
@@ -54,7 +55,7 @@
 }
 
 .content p {
-    color: #666;
+    color: black;
     font-size: 1em;
     line-height: 1.5;
     max-width: 600px;
@@ -69,6 +70,7 @@ footer {
     margin-top: auto;
     background-color:  #ef933dff;
     color: white;
+    font-family: 'heading', sans-serif;
 }
 
 /* Responsive design: Adjusts the navbar for smaller screens */
