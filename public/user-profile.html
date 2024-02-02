@@ -6,61 +6,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="profile.css">
     <title>User Profile Page</title>
 </head>
 <body>
     <header>
-        <nav>
-            <h1 href ="index.html" id="prj_name"> Pantry Cookbook</h1>
-            <section id="navbar">
+        <div class="navbar">
+            <p>The Pantry Cookbook</p>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="user-profile.html" id="current-page">User Profile</a>
+            <a href="results-page.html">Search</a>
+            <a href="login.html">Login/Signup</a>
+        </div>
+        <!-- <nav class="navbar">
+            <h1 href ="index.html" id="prj-name"> Pantry Cookbook</h1>
+            <section>
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
-                <a href="#" id="current-page">Account</a>                
+                <a href="#" id="current-page">Account</a>
+                <a href="results-page.html">Search</a>
                 <a href="login.html">Login/Signup</a>
             </section>
-             
-        </nav>
+        </nav> -->
     </header>
     <main>
-        <section>
-            <h2>User: First Name</h2>
-            <p>user since: 2024</p>
-            <img src="" alt="user_image">
-        </section>
+        <div class="welcome">
+            <h1>Welcome Back!</h1>
+        </div>
+        <div>
+            <div class="tabs">
+                <h3>Saved</h3>
+                <h3 id="selected-tab">Favorites</h3>  
+                <h3>History</h3>
+            </div> 
+            <section id="content-box">
+                <section id="user-info">
+                    <img class="userImg" src="./images/cyn.jpg" alt="user_image">
+                    <h2 data-value="username">CynCity098</h2>
+                    <p>Memeber since: January2024</p>
+                </section>
+                <section id="saved">
+                    <div id="row1">
+                        <div>
+                            <img src="./images/pasta.jpg" alt="Food Image">
+                            <h4 class="card">Food Name</h3>
+                            <p class="card">food Description here with a little lorem ipsum</p>
+                        </div>
+                        <div>
+                            <img src="./images/pasta.jpg" alt="Food Image">
+                            <h4 class="card">Food Name2</h3>
+                            <p class="card">Food Description here with a little lorem ipsum</p>
+                        </div>
+                        <div>
+                            <img src="./images/pasta.jpg" alt="Food Image">
+                            <h4 class="card">Food Name3</h3>
+                            <p class="card">Food Description here with a little lorem ipsum</p>
+                        </div>
+                    </div>
+                    <div id="row2">
+                        <div>
+                            <img src="./images/pasta.jpg" alt="Food Image">
+                            <h4 class="card">Food Name4</h3>
+                            <p class="card">Food Description here with a little lorem ipsum</p>
+                        </div>
+                        <div>
+                            <img src="./images/pasta.jpg" alt="Food Image">
+                            <h4 class="card">Food Name5</h3>
+                            <p class="card">Food Description here with a little lorem ipsum</p>
+                        </div>
+                        <div>
+                            <img src="./images/pasta.jpg" alt="Food Image">
+                            <h4 class="card">Food Name6</h3>
+                            <p class="card">Food Description here with a little lorem ipsum</p>
+                        </div>
+                    </div>
+                </section>
+            </section> <!-- end saved-->
+        </div>
         
-        <section>
-            <h3>Saved Tab</h3>
+            <!-- <section id="favorites">
+                <div>user faves 1</div>
+                <div>user faves 2</div>
+                <div>user faves 3</div>
+            </section>
+            <section id="history">
+                <div>recent history 1</div>
+                <div>recent history 2</div>
+                <div>recent history 3</div>
+            </section> -->
+        </section> 
+        <section class="suggestions">
+            <h4>You may also like:</h4>
             <li>
-                <ol>Saved 1</ol>
-                <ol>Saved 1</ol>
-                <ol>Saved 2</ol>
-                <ol>Saved 3</ol>
-            </li>
-            <h3>Favorites Tab</h3>
-            <li>
-                <ol>user faves 1</ol>
-                <ol>user faves 2</ol>
-                <ol>user faves 3</ol>
-            </li>
-            <h3>History</h3>
-            <li>
-                <ol>recent history 1</ol>
-                <ol>recent history 2</ol>
-                <ol>recent history 3</ol>
-            </li>
-        </section>
-        <section>
-            <h4>Suggestion</h4>
-            <li>
-                <ul>random suggestion 1</ul>
-                <ul>random suggestion 2</ul>
-                <ul>random suggestion 3</ul>
+                <img src="./images/pasta.jpg" alt="Food Image">
+                <img src="./images/pasta.jpg" alt="Food Image">
+                <img src="./images/pasta.jpg" alt="Food Image">
             </li>
         </section>
     </main>
+
+    <footer>
+        <span>&copy; The ImPastas 2024</span>
+    </footer>
 </body>
-<footer>
-    <span>&copy; TechWise Cohort II: Team 2</span>
-</footer>
 </html>
