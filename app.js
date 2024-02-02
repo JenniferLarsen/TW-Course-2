@@ -6,7 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 const { User } = require('./models/user'); 
 const { mongoose, db } = require('./db');
-const cors = require("cors");
+const cors = require("cors");       //gateway for data
 const fetch = require("node-fetch");
 const path = require("path");
 
