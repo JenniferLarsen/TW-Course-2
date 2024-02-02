@@ -1,13 +1,5 @@
-/* global use, db */
-// MongoDB Playground
-// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
-require('dotenv').config();
-
-const database = 'ImPastas';
-const collection = 'UserInfo';
-
 const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
+require('dotenv').config();
 
 const uri = process.env.DB_URL;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -19,48 +11,4 @@ db.once('open', () => {
   console.log('Connected to MongoDB!');
 });
 
-// User Schema with Passport-local-mongoose plugin
-const userSchema = new mongoose.Schema({
-  username: String,
-  password: String,
-});
-
-const User = mongoose.model('User', userSchema);
-
-userSchema.plugin(passportLocalMongoose);
-
-module.exports = { mongoose, User };
-
-// Create a new collection.  - May not need this
-db.createCollection(collection);
-
-// The prototype form to create a collection:
-/* db.createCollection( <name>,
-  {
-    capped: <boolean>,
-    autoIndexId: <boolean>,
-    size: <number>,
-    max: <number>,
-    storageEngine: <document>,
-    validator: <document>,
-    validationLevel: <string>,
-    validationAction: <string>,
-    indexOptionDefaults: <document>,
-    viewOn: <string>,
-    pipeline: <pipeline>,
-    collation: <document>,
-    writeConcern: <document>,
-    timeseries: { // Added in MongoDB 5.0
-      timeField: <string>, // required for time series collections
-      metaField: <string>,
-      granularity: <string>,
-      bucketMaxSpanSeconds: <number>, // Added in MongoDB 6.3
-      bucketRoundingSeconds: <number>, // Added in MongoDB 6.3
-    },
-    expireAfterSeconds: <number>,
-    clusteredIndex: <document>, // Added in MongoDB 5.3
-  }
-)*/
-
-// More information on the `createCollection` command can be found at:
-// https://www.mongodb.com/docs/manual/reference/method/db.createCollection/
+module.exports = { mongoose, db };

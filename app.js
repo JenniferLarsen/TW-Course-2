@@ -4,11 +4,18 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./authRoutes');
 const session = require('express-session');
 const passport = require('passport');
-require('./passport-config');
-const { mongoose, User } = require('./db')
+const { User } = require('./models/user'); 
+const { mongoose, db } = require('./db');
 const cors = require("cors");
 const fetch = require("node-fetch");
 const path = require("path");
+
+// Load environment variables from .env
+require('dotenv').config();
+
+// Example use of mongoose and db
+mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true});
+
 
 const app = express();
 const port = 3000;
