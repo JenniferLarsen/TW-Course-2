@@ -20,6 +20,7 @@ main{
 .search-group{
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 700px;
 }
 #search-results{
