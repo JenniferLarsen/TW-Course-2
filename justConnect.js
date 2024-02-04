@@ -1,24 +1,28 @@
 const { MongoClient } = require("mongodb");
 
-// Database Name
-let dbName, userame, password;
-dbName = userame = password = "nic";
 // Connection URL
-const url = `mongodb://${userame}:${password}@192.168.171.67`;
-const client = new MongoClient(url);
+const uri = process.env.TY_DB;
+
+const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function main() {
-  await client.connect();
-  console.log("Connected successfully to server");
-  const db = client.db(dbName);
-  console.log(" the db", db);
-  const collections = await db.collections();
-  console.log("the collections");
-  for (collection of collections) console.log(collection);
-  return "done.";
+  try {
+    await client.connect();
+    console.log("Connected successfully to server");
+
+    const db = client.db(); // No need to specify dbName separately, it's included in the connection string
+    console.log("Database:", db.databaseName);
+
+    const collections = await db.collections();
+    console.log("Collections:");
+    collections.forEach(collection => console.log(collection.collectionName));
+    
+    return "done.";
+  } catch (error) {
+    console.error("Error:", error);
+  } finally {
+    await client.close();
+  }
 }
 
-main()
-  .then(console.log)
-  .catch(console.error)
-  .finally(() => client.close());
+main().then(console.log).catch(console.error);
