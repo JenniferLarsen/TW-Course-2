@@ -7,6 +7,15 @@ const { mongoose } = require('./db');
 const cors = require("cors");
 const path = require("path");
 
+const exampleUser = {
+  "username": "example_user",
+  "email": "example@example.com",
+  "password": "example_password",
+  "age": 30,
+  "location": "New York",
+  "created_at": "2024-02-04T00:00:00Z"
+};
+
 // Load environment variables from .env
 require('dotenv').config();
 
@@ -44,6 +53,16 @@ passport.deserializeUser(User.deserializeUser());
 app.get('/login', (req, res) => {
   res.render('login');
 });
+
+// Define a route to retrieve the user
+app.get('/users/:username', (req, res) => {
+  const username = req.params.username;
+  
+  // Assuming you would query MongoDB here to get the user data based on the username
+  // For simplicity, we'll just return the exampleUser
+  res.json(exampleUser);
+});
+
 
 // Import and configure dotenv to load environment variables from .env file
 require("dotenv").config();

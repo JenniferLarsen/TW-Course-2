@@ -1,0 +1,10 @@
+{
+    "_id": {
+        "$oid": "65bfb6ab530b8f72659cd38d"
+    },
+    "username": "example_user",
+        "email": "user@example.com",
+            "passwordHash": "$2b$10$DZ9SjiTT/4HD0pA6QH7GyO.X9ksyLtzTw6/MAMUWu62PnweKH9FZ6",
+                "createdAt": "2024-01-24T12:30:45Z",
+                    "updatedAt": "2024-01-25T08:15:20Z"
+}
