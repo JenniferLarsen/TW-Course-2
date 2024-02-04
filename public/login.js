@@ -3,6 +3,26 @@ const signInButton = document.getElementById('signIn');
 const signUpButtonRelocator = document.getElementById('signUpRelocator');
 const signInButtonRelocator = document.getElementById('signInRelocator');
 const container = document.getElementById('container');
+const databaseButton = document.getElementById('databaseCheck');
+
+async function fetchExampleData() {
+	try {
+		const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+
+		if (!response.ok) {
+			throw new Error('Network response was not ok');
+		}
+
+		const data = await response.json();
+		console.log(data); // Log the fetched data
+	} catch (error) {
+		console.error('There was a problem with the fetch operation:', error);
+	}
+}
+
+databaseButton.addEventListener('click', () => {
+	fetchExampleData();
+});
 
 signUpButton.addEventListener('click', () => {
 	container.classList.add("right-panel-active");
