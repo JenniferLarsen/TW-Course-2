@@ -2,26 +2,40 @@ const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const signUpButtonRelocator = document.getElementById('signUpRelocator');
 const signInButtonRelocator = document.getElementById('signInRelocator');
+const userSignInEmail = document.getElementById('userSignInEmail');
+const userSignInPassword = document.getElementById('userSignInPassword');
 const container = document.getElementById('container');
-const databaseButton = document.getElementById('databaseCheck');
 
-async function fetchExampleData() {
-	try {
-		const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+function performLogin() {
+    const username = userSignInEmail.value;
+    const password = userSignInPassword.value;
+	
+	console.log("(CLIENT SIDE) Username:", username);
+	console.log("(CLIENT SIDE) Password:", password);
 
-		if (!response.ok) {
-			throw new Error('Network response was not ok');
-		}
+    // Construct the API URL
+    let dbUrl = "http://localhost:3000/login?";
+    dbUrl += `username=${encodeURIComponent(username)}&`;
+    dbUrl += `password=${encodeURIComponent(password)}`;
 
-		const data = await response.json();
-		console.log(data); // Log the fetched data
-	} catch (error) {
-		console.error('There was a problem with the fetch operation:', error);
-	}
+    // Make the API request
+    fetch(dbUrl)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data); // Handle the response data as needed
+        })
+        .catch((error) => console.error("Error:", error));
 }
 
-databaseButton.addEventListener('click', () => {
-	fetchExampleData();
+// Attach the performLogin function to a button click event or form submission event
+
+signInButtonRelocator.addEventListener('click', () => {
+	performLogin();
 });
 
 signUpButton.addEventListener('click', () => {
