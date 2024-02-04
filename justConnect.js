@@ -10,12 +10,15 @@ async function main() {
     await client.connect();
     console.log("Connected successfully to server");
 
-    const db = client.db(); // No need to specify dbName separately, it's included in the connection string
+    const db = client.db("ImPastas"); // Connect to the "ImPastas" database
     console.log("Database:", db.databaseName);
 
-    const collections = await db.collections();
-    console.log("Collections:");
-    collections.forEach(collection => console.log(collection.collectionName));
+    const collection = db.collection("UserInfo"); // Access the "UserInfo" collection
+    console.log("Collection name:", collection.collectionName);
+
+      // Query the collection to find the example user
+      const exampleUser = await collection.findOne({ username: "example_user" });
+      console.log("Example User:", exampleUser);
     
     return "done.";
   } catch (error) {
