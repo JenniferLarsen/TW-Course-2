@@ -1,6 +1,6 @@
 // Server-side JavaScript
 const express = require("express");
-const cors = require("cors");       //gateway for data
+const cors = require("cors");
 const fetch = require("node-fetch");
 const path = require("path");
 
@@ -57,6 +57,15 @@ app.route("/api/search").get(async (req, res) => {
     console.error("Error making Edamam API request:", error);
     res.status(500).json({ error: "Internal server error" });
   }
+});
+
+// Define a route for handling signup
+app.route("/login").get(async (req, res) => {
+  const { username, password } = req.query;
+
+  console.log("Username:", username);
+  console.log("Password:", password);
+
 });
 
 app.use("/", express.static(path.join(__dirname, "public")));

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/d9cdc1d4-1406-4aa3-ad30-db2ce6188f66/resourceGroups/ImPastas/providers/Microsoft.Web/sites/PantryCookbook",
+    "appService.deploySubpath": "."
+}
