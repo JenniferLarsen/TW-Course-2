@@ -23,7 +23,7 @@
 	<div class="outerContainer">
 		<div class="container" id="container">
 			<div class="form-container sign-up-container">
-				<form action="./user-profile.html" class="forms">
+				<form action="/signup" method="post" class="forms">
 					<h1>Create Account</h1>
 					<div class="social-container">
 						<a href="#" class="fa fa-facebook signup_a"></a>
@@ -31,10 +31,10 @@
 						<a href="#" class="fa fa-linkedin signup_a"></a>
 					</div>
 					<span>or use your email for registration</span>
-					<input type="text" placeholder="Name" required  />
-					<input type="email" id="userSignInEmail" placeholder="Email" required  />
-					<input type="password" id="userSignInPassword" placeholder="Password" required  />
-					<input type="password" placeholder="Confirm Password" required  />
+					<input type="text" name="name" placeholder="Name" required  />
+					<input type="email" name="email" id="userSignInEmail" placeholder="Email" required  />
+					<input type="password" name="password"  id="userSignInPassword" placeholder="Password" required  />
+					<input type="password" name="confirmPassword" placeholder="Confirm Password" required  />
 					<button id="signUpRelocator">Sign Up</button>
 				</form>
 			</div>

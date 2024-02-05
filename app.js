@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const fetch = require("node-fetch");
 const path = require("path");
+const connectToDatabase = require("./justConnect");
 
 const app = express();
 const port = 3000;
@@ -72,4 +73,23 @@ app.use("/", express.static(path.join(__dirname, "public")));
 
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
+});
+
+// Define a route for handling sign-up requests
+app.post("/signup", async (req, res) => {
+  try {
+      const { name, email, password } = req.body;
+
+      // Add validation checks for name, email, and password here if needed
+      
+
+      // Insert the user data into your MongoDB database
+      const result = await collection.insertOne({ name, email, password });
+      console.log(`New user inserted with ID: ${result.insertedId}`);
+
+      res.status(201).json({ message: 'User signed up successfully' });
+  } catch (error) {
+      console.error('Error signing up user:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
 });

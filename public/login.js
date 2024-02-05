@@ -6,31 +6,31 @@ const userSignInEmail = document.getElementById('userSignInEmail');
 const userSignInPassword = document.getElementById('userSignInPassword');
 const container = document.getElementById('container');
 
-function performLogin() {
-    const username = userSignInEmail.value;
-    const password = userSignInPassword.value;
+// function performLogin() {
+//     const username = userSignInEmail.value;
+//     const password = userSignInPassword.value;
 	
-	console.log("(CLIENT SIDE) Username:", username);
-	console.log("(CLIENT SIDE) Password:", password);
+// 	console.log("(CLIENT SIDE) Username:", username);
+// 	console.log("(CLIENT SIDE) Password:", password);
 
-    // Construct the API URL
-    let dbUrl = "http://localhost:3000/login?";
-    dbUrl += `username=${encodeURIComponent(username)}&`;
-    dbUrl += `password=${encodeURIComponent(password)}`;
+//     // Construct the API URL
+//     let dbUrl = "http://localhost:3000/login?";
+//     dbUrl += `username=${encodeURIComponent(username)}&`;
+//     dbUrl += `password=${encodeURIComponent(password)}`;
 
-    // Make the API request
-    fetch(dbUrl)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data); // Handle the response data as needed
-        })
-        .catch((error) => console.error("Error:", error));
-}
+//     // Make the API request
+//     fetch(dbUrl)
+//         .then((response) => {
+//             if (!response.ok) {
+//                 throw new Error(`HTTP error! Status: ${response.status}`);
+//             }
+//             return response.json();
+//         })
+//         .then((data) => {
+//             console.log(data); // Handle the response data as needed
+//         })
+//         .catch((error) => console.error("Error:", error));
+// }
 
 // Attach the performLogin function to a button click event or form submission event
 
@@ -109,3 +109,43 @@ function validateSignUpForm() {
 		console.log("Please fill out the 'confirm password' field.")
 	}
 }
+
+// Function to send sign-up data to the server
+function signUpUser() {
+    const name = document.getElementById('nameInput').value;
+    const email = document.getElementById('emailInput').value;
+    const password = document.getElementById('passwordInput').value;
+
+    // Make sure the fields are not empty
+    if (!name || !email || !password) {
+        alert('Please fill out all fields.');
+        return;
+    }
+
+    // Construct the API URL
+    const dbUrl = 'http://localhost:3000/signup'; // Update the URL as needed
+
+    // Make the API request
+    fetch(dbUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, password })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data); // Handle the response data as needed
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Attach the signUpUser function to the sign-up button click event
+document.getElementById('signUpRelocator').addEventListener('click', () => {
+    signUpUser();
+});
