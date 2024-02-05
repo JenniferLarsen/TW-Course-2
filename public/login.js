@@ -2,7 +2,41 @@ const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const signUpButtonRelocator = document.getElementById('signUpRelocator');
 const signInButtonRelocator = document.getElementById('signInRelocator');
+const userSignInEmail = document.getElementById('userSignInEmail');
+const userSignInPassword = document.getElementById('userSignInPassword');
 const container = document.getElementById('container');
+
+function performLogin() {
+    const username = userSignInEmail.value;
+    const password = userSignInPassword.value;
+	
+	console.log("(CLIENT SIDE) Username:", username);
+	console.log("(CLIENT SIDE) Password:", password);
+
+    // Construct the API URL
+    let dbUrl = "http://localhost:3000/login?";
+    dbUrl += `username=${encodeURIComponent(username)}&`;
+    dbUrl += `password=${encodeURIComponent(password)}`;
+
+    // Make the API request
+    fetch(dbUrl)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data); // Handle the response data as needed
+        })
+        .catch((error) => console.error("Error:", error));
+}
+
+// Attach the performLogin function to a button click event or form submission event
+
+signInButtonRelocator.addEventListener('click', () => {
+	performLogin();
+});
 
 signUpButton.addEventListener('click', () => {
 	container.classList.add("right-panel-active");

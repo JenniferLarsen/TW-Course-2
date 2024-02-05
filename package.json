@@ -4,7 +4,8 @@
   "description": "In a world where economic challenges can sometimes feel overwhelming, our recipe website serves as a beacon of hope and practicality. \r Let's embrace the adventure of cooking with what we have, turning ordinary ingredients into extraordinary meals that nourish not only our bodies but also our spirits. \r Together, let's navigate the culinary landscape and savor the joy of creating delicious dishes without breaking the bank. After all, a well-fed soul is the ultimate remedy for any economic storm.",
   "main": "login.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
@@ -12,8 +13,13 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-session": "^1.18.0",
+    "mongoose": "^8.1.1",
     "node-fetch": "^2.7.0",
-    "passport": "^0.7.0"
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0"
   }
 }
