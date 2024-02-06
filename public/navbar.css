@@ -10,6 +10,11 @@
     src: url('fonts/Quicksand-Regular.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'content';
+    src: url('fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
 /* Style for the navigation bar */
 .navbar {
     display: flex;
@@ -49,8 +54,7 @@
     font-family: 'Times New Roman', serif;
 }
 
-.content h1 {
-    color: #333;
+.content h1 {    
     font-size: 2em;
 }
 
@@ -64,14 +68,7 @@
 
 /*Style for the footer */
 
-footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: auto;
-    background-color:  #ef933dff;
-    color: white;
-    font-family: 'heading', sans-serif;
-}
+
 
 /* Responsive design: Adjusts the navbar for smaller screens */
 @media (max-width: 600px) {
