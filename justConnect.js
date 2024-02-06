@@ -37,8 +37,8 @@ async function seedData() {
   const collection = db.collection('UserInfo');
 
   const dataToSeed = [
-    { username: 'Test_User' },
-    { password: 'Testing' },
+    { username: 'Test_User', 
+      password: 'Testing' },
     // Add more data as needed
   ];
 
