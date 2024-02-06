@@ -1,3 +1,7 @@
+require('dotenv').config();
+
+const uri = process.env.DB_URI;
+
 const { MongoClient } = require("mongodb");
 
 // Connection URL
@@ -8,7 +12,7 @@ const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology:
 async function main() {
   try {
     await client.connect();
-    console.log("Connected successfully to server");
+    console.log('Connected to MongoDB Atlas');
 
     const db = client.db("ImPastas"); // Connect to the "ImPastas" database
     console.log("Database:", db.databaseName);
@@ -28,4 +32,29 @@ async function main() {
   }
 }
 
+async function seedData() {
+  const db = client.db('ImPastas');
+  const collection = db.collection('UserInfo');
+
+  const dataToSeed = [
+    { username: 'Test_User' },
+    { password: 'Testing' },
+    // Add more data as needed
+  ];
+
+  try {
+    const result = await collection.insertMany(dataToSeed);
+    console.log(`${result.insertedCount} documents inserted`);
+  } catch (error) {
+    console.error('Error seeding data:', error);
+  } finally {
+    await client.close();
+  }
+}
+
+
 main().then(console.log).catch(console.error);
+
+seedData()
+
+
