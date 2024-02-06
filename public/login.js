@@ -14,7 +14,7 @@ function performLogin() {
 	console.log("(CLIENT SIDE) Password:", password);
 
     // Construct the API URL
-    let dbUrl = "http://localhost:3000/login?";
+    let dbUrl = "http://localhost:8080/login?";
     dbUrl += `username=${encodeURIComponent(username)}&`;
     dbUrl += `password=${encodeURIComponent(password)}`;
 

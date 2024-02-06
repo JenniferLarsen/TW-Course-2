@@ -102,7 +102,7 @@ function performSearch() {
   console.log("Selections:", selections);
 
   // Construct the API URL based on the available inputs
-  let apiUrl = "http://localhost:3000/api/search?";
+  let apiUrl = '/api/search?'
 
   if (searchTerm) {
     apiUrl += `term=${encodeURIComponent(searchTerm)}&`;
