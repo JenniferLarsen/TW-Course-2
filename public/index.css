@@ -31,8 +31,23 @@ body {
     margin-bottom: 20px !important; 
 }
 
-.content h1,h2,h3,h4 {
-    font-family: 'heading', sans-serif;
+/* Style for the content area */
+.content {
+    margin: 20px;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+}
+
+.content h1 {    
+    font-size: 2em;
+}
+
+.content p {
+    color: black;
+    font-size: 1em;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: auto; /* Centers the text block */
 }
 
 .content h1 {
@@ -56,6 +71,7 @@ body {
     text-align: center;
     margin-bottom: 20px;
     background-color: #589858;
+    padding-bottom: 60px;
 }
 .search-container input[type="text"] {
     height: 35px;
@@ -73,6 +89,8 @@ button {
     height: 35px;
     font-size: 18px;
 }
+
+
 
 /* Responsive design: Adjusts the navbar for smaller screens */
 @media (max-width: 600px) {

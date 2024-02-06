@@ -8,6 +8,11 @@
     src: url('fonts/Quicksand-Regular.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'content';
+    src: url('fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
 .root{
     /* CSS HEX */
     --mantis: #568F56;
@@ -38,6 +43,38 @@ body{
     justify-content: center;
 }
 
+/* Style for the navigation bar */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #ef933dff;
+    padding: 10px;
+    font-family: 'heading', sans-serif;
+    height: 10vh;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px;    
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 24px;
+    display: grid;
+    place-items: center;    
+}
+
+.navbar p {    
+    font-size: 45px;
+    font-family: 'cookbook', sans-serif;
+    color: hsla(323, 73%, 22%, 1);
+}
+
+.navbar a:hover {
+    background-color:#FBE1C9;
+    color: hsla(323, 73%, 22%, 1);
+}
+
 /* Style for the MAIN area */
 main{
     /* background-color: hsla(29, 85%, 59%, .08); */
@@ -65,6 +102,15 @@ h4{
     filter: opacity(75%);
 }
 
+h1, h2, h3, h4 {
+    font-family: 'heading';
+
+}
+
+.content p {
+    font-family: 'content';
+}
+
 /* Responsive design: Adjusts the navbar for smaller screens */
 @media (max-width: 600px) {
     nav, .navbar {
@@ -86,7 +132,8 @@ footer, .footer{
     padding: 20px;
     text-align: center;
     color: white;
-     justify-content: center;
+    justify-content: center;
+    background-color:  #ef933dff;
 }
 
 /* #current-page {

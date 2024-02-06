@@ -8,6 +8,11 @@
     src: url('fonts/Quicksand-Regular.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'content';
+    src: url('fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
 html, body {
     height: 100%;
     
@@ -22,8 +27,7 @@ html, body {
     font-size: 24px;    
 }
 
-.navbar p {
-    margin-top: 24px;
+.navbar p {    
     font-size: 45px;
     font-family: 'cookbook', sans-serif;
     color: hsla(323, 73%, 22%, 1);
@@ -58,8 +62,7 @@ html, body {
 }
 
 h1, h2 {
-    font-size: 36px;
-    font-family: Arial, sans-serif;
+    font-size: 36px;  
     text-align: center;
 }
 
@@ -86,6 +89,7 @@ h2 {
 
 .content p {
     color: #666;
+    font-family: 'content';
     font-size: 1em;
     line-height: 1.5;
     max-width: 600px;

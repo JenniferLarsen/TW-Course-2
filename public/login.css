@@ -17,6 +17,10 @@
 	/* margin: -20px 0 50px; */
 }
 
+.outerContainer p {
+	font-family: 'content';
+}
+
 h1 {
 	font-weight: bold;
 	margin: 0;
