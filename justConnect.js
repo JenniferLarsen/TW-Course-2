@@ -38,7 +38,8 @@ async function seedData() {
 
   const dataToSeed = [
     { username: 'Test_User', 
-      password: 'Testing' },
+      password: 'Testing',
+      email: 'testemail@aol.com' },
     // Add more data as needed
   ];
 
