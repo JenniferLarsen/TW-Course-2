@@ -6,22 +6,20 @@ main{
     justify-content: center;
     text-align: center;
 }
-#bar-filter div{
-    display: flex;
-    flex-direction: column;
-}
 .search-bar-container {
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 100%;
-    background-color: grey;
+    /* background-color: grey; */
 }
 .search-group{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 700px;
+    justify-content: space-between;
+    width: 650px;
+    /* background-color: salmon; */
 }
 #search-results{
     display: inline-flex;
@@ -30,16 +28,99 @@ main{
 #search-results div {
     margin: 20px;
 }
+ /* filter button and dropdown styling */
+.dropdown{
+    position: relative;
+    width: 80px;
+    box-shadow: 15%;
+    cursor: pointer;
+}
+.dropdown-text{
+    /* display: flex; */
+    align-items: center;
+    /* justify-content: space-between; */
+    background-color: #cef7ce;
+    border-radius: 3px;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 7px 10px;
+}
+.dropdown-text:hover{
+    content: attr(dropdown-list);
+    background-color: rgb(127, 159, 79);
+    color:  #cef7ce;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+.dropdown-list{
+    position: absolute;
+    top: 2.6rem;
+    left: 0;
+    width: 100%;
+    background-color: wheat;
+}
+.dropdown-list li{
+    font-size: .85rem;
+    padding: .5rem 0 .5rem .5rem;
+}
+.dropdown-list li:hover{
+    margin-left: -0.5rem;
+    color:#568F56;
+    transition: margin-left 0.3s ease, color 0.2s ease ;
+}
+.dropdown-list li:hover::after, .dropdown-list li:focus::after {
+    content: attr(data-description);
+    position: absolute;
+    text-align: center;
+    justify-self: baseline;
+    left: 90%;
+    min-width: 200px;
+    padding: 5px;
+    background-color: rgb(127, 159, 79);
+    color: white;
+    font-size: 20px;
+    z-index: 1;
+}
+/* search bar and icon styling */
+.search-box{
+    display: flex;
+    align-items: center;
+    width: 60%;
+    height: 3rem;
+    color: white; /* changes color of maginfying glass */
+    
+}
+.search-box input{
+    padding: .5rem;
+    width: 100%;
+    box-shadow: none;
+    border: 2px solid;
+    border-color: #5BCB5B;
+    border-radius: 50px 0 0 50px;
+    outline: none;
+    font-size: 16px;
+}
+.search-box input::placeholder{
+    padding-left: 1rem;
+}
+.search-icon {
+    background-color: #cef7ce;
+    padding: .35rem;
+    width: 2rem;
+    padding-right: .5rem;
+    border: 2px solid;
+    border-left-style: none;
+    border-radius: 0 70% 2px 0;
+    border-color: #5BCB5B;
+    cursor: pointer;
+}
 img{
-    /* display: block; Make the image a block element to control its size */
-    /* margin: 0 auto 10px; Center the image and add some space below it */
     width: 150px;
-    /* height: 125px; */
     border-radius: 65% 3% 0 0;
-    /* border: none; */
 }
 .card{
-    background-color: #c2f8c2;
+    background-color: #5BCB5B;
+    color: #568F56;
     border-radius: 57% 5% 3% 3%;
     width: 150px;
     height: auto;
@@ -48,6 +129,6 @@ img{
     background-image: url("./images/pasta.jpg");
     width: 200px;
     height: 200px;
-  }
+}
 
 
