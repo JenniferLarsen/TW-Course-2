@@ -78,18 +78,18 @@ app.listen(port, () => {
 // Define a route for handling sign-up requests
 app.post("/signup", async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+      const { name, email, password } = req.body;
 
-    // Add validation checks for name, email, and password here if needed
+      // Add validation checks for name, email, and password here if needed
+      
 
-    // Insert the user data into your MongoDB database
-    const result = await collection.insertOne({ name, email, password });
-    console.log(`New user inserted with ID: ${result.insertedId}`);
+      // Insert the user data into your MongoDB database
+      const result = await collection.insertOne({ name, email, password });
+      console.log(`New user inserted with ID: ${result.insertedId}`);
 
-    res.status(201).json({ message: 'User signed up successfully' });
+      res.status(201).json({ message: 'User signed up successfully' });
   } catch (error) {
-    console.error('Error signing up user:', error);
-    res.status(500).json({ error: 'Internal server error' });
+      console.error('Error signing up user:', error);
+      res.status(500).json({ error: 'Internal server error' });
   }
 });
-

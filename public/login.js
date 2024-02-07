@@ -2,38 +2,35 @@ const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const signUpButtonRelocator = document.getElementById('signUpRelocator');
 const signInButtonRelocator = document.getElementById('signInRelocator');
-const nameInput = document.getElementById('nameInput');  // Add this line
+const userSignInEmail = document.getElementById('userSignInEmail');
+const userSignInPassword = document.getElementById('userSignInPassword');
+const container = document.getElementById('container');
 
-signUpButtonRelocator.addEventListener('click', () => {
-  // Validate the form before allowing the user to move forward
-  if (validateSignUpForm()) {
-    const formData = {
-      name: nameInput.value,
-      email: userSignInEmail.value,
-      password: userSignInPassword.value,
-    };
+function performLogin() {
+    const username = userSignInEmail.value;
+    const password = userSignInPassword.value;
+    
+    console.log("(CLIENT SIDE) Username:", username);
+    console.log("(CLIENT SIDE) Password:", password);
 
-    // Make the signup API request
-    fetch('http://localhost:8080/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log(data); // Handle the response data as needed
-    })
-    .catch(error => console.error("Error:", error));
-  }
-});
+    // Construct the API URL
+    let dbUrl = "http://localhost:8080/login?";
+    dbUrl += `username=${encodeURIComponent(username)}&`;
+    dbUrl += `password=${encodeURIComponent(password)}`;
 
+    // Make the API request
+    fetch(dbUrl)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data); // Handle the response data as needed
+        })
+        .catch((error) => console.error("Error:", error));
+}
 
 // Attach the performLogin function to a button click event or form submission event
 
