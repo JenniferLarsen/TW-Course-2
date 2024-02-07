@@ -38,7 +38,7 @@ signInButtonRelocator.addEventListener('click', () => {
 	performLogin();
 });
 
-signUpButton.addEventListener('click', () => {
+signUpButtonRelocator.addEventListener('click', () => {
 	container.classList.add("right-panel-active");
 });
 
@@ -48,7 +48,7 @@ signInButton.addEventListener('click', () => {
 
 signUpButtonRelocator.addEventListener('click', () => {
 	// Validate the form before allowing the user to move forward
-	// window.location.href = 'user-profile.html';
+	 window.location.href = 'user-profile.html';
 	if (validateSignUpForm()) {
 		const formData = extractFormData(document.getElementById('signUpForm'));
 		console.log('Form Data:', formData);
@@ -123,7 +123,7 @@ function signUpUser() {
     }
 
     // Construct the API URL
-    const dbUrl = 'http://localhost:3000/signup'; // Update the URL as needed
+    const dbUrl = 'http://localhost:8080/signup'; // Update the URL as needed
 
     // Make the API request
     fetch(dbUrl, {
@@ -145,7 +145,7 @@ function signUpUser() {
     .catch(error => console.error('Error:', error));
 }
 
-// Attach the signUpUser function to the sign-up button click event
+/* // Attach the signUpUser function to the sign-up button click event
 document.getElementById('signUpRelocator').addEventListener('click', () => {
     signUpUser();
-});
+}); */
