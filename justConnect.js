@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const { MongoClient } = require("mongodb");
 
+// Connection URL
 const uri = process.env.TY_DB;
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -17,10 +18,10 @@ async function main() {
     const collection = db.collection("UserInfo"); // Access the "UserInfo" collection
     console.log("Collection name:", collection.collectionName);
 
-    // Query the collection to find the example user
-    const exampleUser = await collection.findOne({ username: "example_user" });
-    console.log("Example User:", exampleUser);
-
+      // Query the collection to find the example user
+      const exampleUser = await collection.findOne({ username: "example_user" });
+      console.log("Example User:", exampleUser);
+    
     return "done.";
   } catch (error) {
     console.error("Error:", error);
