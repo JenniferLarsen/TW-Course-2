@@ -1,6 +1,10 @@
 require('dotenv').config();
 
-const uri = process.env.DB_URI;
+const userSignInEmail = document.getElementById('userSignInEmail');
+const userSignInPassword = document.getElementById('userSignInPassword');
+const container = document.getElementById('container');
+
+const uri = process.env.MONGODB_URI;
 
 const { MongoClient } = require("mongodb");
 
@@ -43,6 +47,29 @@ user.save((err) => {
     }
     return done(null, user);
 });
+
+async function saveData() {
+  const db = client.db('ImPastas');
+  const collection = db.collection('UserInfo');
+
+  const dataToSave = [
+    {
+      userEmail: {userSignInEmail},
+      userPassword: {userSignInPassword}
+    }
+  ];
+
+  try {
+    const result = await collection.insertMany(dataToSave);
+    console.log(`${result.insertedCount} documents inserted`);
+  } catch (error) {
+    console.error('Error saving data:', error);
+  } finally {
+    await client.close();
+  }
+}
+
+saveData();
 
 /* async function seedData() {
   const db = client.db('ImPastas');
