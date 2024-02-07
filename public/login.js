@@ -2,9 +2,23 @@ const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const signUpButtonRelocator = document.getElementById('signUpRelocator');
 const signInButtonRelocator = document.getElementById('signInRelocator');
+const nameInput = document.getElementById('nameInput');
 const userSignInEmail = document.getElementById('userSignInEmail');
 const userSignInPassword = document.getElementById('userSignInPassword');
 const container = document.getElementById('container');
+
+async function connectToMongoDB() {
+    try {
+      const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+      await client.connect();
+      console.log('Connected to MongoDB Atlas');
+      return client;
+    } catch (error) {
+      console.error('Error connecting to MongoDB:', error);
+      throw error; // Propagate the error to handle it appropriately
+    }
+  }
+
 
 function performLogin() {
     const username = userSignInEmail.value;
@@ -32,6 +46,33 @@ function performLogin() {
         .catch((error) => console.error("Error:", error));
 }
 
+async function saveData(nameInput, userSignInEmail, userSignInPassword) {
+    try {
+      const client = await connectToMongoDB();
+  
+      const db = client.db('ImPastas');
+      const collection = db.collection('UserInfo');
+  
+      const dataToSave = [
+        {
+          username: nameInput,
+          password: userSignInPassword,
+          email: userSignInEmail,
+        }
+      ];
+  
+      const result = await collection.insertMany(dataToSave);
+      console.log(`${result.insertedCount} documents inserted`);
+    } catch (error) {
+      console.error('Error saving data:', error);
+    } finally {
+      // Close the MongoDB connection if it was established
+      if (client) {
+        await client.close();
+      }
+    }
+  }
+
 // Attach the performLogin function to a button click event or form submission event
 
 signInButtonRelocator.addEventListener('click', () => {
@@ -48,18 +89,20 @@ signInButton.addEventListener('click', () => {
 
 signUpButtonRelocator.addEventListener('click', () => {
     // Validate the form before allowing the user to move forward
-    // window.location.href = 'user-profile.html';
     if (validateSignUpForm()) {
-        const formData = extractFormData(document.getElementById('signUpForm'));
-        console.log('Form Data:', formData);
+        const name = nameInput.value;
+        const email = userSignInEmail.value;
+        const password = userSignInPassword.value;
+
+        saveData(name, email, password);
     }
 });
 
 // Function to validate the sign-up form
 function validateSignUpForm() {
     const nameInput = document.getElementById('nameInput');
-    const emailInput = document.getElementById('emailInput');
-    const passwordInput = document.getElementById('passwordInput');
+    const emailInput = document.getElementById('userSignInEmail');
+    const passwordInput = document.getElementById('userSignInPassword');
     const confirmPasswordInput = document.getElementById('confirmPasswordInput');
 
     try {
@@ -94,6 +137,7 @@ function validateSignUpForm() {
     } catch (error) {
         console.log("Please fill out the 'password' field.")
     }
+
     try {
         // Check if the passwords match
         if (passwordInput.value !== confirmPasswordInput.value) {
@@ -108,3 +152,30 @@ function validateSignUpForm() {
         console.log("Please fill out the 'confirm password' field.")
     }
 }
+
+async function saveData(nameInput, userSignInEmail, userSignInPassword) {
+    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+    try {
+        await client.connect();
+
+        const db = client.db('ImPastas');
+        const collection = db.collection('UserInfo');
+
+        const dataToSave = [
+            {
+                username: nameInput,
+                password: userSignInPassword,
+                email: userSignInEmail,
+            }
+        ];
+
+        const result = await collection.insertMany(dataToSave);
+        console.log(`${result.insertedCount} documents inserted`);
+    } catch (error) {
+        console.error('Error saving data:', error);
+    } finally {
+        await client.close();
+    }
+}
+
