@@ -35,6 +35,7 @@ main{
 #search-results div {
     margin: 20px;
 }
+
  /* filter button and dropdown styling */
 .dropdown{
     position: relative;
@@ -87,13 +88,14 @@ main{
     text-align: center;
     justify-self: baseline;
     left: 90%;
-    min-width: 200px;
+    width: 200px;
     padding: 5px;
     background-color: rgb(127, 159, 79);
     color: white;
     font-size: 20px;
     z-index: 1;
 }
+
 /* search bar and icon styling */
 .search-box{
     display: flex;
@@ -125,8 +127,51 @@ main{
     border-color: #5BCB5B;
     cursor: pointer;
 }
-/* filter item area styling */
+.search-icon:hover{
+    color: #568F56;
+    transition: color 0.5s;
+}
 
+/* filter item area styling */
+#filters-section{
+    min-width: 100%;
+    /* delete later */
+    /* background-color: aqua; */
+}
+.filters-page-container {
+    display: flex;
+    justify-content: space-between;     /* X-axis alignment*/
+    align-items: self-end;              /* Y-axis alignment*/
+    margin: auto;
+    padding: 1rem;
+    padding-top: 2.5rem;
+    width: 700px;
+    height: 4rem;
+    border-bottom: 1px solid #9D6989;
+    /* delete later */
+    /* background-color: grey; */
+}
+.selected-filters{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2rem;
+    max-width: 65%;
+    /* delete later */
+    /* background-color: hsl(120, 25%, 45%); */
+}
+.selected-filters li{
+    display: inline-flex;
+    align-items: center;
+    background-color: #FCDC4D ;
+    padding: 5px;
+    font-size: .95rem;
+    margin-right: .5rem;
+    border-radius: 30px;
+}
+.selected-filters i{
+    padding-right: 5px;
+    color:rgb(91, 101, 81);
+}
 /* content area styling */
 img{
     width: 150px;
