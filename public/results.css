@@ -174,20 +174,47 @@ main{
 }
 /* content area styling */
 img{
-    width: 150px;
+    width: 200px;
     border-radius: 65% 3% 0 0;
 }
 .card{
     background-color: #5BCB5B;
     color: #568F56;
     border-radius: 57% 5% 3% 3%;
-    width: 150px;
-    height: auto;
+    padding-bottom: .5rem;
+    width: 200px;
+    min-height: 150px;
 }
 .my-card__media {
     background-image: url("./images/pasta.jpg");
     width: 200px;
     height: 200px;
 }
+.meal-name{
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+}
+.description{
+    width: 85%;
+    line-height: 14px;
+    margin: auto;
 
-
+    font-size: .85rem;
+    overflow: hidden;
+}
+.user-actions{
+    display: inline-flex;
+    margin: auto;
+    width: 70%;
+    justify-content: flex-end;
+}
+.user-actions i{
+    color: #cef7ce;
+    font-size: 1.2rem;
+    padding-left: 7px;
+}
+.cook-time{
+    color: #FCDC4D;
+    font-size: .8rem;
+}
