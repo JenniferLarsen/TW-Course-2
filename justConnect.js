@@ -44,7 +44,7 @@ user.save((err) => {
     return done(null, user);
 });
 
-async function seedData() {
+/* async function seedData() {
   const db = client.db('ImPastas');
   const collection = db.collection('UserInfo');
 
@@ -63,11 +63,12 @@ async function seedData() {
   } finally {
     await client.close();
   }
-}
+} */
 
 
 main().then(console.log).catch(console.error);
-
 // seedData()
+
+}
 
 
