@@ -53,6 +53,6 @@ async function seedData() {
 
 main().then(console.log).catch(console.error);
 
-seedData()
+// seedData()
 
 
