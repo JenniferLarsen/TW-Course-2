@@ -25,10 +25,11 @@ async function main() {
     return "done.";
   } catch (error) {
     console.error("Error:", error);
-  } finally {
+   }  finally {
     await client.close();
-  }
+  } 
 }
+
 
 async function saveData(userName, userSignInEmail, userSignInPassword) {
   const db = client.db('ImPastas');
@@ -47,9 +48,7 @@ async function saveData(userName, userSignInEmail, userSignInPassword) {
     console.log(`${result.insertedCount} documents inserted`);
   } catch (error) {
     console.error('Error saving data:', error);
-  } finally {
-    await client.close();
-  }
+}
 }
 
 // Example usage
