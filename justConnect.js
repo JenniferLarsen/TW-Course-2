@@ -27,7 +27,22 @@ async function main() {
   } finally {
     await client.close();
   }
-}
+  const user = {
+    id: profile.id,
+    displayName: profile.displayName,
+    email: profile.emails ? profile.emails[0].value : null,
+    // Add other properties as needed
+    accessToken: accessToken,
+    refreshToken: refreshToken
+};
+
+// Assuming you have a user model, you would typically save this user to your database
+user.save((err) => {
+    if (err) {
+        return done(err);
+    }
+    return done(null, user);
+});
 
 async function seedData() {
   const db = client.db('ImPastas');
