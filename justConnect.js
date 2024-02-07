@@ -4,10 +4,7 @@ const uri = process.env.DB_URI;
 
 const { MongoClient } = require("mongodb");
 
-// Connection URL
-const uri = process.env.TY_DB;
-
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function main() {
   try {
