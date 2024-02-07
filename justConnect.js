@@ -28,8 +28,39 @@ async function main() {
     await client.close();
   }
 }
+const bcrypt = require('bcrypt');
+const saltRounds = 10; // Number of salt rounds for bcrypt
 
-async function saveData(userName, userSignInEmail, userSignInPassword) {
+async function saveData() {
+  const name = document.getElementById('userSignInName').value; // Adjust based on your form structure
+  const email = document.getElementById('userSignInEmail').value;
+  const password = document.getElementById('userSignInPassword').value;
+
+  // Hash the password using bcrypt
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+  const db = client.db('ImPastas');
+  const collection = db.collection('UserInfo');
+
+  const dataToSave = [
+    {
+      username: name, // Assuming your username is the user's name
+      email: email,
+      password: hashedPassword,
+    },
+  ];
+
+  try {
+    const result = await collection.insertMany(dataToSave);
+    console.log(`${result.insertedCount} documents inserted`);
+  } catch (error) {
+    console.error('Error saving data:', error);
+  } finally {
+    await client.close();
+  }
+}
+
+/* async function saveData(userName, userSignInEmail, userSignInPassword) {
   const db = client.db('ImPastas');
   const collection = db.collection('UserInfo');
 
@@ -49,7 +80,7 @@ async function saveData(userName, userSignInEmail, userSignInPassword) {
   } finally {
     await client.close();
   }
-}
+} */
 
 // Example usage
 main().then(console.log).catch(console.error);
