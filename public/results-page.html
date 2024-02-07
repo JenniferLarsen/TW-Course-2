@@ -38,76 +38,70 @@
           <!-- dropdown section -->
           <div class="search-group">
               <div class="dropdown">
-              <div class="dropdown-text">
-                <span>Filter </span>
-                <i class="fa-solid fa-chevron-down"></i>
+                <div id="drop-text" class="dropdown-text">
+                  <span>Filter </span>
+                  <i id="arrow" class="fa-solid fa-chevron-down"></i>
+                </div>
+                <ul id="a-list" class="dropdown-list">
+                  <li class="dropdown-list-item">Diet</li>
+                  <li class="dropdown-list-item">Health</li>
+                  <li class="dropdown-list-item">Region</li>
+                  <li class="dropdown-list-item">Time</li>
+                  <li class="dropdown-list-item">Dish</li>
+                </ul>
               </div>
-            </div>
-            <ul class="dropdown-list">
-              <li class="dropdown-list-item"></li>
-              <li class="dropdown-list-item">item1</li>
-              <li class="dropdown-list-item">item2</li>
-              <li class="dropdown-list-item">item3</li>
-            </ul>
-
-            <!-- search bar section -->
-            <div class="search-box">
-              <input type="text" id="search-input" placeholder="Search...">
-              <div>
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </div>
-            </div>
-          </div>
-          
-                <!-- <button id="filter-btn">
-                  <span>Filter</span>
-                </button>
-              </div>
-              <div id="search-submit">
-                <form action="#">
-                  <input type="text" placeholder="Search.." name="search">
-                  <button type="submit">sbmt</button>
-                </form>
-              </div> -->
               
-            </div>
 
-        <section>
-            filter selections
-        </section>
-        <section id="search-results">
-            content/ results
-            <!-- <div class="mdc-card mdc-card--outlined">
-                <div class="my-card__media mdc-card__media mdc-card__media--16-9">
-                    <div class="mdc-card__media-content">Title</div>
+              <!-- search bar section -->
+              <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search...">
+                <div class="search-icon">
+                  <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
               </div>
-              <div class="mdc-card__actions">
-                <button class="mdc-icon-button mdc-card__action mdc-card__action--icon"
-                   aria-pressed="false"
-                   aria-label="Add to favorites"
-                   title="Add to favorites">
-                 <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">favorite</i>
-                 <i class="material-icons mdc-icon-button__icon">favorite_border</i>
-                </button>
-                <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
-                <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
-              </div> -->
+            </div> <!-- end search bar group-->
+          </div> <!-- end search-bar-container -->
 
+        <section id="filters-section">
+            <div class="filters-page-container" >
+              <div class="selected-filters">
+                  <li><i class="fa-solid fa-xmark"></i>| vegan</li>
+                  <li><i class="fa-solid fa-xmark"></i>| gluten free</li>
+                  <li><i class="fa-solid fa-xmark"></i>| dairy</li>
+              </div>
+              <div class="pagination"> ...pagination... </div>
+            </div>
+
+        </section>
+
+        <section id="search-results">
             <div class="card">
                 <img src="./images/pasta.jpg" alt="Food Image">
-                <h4 class="card">Food Name</h3>
-                <p class="card">food Description here with a little lorem ipsum</p>
+                <h4 id="meal-name" class="meal-name">Food Name</h3>
+                <p class="description">food Description here with a little lorem ipsum</p>
+                <div class="user-actions">
+                  <i class="fa-regular fa-heart"></i>
+                  <i class="fa-regular fa-star"></i>
+                </div>
             </div>
             <div class="card">
                 <img src="./images/pasta.jpg" alt="Food Image">
-                <h4>Food Name2</h3>
-                <p>Food Description here with a little lorem ipsum</p>
-            </div>
+                <h4 id="meal-name" class="meal-name"> Food Name2</h3>
+                <p class="description">Food Description here with a little lorem ipsum</p>
+                <div class="user-actions">
+                  <i class="fa-regular fa-heart"></i>
+                  <i class="fa-regular fa-star"></i>
+                </div>
+              </div>
             <div class="card">
                 <img src="./images/pasta.jpg" alt="Food Image">
-                <h4 class="card">Food Name3</h3>
-                <p class="card">Food Description here with a little lorem ipsum</p>
+                <h4 id="meal-name" class="meal-name">Food Name3</h3>
+                <p class="description">Food Description here with a little lorem ipsum</p>
+                <div class="user-actions">
+                  <!-- <span class="cook-time"> 30mins</span> -->
+                  <i class="fa-regular fa-heart"></i>
+                  <i class="fa-regular fa-star"></i>
+                </div>
             </div>
         </section>
 
@@ -116,4 +110,5 @@
     <footer>
         <span>&copy; The ImPastas 2024</span>
     </footer>
+    <script src="results.js"></script>
 </body>
