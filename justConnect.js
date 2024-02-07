@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const userName = document.getElementById('userSignInName');
 const userSignInEmail = document.getElementById('userSignInEmail');
 const userSignInPassword = document.getElementById('userSignInPassword');
 const container = document.getElementById('container');
@@ -54,8 +55,9 @@ async function saveData() {
 
   const dataToSave = [
     {
-      userEmail: {userSignInEmail},
-      userPassword: {userSignInPassword}
+      username: {userName}, 
+      password: {userSignInPassword},
+      email: {userSignInEmail},
     }
   ];
 
