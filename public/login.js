@@ -34,9 +34,9 @@ const container = document.getElementById('container');
 
 // Attach the performLogin function to a button click event or form submission event
 
-signInButtonRelocator.addEventListener('click', () => {
+/* signInButtonRelocator.addEventListener('click', () => {
 	performLogin();
-});
+}); */
 
 signUpButtonRelocator.addEventListener('click', () => {
 	container.classList.add("right-panel-active");
@@ -46,7 +46,7 @@ signInButton.addEventListener('click', () => {
 	container.classList.remove("right-panel-active");
 });
 
-signUpButtonRelocator.addEventListener('click', () => {
+/* signUpButtonRelocator.addEventListener('click', () => {
 	// Validate the form before allowing the user to move forward
 	 window.location.href = 'user-profile.html';
 	if (validateSignUpForm()) {
@@ -54,7 +54,7 @@ signUpButtonRelocator.addEventListener('click', () => {
 		console.log('Form Data:', formData);
 	}
 });
-
+ */
 // Function to validate the sign-up form
 function validateSignUpForm() {
 	const nameInput = document.getElementById('nameInput');
