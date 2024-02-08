@@ -48,6 +48,5 @@ async function saveData(username, email, password) {
 
 // Example usage
 main().then(console.log).catch(console.error);
-saveData('Name', 'userSignInEmail', 'userSignInPassword');
 
 module.exports = saveData;
