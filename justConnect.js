@@ -1,14 +1,18 @@
+// Server side
+
+require('dotenv').config();
+
 const { MongoClient } = require("mongodb");
 
 // Connection URL
 const uri = process.env.TY_DB;
 
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function main() {
   try {
     await client.connect();
-    console.log("Connected successfully to server");
+    console.log('Connected to MongoDB Atlas');
 
     const db = client.db("ImPastas"); // Connect to the "ImPastas" database
     console.log("Database:", db.databaseName);
@@ -23,9 +27,26 @@ async function main() {
     return "done.";
   } catch (error) {
     console.error("Error:", error);
-  } finally {
-    await client.close();
-  }
+   /* }  finally {
+    await client.close(); */
+  } 
 }
 
+
+async function saveData(username, email, password) {
+  const db = client.db('ImPastas');
+  const collection = db.collection('UserInfo');
+
+  try {
+    const result = await collection.insertOne({username, email, password});
+    console.log(`One document inserted`);
+    return result
+  } catch (error) {
+    console.error('Error saving data:', error);
+}
+}
+
+// Example usage
 main().then(console.log).catch(console.error);
+
+module.exports = saveData;
