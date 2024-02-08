@@ -2,79 +2,79 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="reset.css">
-	<link rel="stylesheet" href="login.css">
-	<link rel="stylesheet" href="common.css">
-	<title>Log in/Sign up</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="common.css">
+    <title>Log in/Sign up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-	<div class="navbar">
-		<p>The Pantry Cookbook</p>
-		<a href="index.html">Home</a>
-		<a href="about.html">About</a>
-		<a href="results-page.html">Search</a>
-		<a href="user-profile.html">User Profile</a>		
-		<a href="login.html">Login/Signup</a>
-	</div>
-	<div class="outerContainer">
-		<div class="container" id="container">
-			<div class="form-container sign-up-container">
-				<form action="./user-profile.html" class="forms">
-					<h1>Create Account</h1>
-					<div class="social-container">
-						<a href="#" class="fa fa-facebook signup_a"></a>
-						<a href="#" class="fa fa-google signup_a"></a>
-						<a href="#" class="fa fa-linkedin signup_a"></a>
-					</div>
-					<span>or use your email for registration</span>
-					<input type="text" placeholder="Name" required  />
-					<input type="email" id="userSignInEmail" placeholder="Email" required  />
-					<input type="password" id="userSignInPassword" placeholder="Password" required  />
-					<input type="password" placeholder="Confirm Password" required  />
-					<button id="signUpRelocator">Sign Up</button>
-				</form>
-			</div>
-			<div class="form-container sign-in-container">
-				<form action="./user-profile.html" class="forms">
-					<h1>Sign in</h1>
-					<div class="social-container">
-						<a href="#" class="fa fa-facebook signup_a"></a>
-						<a href="#" class="fa fa-google signup_a"></a>
-						<a href="#" class="fa fa-linkedin signup_a"></a>
-					</div>
-					<span>or use your account</span>
-					<input type="email" placeholder="Email" required  />
-					<input type="password" placeholder="Password" required  />
-					<a href="#" class="signup_a">Forgot your password?</a>
-					<button id="signInRelocator">Sign In</button>
-				</form>
-			</div>
-			<div class="overlay-container">
-				<div class="overlay">
-					<div class="overlay-panel overlay-left">
-						<h1>Welcome Back!</h1>
-						<p>To keep connected with us please login with your personal info</p>
-						<button class="ghost" id="signIn">Sign In</button>
-					</div>
-					<div class="overlay-panel overlay-right">
-						<h1>Hello, Friend!</h1>
-						<p>Enter your personal details and start journey with us</p>
-						<button class="ghost" id="signUp">Sign Up</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	<footer>
-		&copy; The Impastas 2024
-	</footer>
-	</div>
+    <div class="navbar">
+        <p>The Pantry Cookbook</p>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="results-page.html">Search</a>
+        <a href="user-profile.html">User Profile</a>        
+        <a href="login.html">Login/Signup</a>
+    </div>
+    <div class="outerContainer">
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="./user-profile.html" id="fileinfo" class="forms">
+                    <h1>Create Account</h1>
+                    <!-- <div class="social-container">
+                        <a href="#" class="fa fa-facebook signup_a"></a>
+                        <a href="#" class="fa fa-google signup_a"></a>
+                        <a href="#" class="fa fa-linkedin signup_a"></a>
+                    </div>
+                    <span>or use your email for registration</span> -->
+                    <input type="text" id="nameInput" name="nameInput" placeholder="Name" required  />
+                    <input type="email" id="userSignInEmail" name="userSignInEmail" placeholder="Email" required  />
+                    <input type="password" id="userSignInPassword" name="userSignInPassword" placeholder="Password" required  />
+                    <input type="password" placeholder="Confirm Password" required  />
+                    <button type="submit" id="signUpRelocator">Sign Up</button>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form action="./user-profile.html" class="forms">
+                    <h1>Sign in</h1>
+                     <div class="social-container">
+                        <a href="#" class="fa fa-facebook signup_a"></a>
+                        <a href="#" class="fa fa-google signup_a"></a>
+                        <a href="#" class="fa fa-linkedin signup_a"></a>
+                    </div>
+                    <span>or use your account</span>
+                    <input type="email" placeholder="Email" required  />
+                    <input type="password" placeholder="Password" required  />
+                    <a href="#" class="signup_a">Forgot your password?</a>
+                    <button id="signInRelocator">Sign In</button>
+                </form>
+            </div> -->
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, Friend!</h1>
+                        <p>Enter your personal details and start journey with us</p>
+                        <button class="ghost" id="signUp">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <footer>
+        &copy; The Impastas 2024
+    </footer>
+    </div>
 
-	
-	<script src="login.js"></script>
+    
+    <script src="login.js"></script>
 </body>
 
 </html>
