@@ -1,3 +1,5 @@
+// Client side
+
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const signUpButtonRelocator = document.getElementById('signUpRelocator');
@@ -7,20 +9,8 @@ const userSignInEmail = document.getElementById('userSignInEmail');
 const userSignInPassword = document.getElementById('userSignInPassword');
 const container = document.getElementById('container');
 
-async function connectToMongoDB() {
-    try {
-      const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-      await client.connect();
-      console.log('Connected to MongoDB Atlas');
-      return client;
-    } catch (error) {
-      console.error('Error connecting to MongoDB:', error);
-      throw error; // Propagate the error to handle it appropriately
-    }
-  }
-
-
-function performLogin() {
+// delete this NOW
+/* function performLogin() {
     const username = userSignInEmail.value;
     const password = userSignInPassword.value;
     
@@ -44,39 +34,27 @@ function performLogin() {
             console.log(data); // Handle the response data as needed
         })
         .catch((error) => console.error("Error:", error));
-}
+} */
 
-async function saveData(nameInput, userSignInEmail, userSignInPassword) {
-    try {
-      const client = await connectToMongoDB();
-  
-      const db = client.db('ImPastas');
-      const collection = db.collection('UserInfo');
-  
-      const dataToSave = [
-        {
-          username: nameInput,
-          password: userSignInPassword,
-          email: userSignInEmail,
-        }
-      ];
-  
-      const result = await collection.insertMany(dataToSave);
-      console.log(`${result.insertedCount} documents inserted`);
-    } catch (error) {
-      console.error('Error saving data:', error);
-    } finally {
-      // Close the MongoDB connection if it was established
-      if (client) {
-        await client.close();
-      }
-    }
-  }
+// Attach the performLogin function to a button click event or form submission even
 
-// Attach the performLogin function to a button click event or form submission event
+const form = document.querySelector("#fileinfo");
+
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    console.log("Nick - line 44 login.js")
+    const formData = new FormData(form);
+    console.log(formData)
+  formData.append("CustomField", "This is some extra data");
+
+  const response = await fetch("/signup", {
+    method: "POST",
+    body: formData,
+  });
+  
+});
 
 signInButtonRelocator.addEventListener('click', () => {
-    performLogin();
 });
 
 signUpButton.addEventListener('click', () => {
@@ -89,15 +67,16 @@ signInButton.addEventListener('click', () => {
 
 signUpButtonRelocator.addEventListener('click', () => {
     // Validate the form before allowing the user to move forward
-    if (validateSignUpForm()) {
+  /*   if (validateSignUpForm()) {
         const name = nameInput.value;
         const email = userSignInEmail.value;
         const password = userSignInPassword.value;
 
         saveData(name, email, password);
-    }
+    } */
 });
 
+// These should be at both ends - front end makes sure user entry is ok - back end makes sure info is correct and valid
 // Function to validate the sign-up form
 function validateSignUpForm() {
     const nameInput = document.getElementById('nameInput');
@@ -150,32 +129,6 @@ function validateSignUpForm() {
 
     } catch (error) {
         console.log("Please fill out the 'confirm password' field.")
-    }
-}
-
-async function saveData(nameInput, userSignInEmail, userSignInPassword) {
-    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-    try {
-        await client.connect();
-
-        const db = client.db('ImPastas');
-        const collection = db.collection('UserInfo');
-
-        const dataToSave = [
-            {
-                username: nameInput,
-                password: userSignInPassword,
-                email: userSignInEmail,
-            }
-        ];
-
-        const result = await collection.insertMany(dataToSave);
-        console.log(`${result.insertedCount} documents inserted`);
-    } catch (error) {
-        console.error('Error saving data:', error);
-    } finally {
-        await client.close();
     }
 }
 
