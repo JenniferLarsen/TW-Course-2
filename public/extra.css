@@ -5,9 +5,10 @@ h1 {
 #recipes {
     display: inline-flex;
     flex-direction: row;
-    padding: 20px; 
     text-align: center; 
     background-color: #FBE1C9; 
+    padding: 50px;
+
 }
 
 div {
@@ -17,4 +18,8 @@ div {
 
 ul, li {
     text-align: left;
+}
+
+#ddc {
+    height: 225px;
 }
