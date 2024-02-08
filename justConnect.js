@@ -1,3 +1,5 @@
+// Server side
+
 require('dotenv').config();
 
 const { MongoClient } = require("mongodb");
@@ -25,8 +27,8 @@ async function main() {
     return "done.";
   } catch (error) {
     console.error("Error:", error);
-   }  finally {
-    await client.close();
+   /* }  finally {
+    await client.close(); */
   } 
 }
 
@@ -38,14 +40,15 @@ async function saveData(userName, userSignInEmail, userSignInPassword) {
   const dataToSave = [
     {
       username: userName,
-      password: userSignInPassword,
       email: userSignInEmail,
+      password: userSignInPassword,
     }
   ];
 
   try {
     const result = await collection.insertMany(dataToSave);
     console.log(`${result.insertedCount} documents inserted`);
+    return result
   } catch (error) {
     console.error('Error saving data:', error);
 }
@@ -54,3 +57,5 @@ async function saveData(userName, userSignInEmail, userSignInPassword) {
 // Example usage
 main().then(console.log).catch(console.error);
 saveData('Name', 'userSignInEmail', 'userSignInPassword');
+
+module.exports = saveData;
