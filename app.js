@@ -4,6 +4,7 @@ const cors = require("cors");
 const fetch = require("node-fetch");
 const path = require("path");
 const saveUserData = require("./justConnect");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 8080;
@@ -70,6 +71,7 @@ app.route("/login").get(async (req, res) => {
 });
 
 app.use("/", express.static(path.join(__dirname, "public")));
+app.use(bodyParser.json());
 
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
@@ -79,12 +81,13 @@ app.listen(port, () => {
 app.post("/signup", async (req, res) => {
   try {
       const { name, email, password } = req.body;
-
+      console.log(name)
       // Add validation checks for name, email, and password here if needed
       
 
       // Insert the user data into your MongoDB database
       const result = await saveUserData(name, email, password);
+      // fix insertedID
       console.log(`New user inserted with ID: ${result.insertedId}`);
 
       res.status(201).json({ message: 'User signed up successfully' });

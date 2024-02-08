@@ -33,21 +33,13 @@ async function main() {
 }
 
 
-async function saveData(userName, userSignInEmail, userSignInPassword) {
+async function saveData(username, email, password) {
   const db = client.db('ImPastas');
   const collection = db.collection('UserInfo');
 
-  const dataToSave = [
-    {
-      username: userName,
-      email: userSignInEmail,
-      password: userSignInPassword,
-    }
-  ];
-
   try {
-    const result = await collection.insertMany(dataToSave);
-    console.log(`${result.insertedCount} documents inserted`);
+    const result = await collection.insertOne({username, email, password});
+    console.log(`One document inserted`);
     return result
   } catch (error) {
     console.error('Error saving data:', error);
