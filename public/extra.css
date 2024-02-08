@@ -8,12 +8,10 @@ h1 {
     flex-direction: row;
     text-align: center; 
     background-color: #FBE1C9; 
-    padding: 50px;
-
 }
 
 div {
-    margin: 20px;
+    margin: 12px;
 }
 
 
@@ -23,4 +21,8 @@ ul, li {
 
 #ddc {
     height: 225px;
+}
+
+#card {
+    width: 180px;
 }
