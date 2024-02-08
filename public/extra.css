@@ -1,0 +1,28 @@
+h1 {
+    text-align: center;
+    background-color: #cef7ce;
+}
+
+#recipes {
+    display: inline-flex;
+    flex-direction: row;
+    text-align: center; 
+    background-color: #FBE1C9; 
+}
+
+div {
+    margin: 12px;
+}
+
+
+ul, li {
+    text-align: left;
+}
+
+#ddc {
+    height: 225px;
+}
+
+#card {
+    width: 180px;
+}
