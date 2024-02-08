@@ -4,37 +4,7 @@ const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const signUpButtonRelocator = document.getElementById('signUpRelocator');
 const signInButtonRelocator = document.getElementById('signInRelocator');
-const nameInput = document.getElementById('nameInput');
-const userSignInEmail = document.getElementById('userSignInEmail');
-const userSignInPassword = document.getElementById('userSignInPassword');
 const container = document.getElementById('container');
-
-// delete this NOW
-/* function performLogin() {
-    const username = userSignInEmail.value;
-    const password = userSignInPassword.value;
-    
-    console.log("(CLIENT SIDE) Username:", username);
-    console.log("(CLIENT SIDE) Password:", password);
-
-    // Construct the API URL
-    let dbUrl = "http://localhost:8080/login?";
-    dbUrl += `username=${encodeURIComponent(username)}&`;
-    dbUrl += `password=${encodeURIComponent(password)}`;
-
-    // Make the API request
-    fetch(dbUrl)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data); // Handle the response data as needed
-        })
-        .catch((error) => console.error("Error:", error));
-} */
 
 // Attach the performLogin function to a button click event or form submission even
 
@@ -43,27 +13,34 @@ const form = document.querySelector("#fileinfo");
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
     console.log("Nick - line 44 login.js")
-    const formData = new FormData(form);
-    console.log(formData)
-  formData.append("CustomField", "This is some extra data");
+    const name = document.getElementById('nameInput').value;
+    const email = document.getElementById('userSignInEmail').value;
+    const password = document.getElementById('userSignInPassword').value;
+    // const formData = new FormData(form);
+    // formData.append("CustomField", "This is some extra data");
+    console.log(name)
+  
 
   const response = await fetch("/signup", {
     method: "POST",
-    body: formData,
+    headers: {
+        "Content-Type": "application/json",
+      },
+    body: JSON.stringify({name, email, password}),
   });
   
 });
 
-signInButtonRelocator.addEventListener('click', () => {
-});
+// signInButtonRelocator.addEventListener('click', () => {
+// });
 
 signUpButton.addEventListener('click', () => {
     container.classList.add("right-panel-active");
 });
 
-signInButton.addEventListener('click', () => {
-    container.classList.remove("right-panel-active");
-});
+// signInButton.addEventListener('click', () => {
+//     container.classList.remove("right-panel-active");
+// });
 
 signUpButtonRelocator.addEventListener('click', () => {
     // Validate the form before allowing the user to move forward
