@@ -1,0 +1,20 @@
+h1 {
+    text-align: center;
+}
+
+#recipes {
+    display: inline-flex;
+    flex-direction: row;
+    padding: 20px; 
+    text-align: center; 
+    background-color: #FBE1C9; 
+}
+
+div {
+    margin: 20px;
+}
+
+
+ul, li {
+    text-align: left;
+}
