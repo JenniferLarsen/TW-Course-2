@@ -81,13 +81,13 @@ app.listen(port, () => {
 app.post("/signup", async (req, res) => {
   try {
       const { name, email, password } = req.body;
-      console.log(name)
+      //console.log(name)
       // Add validation checks for name, email, and password here if needed
       
 
       // Insert the user data into your MongoDB database
       const result = await saveUserData(name, email, password);
-      // fix insertedID
+      
       console.log(`New user inserted with ID: ${result.insertedId}`);
 
       res.status(201).json({ message: 'User signed up successfully' });

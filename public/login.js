@@ -12,13 +12,9 @@ const form = document.querySelector("#fileinfo");
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    console.log("Nick - line 44 login.js")
     const name = document.getElementById('nameInput').value;
     const email = document.getElementById('userSignInEmail').value;
     const password = document.getElementById('userSignInPassword').value;
-    // const formData = new FormData(form);
-    // formData.append("CustomField", "This is some extra data");
-    console.log(name)
   
 
   const response = await fetch("/signup", {
@@ -31,26 +27,18 @@ form.addEventListener("submit", async (event) => {
   
 });
 
-// signInButtonRelocator.addEventListener('click', () => {
-// });
+signInButtonRelocator.addEventListener('click', () => {
+});
 
 signUpButton.addEventListener('click', () => {
     container.classList.add("right-panel-active");
 });
 
-// signInButton.addEventListener('click', () => {
-//     container.classList.remove("right-panel-active");
-// });
+signInButton.addEventListener('click', () => {
+    container.classList.remove("right-panel-active");
+});
 
 signUpButtonRelocator.addEventListener('click', () => {
-    // Validate the form before allowing the user to move forward
-  /*   if (validateSignUpForm()) {
-        const name = nameInput.value;
-        const email = userSignInEmail.value;
-        const password = userSignInPassword.value;
-
-        saveData(name, email, password);
-    } */
 });
 
 // These should be at both ends - front end makes sure user entry is ok - back end makes sure info is correct and valid
