@@ -12,103 +12,101 @@
     <title>Recipe Results Page</title>
 </head>
 <body>
-    <header>
-        <!-- <nav class="navbar">
-            <h1 href ="index.html" id="prj-name"> Pantry Cookbook</h1>
-            <section>
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="user-profile.html">Account</a>
-                <a href="#" id="current-page">Search</a>
-                <a href="login.html">Login/Signup</a>
-            </section>
-        </nav> -->
-        <div class="navbar">
-          <p>The Pantry Cookbook</p>
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="results-page.html">Search</a>
-          <a href="user-profile.html">User Profile</a>
-          <a href="login.html">Login/Signup</a>
-      </div>
-    </header> 
+  <header>
+      <div class="navbar">
+        <p>The Pantry Cookbook</p>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="results-page.html">Search</a>
+        <a href="user-profile.html">User Profile</a>
+        <a href="login.html">Login/Signup</a>
+    </div>
+  </header> 
 
-    <main>
-        <div class="search-bar-container">
-          <!-- dropdown section -->
-          <div class="search-group">
-              <div class="dropdown">
-                <div id="drop-text" class="dropdown-text">
-                  <span>Filter </span>
-                  <i id="arrow" class="fa-solid fa-chevron-down"></i>
+  <main>
+      <div class="search-bar-container">
+        <!-- dropdown section -->
+        <div class="search-group">
+            <div class="dropdown">
+              <div id="drop-text" class="dropdown-text">
+                <span>Filter </span>
+                <i id="arrow" class="fa-solid fa-chevron-down"></i>
+              </div>
+              <div class="dropdown-list-container">
+                <div id="a-list" class="dropdown-list">
+                  <li class="dropdown-list-item" value="clear">Clear</li>
+                  <li class="dropdown-list-item" value="diet">Diet</li>
+                  <li class="dropdown-list-item" value="health">Health</li>
+                  <li class="dropdown-list-item" value="cuisineType">Region</li>
+                  <li class="dropdown-list-item" value="mealType">Time</li>
+                  <li class="dropdown-list-item" value="dishType">Dish</li>
                 </div>
-                <ul id="a-list" class="dropdown-list">
-                  <li class="dropdown-list-item">Diet</li>
-                  <li class="dropdown-list-item">Health</li>
-                  <li class="dropdown-list-item">Region</li>
-                  <li class="dropdown-list-item">Time</li>
-                  <li class="dropdown-list-item">Dish</li>
-                </ul>
+                <div id="b-list" class="change">
+                  <!-- refined search container -->
+                  <li class="filtered-item">clear</li>
+                </div>
               </div>
               
-
-              <!-- search bar section -->
-              <div class="search-box">
-                <input type="text" id="search-input" placeholder="Search...">
-                <div class="search-icon">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-              </div>
-            </div> <!-- end search bar group-->
-          </div> <!-- end search-bar-container -->
-
-        <section id="filters-section">
-            <div class="filters-page-container" >
-              <div class="selected-filters">
-                  <li><i class="fa-solid fa-xmark"></i>| vegan</li>
-                  <li><i class="fa-solid fa-xmark"></i>| gluten free</li>
-                  <li><i class="fa-solid fa-xmark"></i>| dairy</li>
-              </div>
-              <div class="pagination"> ...pagination... </div>
             </div>
+            
 
-        </section>
-
-        <section id="search-results">
-            <div class="card">
-                <img src="./images/pasta.jpg" alt="Food Image">
-                <h4 id="meal-name" class="meal-name">Food Name</h3>
-                <p class="description">food Description here with a little lorem ipsum</p>
-                <div class="user-actions">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./images/pasta.jpg" alt="Food Image">
-                <h4 id="meal-name" class="meal-name"> Food Name2</h3>
-                <p class="description">Food Description here with a little lorem ipsum</p>
-                <div class="user-actions">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
+            <!-- search bar section -->
+            <div class="search-box">
+              <input type="text" id="search-input" placeholder="Search...">
+              <div class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
               </div>
-            <div class="card">
-                <img src="./images/pasta.jpg" alt="Food Image">
-                <h4 id="meal-name" class="meal-name">Food Name3</h3>
-                <p class="description">Food Description here with a little lorem ipsum</p>
-                <div class="user-actions">
-                  <!-- <span class="cook-time"> 30mins</span> -->
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
             </div>
-        </section>
+          </div> <!-- end search bar group-->
+        </div> <!-- end search-bar-container -->
 
-    </main>
+      <section id="filters-section">
+          <div class="filters-page-container" >
+            <div class="selected-filters">
+                <li><i class="fa-solid fa-xmark" aria-valuetext="vegan"></i>| vegan</li>
+                <li><i class="fa-solid fa-xmark" aria-valuetext="gluten free"></i>| gluten free</li>
+                <li><i class="fa-solid fa-xmark" aria-valuetext="dairy"></i>| dairy</li>
+            </div>
+            <div class="pagination"> ...pagination... </div>
+          </div>
 
-    <footer>
-        <span>&copy; The ImPastas 2024</span>
-    </footer>
-    <script src="results.js"></script>
+      </section>
+
+      <section id="search-results">
+          <div class="card">
+              <img src="./images/pasta.jpg" alt="Food Image">
+              <h4 id="meal-name" class="meal-name">Food Name</h3>
+              <p class="description">food Description here with a little lorem ipsum</p>
+              <div class="user-actions">
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+          </div>
+          <div class="card">
+              <img src="./images/pasta.jpg" alt="Food Image">
+              <h4 id="meal-name" class="meal-name"> Food Name2</h3>
+              <p class="description">Food Description here with a little lorem ipsum</p>
+              <div class="user-actions">
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+            </div>
+          <div class="card">
+              <img src="./images/pasta.jpg" alt="Food Image">
+              <h4 id="meal-name" class="meal-name">Food Name3</h3>
+              <p class="description">Food Description here with a little lorem ipsum</p>
+              <div class="user-actions">
+                <!-- <span class="cook-time"> 30mins</span> -->
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+          </div>
+      </section>
+
+  </main>
+
+  <footer>
+      <span>&copy; The ImPastas 2024</span>
+  </footer>
+  <script src="results.js"></script>
 </body>

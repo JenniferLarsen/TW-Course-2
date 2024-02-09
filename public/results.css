@@ -44,9 +44,7 @@ main{
     cursor: pointer;
 }
 .dropdown-text{
-    /* display: flex; */
     align-items: center;
-    /* justify-content: space-between; */
     background-color: #cef7ce;
     border-radius: 3px;
     font-size: 1rem;
@@ -60,16 +58,23 @@ main{
     transition: all 0.4s ease;
     z-index: 1;
 }
-.dropdown-list{
+.dropdown-list-container{
     position: absolute;
     top: 2.6rem;
     left: 0;
     width: 100%;
-    max-height: 0;
+    /* max-height: 0; */
+}
+.dropdown-list{
     overflow: hidden;
     background-color: wheat;
+    max-height: 0;
     transition: max-height 0.9s;
 }
+.dropdown-list:hover{
+    overflow: visible;
+}
+
 #a-list.show{
     max-height: 300px;
 }
@@ -80,10 +85,34 @@ main{
 .dropdown-list li:hover{
     margin-left: -0.5rem;
     color:#568F56;
-    transition: margin-left 0.3s ease, color 0.2s ease ;
+    transition: margin-left 0.3s ease, color 0.2s ease;
+}
+.change{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    top: 0rem;
+    left: 5rem;
+    height: 210px;
+    min-width: 300px;
+    padding: 5%;
+    border: 1px solid #5BCB5B;
+    border-radius: 0 5% 5% 0;
+    background-color: white;
+    max-height: 0;
+    overflow: scroll;
+    transition: max-height 0.9s;
+}
+#b-list.show{
+    max-height: 210px;
+}
+
+.filtered-item{
+    padding: .5rem;
 }
 .dropdown-list li:hover::after, .dropdown-list li:focus::after {
-    content: attr(data-description);
+    content: attr(none);
     position: absolute;
     text-align: center;
     justify-self: baseline;
@@ -92,7 +121,6 @@ main{
     padding: 5px;
     background-color: rgb(127, 159, 79);
     color: white;
-    font-size: 20px;
     z-index: 1;
 }
 
