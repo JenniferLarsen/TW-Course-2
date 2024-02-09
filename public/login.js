@@ -96,4 +96,3 @@ function validateSignUpForm() {
         console.log("Please fill out the 'confirm password' field.")
     }
 }
-
