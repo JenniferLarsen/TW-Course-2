@@ -4,7 +4,7 @@ const arrow_icon = document.getElementById("arrow");
 const drpDwn_a_list = document.getElementById("a-list");
 const a_list_values = document.querySelectorAll(".dropdown-list li");
 const drpDwn_b_list = document.getElementById("b-list");
-console.log(drpDwn_b_list);
+// console.log(drpDwn_b_list);
 
 // toggle a-list
 drpDwnbtn.onclick = function(){
@@ -26,11 +26,12 @@ const categoryOptions = {
         'Salad', 'Sandwiches', 'Soup', 'Starter']
 };
 
-// const change_css = querySelector(".change");
-function selectedValue(list) {
-    for(ctgry of list){
+// event of inital dropdown list, defined refined list
+function selectedCategory() {
+    for(ctgry of a_list_values){
         let val = ctgry.getAttributeNode("value");
         ctgry.onclick = (e) => {
+            // callback()
             setRefined(val.nodeValue);
         };
     }
@@ -38,18 +39,39 @@ function selectedValue(list) {
 
 function setRefined(selected_a){
     drpDwn_b_list.classList.add("show");
-    const newOption = categoryOptions[selected_a];
-    console.log(newOption);
-    newOption.forEach(newOption => {
+    const newOptions = categoryOptions[selected_a];
+    // console.log(newOption);
+    newOptions.forEach(newOption => {
         const optionElement = document.createElement('li');
         optionElement.className = 'filtered-item';
-        optionElement.ariaValueText = newOption;
-        optionElement.textContent = newOption;
+        optionElement.value = newOption;
+        optionElement.innerText = newOption;
         console.log(optionElement);
         drpDwn_b_list.appendChild(optionElement);
     });
+    refinedCategory(drpDwn_b_list);
 }
-selectedValue(a_list_values);
+function refinedCategory(list) {
+    // console.log(list);
+    const b_list_values = list.querySelectorAll("li")
+    console.log(b_list_values);
+    for(ctgry of b_list_values){
+        ctgry.onclick = (e) => {
+            console.log("clicked" + ctgry.innerText);
+            // selected_list.appendChild(ctgry);
+            selected_list.push(ctgry.innerHTML);
+            console.log(selected_list);
+        }
+        // let val = ctgry.getAttributeNode("value");
+        // ctgry.onclick = (e) => {
+        //     // callback()
+        //     setRefined(val.nodeValue);
+        // };
+    }
+}
+selectedCategory();
+
+
 
 window.onclick = function (e) {
     if (e.target.id !== "dropdown" && e.target.classNames !== "dropdown-list-container" && e.target.id !== "b-list" && e.target.id !== "arrow"){
@@ -58,9 +80,26 @@ window.onclick = function (e) {
     }
 }
 
-/* FILTER WIDGET RESPONSIVENESS */ 
+/* FILTER WIDGET RESPONSIVENESS
+ - create click event for selected items
+ - add clicked to list (once)
+ - for each in list, add create filer section li to display
+
+*/ 
 const filters_container = document.getElementById("filters-section");
-const x_btn = document.getElementById();
+// const x_btn = document.getElementById();
+const selected_group_area = document.getElementsByClassName("selected-filters");
+const selected_list = [];
+
+console.log(selected_group_area);
+console.log(selected_list);
+
+/** save for later !!!!
+ * document.querySelectorAll(".filtered-item").forEach((item) => (
+        b_list_values.append(item.innerText)
+    ));
+ */
+
 
 
 /* SEARCH BAR FUNCTIONALITY */

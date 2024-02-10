@@ -111,6 +111,10 @@ main{
 .filtered-item{
     padding: .5rem;
 }
+.filtered-item:hover{
+    top: -3px;
+    color: #FCDC4D;
+}
 .dropdown-list li:hover::after, .dropdown-list li:focus::after {
     content: attr(none);
     position: absolute;
