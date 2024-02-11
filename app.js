@@ -109,8 +109,9 @@ app.post("/signup", async (req, res) => {
       const result = await saveUserData(name, email, hashedPassword);
       
       console.log(`New user inserted with ID: ${result.insertedId}`);
-
-      res.status(201).json({ message: 'User signed up successfully' });
+      
+      return res.redirect('/user-profile'); 
+      // res.status(201).json({ message: 'User signed up successfully' });
   } catch (error) {
       console.error('Error signing up user:', error);
       res.status(500).json({ error: 'Internal server error' });
