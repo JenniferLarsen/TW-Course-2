@@ -3,6 +3,9 @@ const express = require("express");
 const cors = require("cors");
 const fetch = require("node-fetch");
 const path = require("path");
+const bcrypt = require("bcrypt")
+const saltRounds = 10
+const password = "Admin@123"
 const saveUserData = require("./justConnect");
 const bodyParser = require("body-parser");
 
@@ -77,16 +80,33 @@ app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
 });
 
+bcrypt
+  .hash(password, saltRounds)
+  .then(hash => {
+          userHash = hash 
+    console.log('Hash ', hash)
+    validateUser(hash)
+  })
+  .catch(err => console.error(err.message))
+
+function validateUser(hash) {
+    bcrypt
+      .compare(password, hash)
+      .then(res => {
+        console.log(res) // return true
+      })
+      .catch(err => console.error(err.message))        
+}
+
 // Define a route for handling sign-up requests
 app.post("/signup", async (req, res) => {
   try {
       const { name, email, password } = req.body;
-      //console.log(name)
-      // Add validation checks for name, email, and password here if needed
-      
 
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+      
       // Insert the user data into your MongoDB database
-      const result = await saveUserData(name, email, password);
+      const result = await saveUserData(name, email, hashedPassword);
       
       console.log(`New user inserted with ID: ${result.insertedId}`);
 
