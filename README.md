@@ -11,11 +11,22 @@ It utilizes a SQL database to store favorites and user profile information.
 
 ## Requirements
   - Visual Studio Code
-  - SQL Server
+  - MongoDb Atlas
+  - Mongoose
+  - Node
+  - Node-fetch
+  - Express
+  - Passport
+  - bcrypt
+  - dotenv
+    
 
 ## Setup Instructions
   - Clone the repository
   - Open the project in Visual Studio Code
+  - Install NPM
+  - Run npm init
+  - Intall or update all other dependencies listed above
   - Update database migrations
   - Run application
 
