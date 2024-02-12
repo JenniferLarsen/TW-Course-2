@@ -166,6 +166,7 @@ main{
 
 /* filter item area styling */
 #filters-section{
+    display:inline-block;
     min-width: 100%;
     /* delete later */
     /* background-color: aqua; */
@@ -183,9 +184,10 @@ main{
     /* delete later */
     /* background-color: grey; */
 }
+#selected{
+    font-family: 'Times New Roman', Times, serif;
+}
 .selected-filters{
-    display: flex;
-    flex-direction: row;
     margin-left: 2rem;
     max-width: 65%;
     /* delete later */
@@ -204,18 +206,37 @@ main{
     padding-right: 5px;
     color:rgb(91, 101, 81);
 }
+
+
 /* content area styling */
+#search-results{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #9D6989;
+}
+.search-results-container{
+    width: 750px;
+    background-color: grey;
+}
+.search-results-container{
+    display: flex;
+}
+/* card styling */
 img{
     width: 200px;
     border-radius: 65% 3% 0 0;
 }
 .card{
+    flex-direction: column;
     background-color: #5BCB5B;
     color: #568F56;
     border-radius: 57% 5% 3% 3%;
     padding-bottom: .5rem;
     width: 200px;
-    min-height: 150px;
+    max-height: 350px;
 }
 .my-card__media {
     background-image: url("./images/pasta.jpg");
