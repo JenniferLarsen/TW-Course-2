@@ -11,6 +11,18 @@ drpDwnbtn.onclick = function(){
     drpDwn_a_list.classList.contains("show") ? arrow_icon.style.rotate = "0deg" : arrow_icon.style.rotate = "-180deg";
     drpDwn_a_list.classList.add("show");
 }
+//close dropdown
+window.onclick = function (e) {
+    if ((e.target.id !== "drop-text"  && e.target.id !== "arrow"
+         && e.target.className !== "dropdown-list-item" 
+         && e.target.className !== "filtered-item")){
+
+        drpDwn_a_list.classList.remove("show");
+        drpDwn_b_list.classList.remove("show");
+        arrow_icon.style.rotate = "0deg";
+    }
+    console.log("current mouse target: " + e.target);
+}
 const categoryOptions = {
     clear: [],
     diet: ['balanced', 'high-fiber', 'high-protein', 'low-carb', 'low-fat', 'low-sodium'],
@@ -45,40 +57,36 @@ function setRefined(selected_a){
         const optionElement = document.createElement('li');
         optionElement.className = 'filtered-item';
         optionElement.value = newOption;
+        optionElement.innerHTML = newOption;
         optionElement.innerText = newOption;
-        console.log(optionElement);
+        // console.log(optionElement);
         drpDwn_b_list.appendChild(optionElement);
     });
     refinedCategory(drpDwn_b_list);
 }
 function refinedCategory(list) {
-    // console.log(list);
-    const b_list_values = list.querySelectorAll("li")
-    console.log(b_list_values);
-    for(ctgry of b_list_values){
-        ctgry.onclick = (e) => {
-            console.log("clicked" + ctgry.innerText);
-            // selected_list.appendChild(ctgry);
-            selected_list.push(ctgry.innerHTML);
+    const b_list_values = list.querySelectorAll("li");
+    // console.log(b_list_values);
+    b_list_values.forEach(ctgry => {
+        ctgry.onclick = (e) =>{
+            console.log(ctgry.innerText);
+            //add refined to list
+            if(ctgry.value <= 0){
+                ctgry.value = 1;
+                selected_list.push(ctgry.innerText);
+                updateFilterWidgets( 1 ,selected_list);
+            }else if(ctgry.value >= 1){
+                //TODO: pop update selected list
+                updateFilterWidgets( 0 ,ctgry);
+            }
             console.log(selected_list);
+            console.log(ctgry.value);
+
         }
-        // let val = ctgry.getAttributeNode("value");
-        // ctgry.onclick = (e) => {
-        //     // callback()
-        //     setRefined(val.nodeValue);
-        // };
-    }
+        
+    });
 }
 selectedCategory();
-
-
-
-window.onclick = function (e) {
-    if (e.target.id !== "dropdown" && e.target.classNames !== "dropdown-list-container" && e.target.id !== "b-list" && e.target.id !== "arrow"){
-        drpDwn_a_list.classList.remove("show");
-        arrow_icon.style.rotate = "0deg";
-    }
-}
 
 /* FILTER WIDGET RESPONSIVENESS
  - create click event for selected items
@@ -88,11 +96,28 @@ window.onclick = function (e) {
 */ 
 const filters_container = document.getElementById("filters-section");
 // const x_btn = document.getElementById();
-const selected_group_area = document.getElementsByClassName("selected-filters");
+const selected_group_area = document.getElementById("selected");
 const selected_list = [];
 
 console.log(selected_group_area);
-console.log(selected_list);
+function updateFilterWidgets(num, input){
+    // console.log("enter update filter widgets, " + num);
+    if(num > 0){
+        input.forEach( (item) => {
+            console.log(item);
+            const new_widget = document.createElement('li');
+            new_widget.innerText = item;
+            new_widget.textContent = `| ${item.toLowerCase()}`;
+            new_widget.innerHTML = `<i class="fa-solid fa-xmark">| ${item}</i>`;
+            console.log("new widget: ");
+            console.log(new_widget);
+            selected_group_area.appendChild(new_widget);
+            console.log(selected_group_area);
+           
+        });
+    }
+    
+ }
 
 /** save for later !!!!
  * document.querySelectorAll(".filtered-item").forEach((item) => (
@@ -106,3 +131,13 @@ console.log(selected_list);
 const searchInput = document.getElementById("search-box");
 const searchResultsContainer = document.getElementById("search-results");
 const search_btn = document.getElementById("search-icon");
+
+search_btn.addEventListener("click", () => {
+    performSearch();
+});
+
+function performSearch() {
+    const searchTerm = searchInput.value;
+    const ingredients = ingredientsInput.value;
+    const category = categoryDropdown.value;
+    let selections;
