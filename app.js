@@ -3,6 +3,11 @@ const express = require("express");
 const cors = require("cors");
 const fetch = require("node-fetch");
 const path = require("path");
+const bcrypt = require("bcrypt")
+const saltRounds = 10
+const password = "Admin@123"
+const saveUserData = require("./justConnect");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 8080;
@@ -69,7 +74,46 @@ app.route("/login").get(async (req, res) => {
 });
 
 app.use("/", express.static(path.join(__dirname, "public")));
+app.use(bodyParser.json());
 
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
+});
+
+bcrypt
+  .hash(password, saltRounds)
+  .then(hash => {
+          userHash = hash 
+    console.log('Hash ', hash)
+    validateUser(hash)
+  })
+  .catch(err => console.error(err.message))
+
+function validateUser(hash) {
+    bcrypt
+      .compare(password, hash)
+      .then(res => {
+        console.log(res) // return true
+      })
+      .catch(err => console.error(err.message))        
+}
+
+// Define a route for handling sign-up requests
+app.post("/signup", async (req, res) => {
+  try {
+      const { name, email, password } = req.body;
+
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+      
+      // Insert the user data into your MongoDB database
+      const result = await saveUserData(name, email, hashedPassword);
+      
+      console.log(`New user inserted with ID: ${result.insertedId}`);
+      
+      return res.redirect('/user-profile'); 
+      // res.status(201).json({ message: 'User signed up successfully' });
+  } catch (error) {
+      console.error('Error signing up user:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
 });

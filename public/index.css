@@ -72,6 +72,7 @@ body {
     margin-bottom: 20px;
     background-color: #589858;
     padding-bottom: 60px;
+    font-size: 20px;
 }
 .search-container input[type="text"] {
     height: 35px;
@@ -83,11 +84,19 @@ body {
     text-align: center;
 }
 
+#selections {
+    font-size: 20px;
+}
+
 button {
     background-color:  #5f0f40ff;
     color: white;
     height: 35px;
     font-size: 18px;
+}
+
+#category{
+    font-size: 20px;
 }
 
 
