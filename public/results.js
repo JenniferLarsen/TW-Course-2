@@ -10,6 +10,7 @@ const drpDwn_b_list = document.getElementById("b-list");
 drpDwnbtn.onclick = function(){
     drpDwn_a_list.classList.contains("show") ? arrow_icon.style.rotate = "0deg" : arrow_icon.style.rotate = "-180deg";
     drpDwn_a_list.classList.add("show");
+    selectedCategory();
 }
 //close dropdown
 window.onclick = function (e) {
@@ -21,7 +22,7 @@ window.onclick = function (e) {
         drpDwn_b_list.classList.remove("show");
         arrow_icon.style.rotate = "0deg";
     }
-    console.log("current mouse target: " + e.target);
+    // console.log("current mouse target: " + e.target);
 }
 const categoryOptions = {
     clear: [],
@@ -86,14 +87,7 @@ function refinedCategory(list) {
         
     });
 }
-selectedCategory();
 
-/* FILTER WIDGET RESPONSIVENESS
- - create click event for selected items
- - add clicked to list (once)
- - for each in list, add create filer section li to display
-
-*/ 
 const filters_container = document.getElementById("filters-section");
 // const x_btn = document.getElementById();
 const selected_group_area = document.getElementById("selected");
@@ -118,26 +112,69 @@ function updateFilterWidgets(num, input){
     }
     
  }
-
 /** save for later !!!!
  * document.querySelectorAll(".filtered-item").forEach((item) => (
         b_list_values.append(item.innerText)
     ));
  */
 
-
-
 /* SEARCH BAR FUNCTIONALITY */
-const searchInput = document.getElementById("search-box");
+const searchInput = document.getElementById("search-input");
 const searchResultsContainer = document.getElementById("search-results");
 const search_btn = document.getElementById("search-icon");
 
 search_btn.addEventListener("click", () => {
+    console.log("searching...");
     performSearch();
 });
 
 function performSearch() {
     const searchTerm = searchInput.value;
-    const ingredients = ingredientsInput.value;
-    const category = categoryDropdown.value;
-    let selections;
+    //const ingredients = ingredientsInput.value;
+    // const category = categoryDropdown.value;
+    let selections = selected_list[0];
+
+  // Construct the API URL based on the available inputs
+  let apiUrl = '/api/search?'
+
+  if (searchTerm) {
+    console.log(searchTerm);
+    apiUrl += `term=${encodeURIComponent(searchTerm)}&`;
+  }
+  
+//   if (ingredients) {
+//     apiUrl += `ingredients=${encodeURIComponent(ingredients)}&`;
+//   } else if (category === "ingredients" && selections) {
+//     apiUrl += `ingredients=${encodeURIComponent(selections)}&`;
+//   } else if (category && selections) {
+//     apiUrl += `category=${category}&selections=${encodeURIComponent(
+//       selections
+//     )}&`;
+//   }
+
+  // Make the API request
+  fetch(apiUrl, {
+    method: "GET",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data.hits);
+      displayResults(data.hits);
+    })
+    .catch((error) => console.error("Error:", error));
+}
+function displayResults(results) {
+    // Clear previous results
+    //searchResultsContainer.innerHTML = "";
+    console.log(results);
+    // if (!results || results.length === 0) {
+    //     searchResultsContainer.innerHTML = "No results found.";
+    // } else {
+    //     console.log(results);
+    // }
+}
