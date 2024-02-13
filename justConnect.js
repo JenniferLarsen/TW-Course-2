@@ -5,7 +5,7 @@ require('dotenv').config();
 const { MongoClient } = require("mongodb");
 
 // Connection URL
-const uri = process.env.TY_DB;
+const uri = process.env.NOODLE_DB;
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -14,7 +14,7 @@ async function main() {
     await client.connect();
     console.log('Connected to MongoDB Atlas');
 
-    const db = client.db("ImPastas"); // Connect to the "ImPastas" database
+    const db = client.db("TheNoodles"); // Connect to the "TheNoodles" database
     console.log("Database:", db.databaseName);
 
     const collection = db.collection("UserInfo"); // Access the "UserInfo" collection
@@ -34,7 +34,7 @@ async function main() {
 
 
 async function saveData(username, email, password) {
-  const db = client.db('ImPastas');
+  const db = client.db('TheNoodles');
   const collection = db.collection('UserInfo');
 
   try {
