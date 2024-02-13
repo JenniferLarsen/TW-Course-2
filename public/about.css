@@ -132,7 +132,56 @@ footer {
     width: 200px;
     height: auto;
     border-radius: 20%;
-    margin: 20px;
+   
+    
+}
+
+
+.team-member a {
+    color: white;
+    text-decoration: none;
+    padding: 15px;    
+    border-radius: 5px;
+    background-color: #FBE1C9;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 24px;    
+}
+
+
+.team-member a:hover {
+    background-color:#FBE1C9;
+    color: hsla(323, 73%, 22%, 1);
+}
+
+.team-member-ty {
+    text-align: center; /* Center-align the content */
+    flex-basis: calc(25% - 20px); /* Adjust width as needed (25% for four members, subtracting margin) */
+}
+
+.team-member-ty img {
+    display: block; /* Make the image a block element to control its size */
+    margin: 0 auto 10px; /* Center the image and add some space below it */
+    width: 186px;
+    height: auto;
+    border-radius: 20%;
+    
+}
+
+
+.team-member-ty a {
+    color: white;
+    text-decoration: none;
+    padding: 15px;    
+    border-radius: 5px;
+    background-color: #FBE1C9;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 24px;    
+}
+
+
+.team-member-ty a:hover {
+    background-color:#FBE1C9;
+    color: hsla(323, 73%, 22%, 1);
 }
 
 .qrCode {
