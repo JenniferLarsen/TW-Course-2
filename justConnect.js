@@ -17,7 +17,7 @@ async function main() {
     const db = client.db("TheNoodles"); // Connect to the "TheNoodles" database
     console.log("Database:", db.databaseName);
 
-    const collection = db.collection("admin"); // Access the "admin" collection
+    const collection = db.collection("UserInfo"); // Access the "UserInfo" collection
     console.log("Collection name:", collection.collectionName);
 
       // Query the collection to find the example user
@@ -45,7 +45,6 @@ async function saveData(username, email, password) {
     console.error('Error saving data:', error);
 }
 }
-
 
 // Example usage
 main().then(console.log).catch(console.error);
