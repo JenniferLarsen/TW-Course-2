@@ -31,32 +31,34 @@ body {
 
 /* Style for the content area */
 .content {
-    margin: 20px;
+    
     text-align: center;
     font-family: 'Times New Roman', serif;
 }
 
 .content h1 {    
-    font-size: 2em;
+    font-size: 3.5vw;
+    color: #5F0F40;
 }
 
+.content h2 {
+    font-size: 2.5vw;
+    font-weight: bold;
+}
 .content p {
     color: black;
-    font-size: 1em;
+    font-size: 1vw;
     line-height: 1.5;
     max-width: 600px;
     margin: auto; /* Centers the text block */
 }
 
-.content h1 {
-    color: #5F0F40;
-}
 
 .image-container {
     display: flex;
     justify-content: center; /* Center images horizontally */
     align-items: center; /* Center images vertically */
-    margin: 0px 50px 20px 0px; /* Adjust the top and bottom margins */
+    margin: 0px 0px 20px 0px; /* Adjust the top and bottom margins */
 }
 
 .image-container img {
