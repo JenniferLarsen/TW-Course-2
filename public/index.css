@@ -44,9 +44,10 @@ body {
 .content h2 {
     font-size: 2.5vw;
     font-weight: bold;
+    color: hsla(120, 52%, 58%, 1);
 }
 .content p {
-    color: black;
+    color: #666;
     font-size: 1vw;
     line-height: 1.5;
     max-width: 40vw;
@@ -58,7 +59,7 @@ body {
     display: flex;
     justify-content: center; /* Center images horizontally */
     align-items: center; /* Center images vertically */
-    margin: 1vh 0vw 1vh 0vw; /* Adjust the top and bottom margins */
+    margin: 1vh 0vw 1vh 0vw; /* Adjust the top and bottom margins */    
 }
 
 .image-container img {
@@ -78,6 +79,7 @@ body {
     height: auto;
     width: 26.4vw; 
     font-size: 1.3vw;
+    font-family: 'content';
 }
 
 #searchResults {
@@ -86,6 +88,10 @@ body {
 
 #selections {
     font-size: 1.3vw;
+}
+
+#selection-label, #category-label, #performSearch  {
+    font-family: 'content';
 }
 
 button {
@@ -97,6 +103,11 @@ button {
 
 #category{
     font-size: 1.1vw;
+    font-family: 'content';
+}
+
+#category-label {
+    font-family: 'content';
 }
 
 
