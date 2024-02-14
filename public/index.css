@@ -12,7 +12,7 @@
 
 
 body {
-    font-size: 18px;
+    
     display: flex;
     flex-direction: column;
     background-color: hsla(29, 85%, 59%, .08);
@@ -26,7 +26,7 @@ body {
 }
 
 .content p {
-    margin-bottom: 20px !important; 
+    margin-bottom: 2vh !important; 
 }
 
 /* Style for the content area */
@@ -49,7 +49,7 @@ body {
     color: black;
     font-size: 1vw;
     line-height: 1.5;
-    max-width: 600px;
+    max-width: 40vw;
     margin: auto; /* Centers the text block */
 }
 
@@ -58,26 +58,26 @@ body {
     display: flex;
     justify-content: center; /* Center images horizontally */
     align-items: center; /* Center images vertically */
-    margin: 0px 0px 20px 0px; /* Adjust the top and bottom margins */
+    margin: 1vh 0vw 1vh 0vw; /* Adjust the top and bottom margins */
 }
 
 .image-container img {
-    height: 300px;
-    width: 400px; /* Adjust the width of the images */
-    margin: 0 10px; /* Adjust the margin between the images */
+    height: auto;
+    width: 26.67vw; /* Adjust the width of the images */
+    margin: 0 0.3vw; /* Adjust the margin between the images */
 }
 
 .search-container {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 2vh;
     background-color: #589858;
-    padding-bottom: 60px;
-    font-size: 20px;
+    padding-bottom: 7vh;
+    font-size: 1.3vw;
 }
 .search-container input[type="text"] {
-    height: 35px;
-    width: 300px; 
-    font-size: 18px;
+    height: auto;
+    width: 26.4vw; 
+    font-size: 1.3vw;
 }
 
 #searchResults {
@@ -85,18 +85,18 @@ body {
 }
 
 #selections {
-    font-size: 20px;
+    font-size: 1.3vw;
 }
 
 button {
     background-color:  #5f0f40ff;
     color: white;
-    height: 35px;
-    font-size: 18px;
+    height: 3.3vh;
+    font-size: 1.3vw;
 }
 
 #category{
-    font-size: 20px;
+    font-size: 1.1vw;
 }
 
 
