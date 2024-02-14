@@ -29,7 +29,7 @@ html, body {
     min-height: 10vh; 
 }
 
-.navbar a {
+.navbar a {    
     color: white;
     text-decoration: none;
     padding: 1em;    
@@ -138,7 +138,7 @@ footer {
     padding: 1em; 
     font-size: 1vw;   
     border-radius: 5%;
-    background-color: #FBE1C9;
+    background-color: #9D6989;;
     transition: background-color 0.3s, color 0.3s;        
 }
 
