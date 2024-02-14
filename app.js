@@ -28,7 +28,7 @@ const sessionKey = process.env.SESSION_KEY;
 // Use express-session middleware
 app.use(
   session({
-    secret: sessionKey,
+    secret: sessionKey, // Change this to a secure random key
     resave: false,
     saveUninitialized: true,
   })
