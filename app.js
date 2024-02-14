@@ -1,5 +1,6 @@
 // Server-side JavaScript
 const express = require("express");
+const session = require("express-session");
 const cors = require("cors");
 const fetch = require("node-fetch");
 const path = require("path");
@@ -12,6 +13,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = 8080;
 
+
 app.use(express.json());
 app.use(cors());
 
@@ -21,6 +23,16 @@ require("dotenv").config();
 // Access environment variables
 const edamamAppId = process.env.API_ID;
 const edamamAppKey = process.env.API_KEY;
+const sessionKey = process.env.SESSION_KEY;
+
+// Use express-session middleware
+app.use(
+  session({
+    secret: sessionKey, // Change this to a secure random key
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 // Define a route for handling the search API with both GET and POST methods
 app.route("/api/search").get(async (req, res) => {
@@ -64,7 +76,7 @@ app.route("/api/search").get(async (req, res) => {
   }
 });
 
-// Define a route for handling signup
+// Define a route for handling signin
 app.route("/login").get(async (req, res) => {
   const { username, password } = req.query;
 
@@ -101,19 +113,34 @@ function validateUser(hash) {
 // Define a route for handling sign-up requests
 app.post("/signup", async (req, res) => {
   try {
-      const { name, email, password } = req.body;
+    const { name, email, password } = req.body;
 
-      const hashedPassword = await bcrypt.hash(password, saltRounds);
-      
-      // Insert the user data into your MongoDB database
-      const result = await saveUserData(name, email, hashedPassword);
-      
-      console.log(`New user inserted with ID: ${result.insertedId}`);
-      
-      return res.redirect('/user-profile'); 
-      // res.status(201).json({ message: 'User signed up successfully' });
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    // Insert the user data into your MongoDB database
+    const result = await saveUserData(name, email, hashedPassword);
+    console.log(name);
+    console.log(`New user inserted with ID: ${result.insertedId}`);
+
+    // Store user data in the session
+    req.session.user = { name, email };
+
+    return res.redirect("/user-profile");
   } catch (error) {
-      console.error('Error signing up user:', error);
-      res.status(500).json({ error: 'Internal server error' });
+    console.error("Error signing up user:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
+});
+
+app.get("/user-profile", (req, res) => {
+  // Access user data from the session
+  const user = req.session.user;
+
+  // Check if the user is logged in
+  if (!user) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  // Send user data to the client
+  res.json({ name: user.name, email: user.email });
 });

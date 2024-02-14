@@ -33,7 +33,7 @@
     </header>
     <main>
         <div class="welcome">
-            <h1>Welcome Back!</h1>
+            <h1>Welcome Back ${userData.name}!</h1>
         </div>
         <div>
             <div class="tabs">
@@ -110,5 +110,16 @@
     <footer>
         <span>&copy; The ImPastas 2024</span>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            // Fetch user data from the server
+            const response = await fetch("/user-profile");
+            const userData = await response.json();
+          
+            // Update the welcome message with the user's name
+            const userGreeting = document.querySelector('.welcome h1');
+            userGreeting.textContent = `Welcome Back, ${userData.name}!`;
+        });
+    </script>
 </body>
 </html>
