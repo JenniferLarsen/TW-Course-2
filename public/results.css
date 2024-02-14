@@ -101,10 +101,12 @@ main{
     border-radius: 0 5% 5% 0;
     background-color: white;
     max-height: 0;
+    visibility: collapse;
     overflow: scroll;
     transition: max-height 0.9s;
 }
 #b-list.show{
+    visibility: visible;
     max-height: 210px;
 }
 
@@ -215,37 +217,49 @@ main{
     justify-content: center;
     align-items: center;
     width: 100%;
-    background-color: #9D6989;
+    /* background-color: #9D6989; */
 }
 .search-results-container{
-    width: 750px;
-    background-color: grey;
-}
-.search-results-container{
+    width: 75vw;
+    /* background-color: grey; */
     display: flex;
+    overflow-x: auto;
+    scrollbar-width: 5px;
+    scrollbar-color: #5BCB5B;
 }
 /* card styling */
-img{
+.image{
+    /* width: 200px;
+    border-radius: 65% 3% 0 0;
+    max-height: 200px; */
     width: 200px;
     border-radius: 65% 3% 0 0;
+    max-height: 150px
 }
 .card{
-    flex-direction: column;
+    /* flex-direction: column;
     background-color: #5BCB5B;
     color: #568F56;
     border-radius: 57% 5% 3% 3%;
     padding-bottom: .5rem;
     width: 200px;
-    max-height: 350px;
+    max-height: 350px; */
+    background-color: #5BCB5B;
+    color: #568F56;
+    border-radius: 57% 5% 3% 3%;
+    padding-bottom: 0.5rem;
+    width: 500px;
+    max-height: 300px;
 }
 .my-card__media {
     background-image: url("./images/pasta.jpg");
     width: 200px;
     height: 200px;
 }
-.meal-name{
-    font-size: 1.5rem;
-    font-weight: 800;
+.meal-name a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 900;
     color: white;
 }
 .description{
@@ -254,7 +268,7 @@ img{
     margin: auto;
 
     font-size: .85rem;
-    overflow: hidden;
+    overflow-y: auto;
 }
 .user-actions{
     display: inline-flex;
