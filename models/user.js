@@ -4,8 +4,19 @@ const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
     username: String,
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    favorites: [{
+        recipeName: String,
+        recipeUrl: String,
+        // Add other fields relevant to favorites
+    }],
+    history: [{
+        recipeName: String,
+        recipeUrl: String,
+        // Add other fields relevant to history
+    }]
 });
+
 
 // Hash the password before saving
 userSchema.pre('save', async function (next) {
@@ -30,6 +41,29 @@ userSchema.methods.comparePassword = async function (password) {
         throw new Error(error);
     }
 };
+
+// Function to add a favorite to user's favorites
+userSchema.methods.addFavorite = async function (recipeName, recipeUrl) {
+    this.favorites.push({ recipeName, recipeUrl });
+    await this.save();
+};
+
+// Function to get user's favorites
+userSchema.methods.getFavorites = function () {
+    return this.favorites;
+};
+
+// Function to update a favorite by ID
+userSchema.methods.updateFavorite = async function (favoriteId, updatedData) {
+    const favoriteIndex = this.favorites.findIndex(fav => fav._id == favoriteId);
+    if (favoriteIndex !== -1) {
+        this.favorites[favoriteIndex] = { ...this.favorites[favoriteIndex], ...updatedData };
+        await this.save();
+        return this.favorites[favoriteIndex];
+    }
+    return null; // Favorite not found
+};
+
 
 const User = mongoose.model('User', userSchema);
 
