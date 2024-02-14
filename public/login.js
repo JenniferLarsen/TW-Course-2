@@ -11,7 +11,7 @@ const container = document.getElementById('container');
 const form = document.querySelector("#fileinfo");
 
 form.addEventListener("submit", async (event) => {
-    // event.preventDefault();
+    //event.preventDefault();
     const name = document.getElementById('nameInput').value;
     const email = document.getElementById('userSignInEmail').value;
     const password = document.getElementById('userSignInPassword').value;
