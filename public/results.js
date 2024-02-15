@@ -39,6 +39,8 @@ const categoryOptions = {
         'Salad', 'Sandwiches', 'Soup', 'Starter']
 };
 
+const selected_group_area = document.getElementById("selected");
+const selected_list = [];
 // event of inital dropdown list, defined refined list
 function selectedCategory() {
     for(ctgry of a_list_values){
@@ -49,8 +51,8 @@ function selectedCategory() {
         };
     }
 }
-
 function setRefined(selected_a){
+    drpDwn_b_list.innerHTML = "";
     drpDwn_b_list.classList.add("show");
     const newOptions = categoryOptions[selected_a];
     // console.log(newOption);
@@ -65,12 +67,13 @@ function setRefined(selected_a){
     });
     refinedCategory(drpDwn_b_list);
 }
+var b_list_values;
 function refinedCategory(list) {
-    const b_list_values = list.querySelectorAll("li");
+    b_list_values = list.querySelectorAll("li");
     // console.log(b_list_values);
     b_list_values.forEach(ctgry => {
         ctgry.onclick = (e) =>{
-            console.log(ctgry.innerText);
+            //console.log(ctgry.innerText);
             //add refined to list
             if(ctgry.value <= 0){
                 ctgry.value = 1;
@@ -81,24 +84,20 @@ function refinedCategory(list) {
                 updateFilterWidgets( 0 ,ctgry);
             }
             console.log(selected_list);
-            console.log(ctgry.value);
-
+            //console.log(ctgry.value);
+            
         }
-        
     });
 }
-
-const filters_container = document.getElementById("filters-section");
+// const filters_container = document.getElementById("filters-section");
 // const x_btn = document.getElementById();
-const selected_group_area = document.getElementById("selected");
-const selected_list = [];
-
 console.log(selected_group_area);
 function updateFilterWidgets(num, input){
     // console.log("enter update filter widgets, " + num);
     if(num > 0){
         input.forEach( (item) => {
             console.log(item);
+            console.log(selected_group_area.children);
             const new_widget = document.createElement('li');
             new_widget.innerText = item;
             new_widget.textContent = `| ${item.toLowerCase()}`;
@@ -106,17 +105,12 @@ function updateFilterWidgets(num, input){
             console.log("new widget: ");
             console.log(new_widget);
             selected_group_area.appendChild(new_widget);
-            console.log(selected_group_area);
-           
+            //console.log(selected_group_area);
         });
     }
     
  }
-/** save for later !!!!
- * document.querySelectorAll(".filtered-item").forEach((item) => (
-        b_list_values.append(item.innerText)
-    ));
- */
+ //console.log(selected_list.includes());
 
 /* SEARCH BAR FUNCTIONALITY */
 const searchInput = document.getElementById("search-input");
@@ -130,10 +124,10 @@ search_btn.addEventListener("click", () => {
 
 function performSearch() {
     const searchTerm = searchInput.value;
-    //const ingredients = ingredientsInput.value;
-    // const category = categoryDropdown.value;
+    const ingredients = searchInput.value;
+     const category = categoryDropdown.value;
     let selections = selected_list[0];
-
+    console.log(selections);
   // Construct the API URL based on the available inputs
   let apiUrl = '/api/search?'
 
@@ -142,15 +136,15 @@ function performSearch() {
     apiUrl += `term=${encodeURIComponent(searchTerm)}&`;
   }
   
-//   if (ingredients) {
-//     apiUrl += `ingredients=${encodeURIComponent(ingredients)}&`;
-//   } else if (category === "ingredients" && selections) {
-//     apiUrl += `ingredients=${encodeURIComponent(selections)}&`;
-//   } else if (category && selections) {
-//     apiUrl += `category=${category}&selections=${encodeURIComponent(
-//       selections
-//     )}&`;
-//   }
+  if (ingredients) {
+    apiUrl += `ingredients=${encodeURIComponent(ingredients)}&`;
+  } else if (category === "ingredients" && selections) {
+    apiUrl += `ingredients=${encodeURIComponent(selections)}&`;
+  } else if (category && selections) {
+    apiUrl += `category=${category}&selections=${encodeURIComponent(
+      selections
+    )}&`;
+  }
 
   // Make the API request
   fetch(apiUrl, {
@@ -168,7 +162,7 @@ function performSearch() {
     })
     .catch((error) => console.error("Error:", error));
 }
-console.log(searchResultsContainer);
+//console.log(searchResultsContainer);
 function displayResults(results) {
     // Clear previous results
     searchResultsContainer.innerHTML = "";
@@ -181,7 +175,7 @@ function displayResults(results) {
       results.forEach(function (result) {
         const card = document.createElement("div");
         card.classList.add("card");
-        console.log(card);
+        //console.log(card);
 
         //Create a link for each recipe
         const link = document.createElement("a");
@@ -190,14 +184,14 @@ function displayResults(results) {
         link.href = result.recipe.url;
         link.target = "_blank"; // Open link in a new tab
         link.textContent = result.recipe.label
-        console.log(link);
+        //console.log(link);
 
         // Cosntruct name Label
         const recipeName = document.createElement("h4");
         recipeName.classList.add("meal-name");
         recipeName.id = "meal-name";
         recipeName.appendChild(link);
-        console.log(recipeName);
+        //console.log(recipeName);
   
         // Extract the recipe ID from the URI
         // const recipeId = result.recipe.uri.split("_")[1];
@@ -218,14 +212,11 @@ function displayResults(results) {
         card.appendChild(img);
         card.appendChild(recipeName);
         card.appendChild(heart_star);
-        console.log(card);
+        //console.log(card);
   
         //add to container
         searchResultsContainer.appendChild(card);
         
-        
-        // li.appendChild(link);
-        // ul.appendChild(li);
       });
     //   searchResultsContainer.appendChild(ul);
     }
