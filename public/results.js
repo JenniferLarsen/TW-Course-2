@@ -120,7 +120,7 @@ function updateFilterWidgets(num, input){
 
 /* SEARCH BAR FUNCTIONALITY */
 const searchInput = document.getElementById("search-input");
-const searchResultsContainer = document.getElementById("search-results");
+const searchResultsContainer = document.getElementById("search-results-container");
 const search_btn = document.getElementById("search-icon");
 
 search_btn.addEventListener("click", () => {
@@ -168,13 +168,65 @@ function performSearch() {
     })
     .catch((error) => console.error("Error:", error));
 }
+console.log(searchResultsContainer);
 function displayResults(results) {
     // Clear previous results
-    //searchResultsContainer.innerHTML = "";
-    console.log(results);
-    // if (!results || results.length === 0) {
-    //     searchResultsContainer.innerHTML = "No results found.";
-    // } else {
-    //     console.log(results);
-    // }
-}
+    searchResultsContainer.innerHTML = "";
+  
+    if (!results || results.length === 0) {
+        searchResultsContainer.innerHTML = "No results found.";
+    } else {
+    //   const card = document.createElement("div");
+    //   card.classList.add("card");
+      results.forEach(function (result) {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        console.log(card);
+
+        //Create a link for each recipe
+        const link = document.createElement("a");
+        link.classList.add("meal-name");
+        // Construct the link using the recipe ID
+        link.href = result.recipe.url;
+        link.target = "_blank"; // Open link in a new tab
+        link.textContent = result.recipe.label
+        console.log(link);
+
+        // Cosntruct name Label
+        const recipeName = document.createElement("h4");
+        recipeName.classList.add("meal-name");
+        recipeName.id = "meal-name";
+        recipeName.appendChild(link);
+        console.log(recipeName);
+  
+        // Extract the recipe ID from the URI
+        // const recipeId = result.recipe.uri.split("_")[1];
+
+        // Extract the Image
+        const img = document.createElement("img")
+        img.classList.add("image");
+        img.src = result.recipe.image;
+        img.alt = recipeName.textContent;
+
+        // Create a user actions
+        const heart_star = document.createElement("div");
+        heart_star.classList.add("user-acitons");
+        heart_star.innerHTML = `<i class="fa-regular fa-heart"></i>
+                               <i class="fa-regular fa-star"></i>`;
+
+        //Consturct card for display:
+        card.appendChild(img);
+        card.appendChild(recipeName);
+        card.appendChild(heart_star);
+        console.log(card);
+  
+        //add to container
+        searchResultsContainer.appendChild(card);
+        
+        
+        // li.appendChild(link);
+        // ul.appendChild(li);
+      });
+    //   searchResultsContainer.appendChild(ul);
+    }
+  }
