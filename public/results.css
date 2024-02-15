@@ -272,6 +272,7 @@ main{
 }
 .user-actions{
     display: inline-flex;
+    position: absolute;
     margin: auto;
     width: 70%;
     justify-content: flex-end;
