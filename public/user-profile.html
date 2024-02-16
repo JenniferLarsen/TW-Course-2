@@ -8,6 +8,52 @@
     <link rel="stylesheet" href="common.css">    
     <link rel="stylesheet" href="profile.css">
     <title>User Profile Page</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Fetch user data from the server immediately after the page loads
+            await fetchAndUpdateUserData();
+    
+            // Attach the performLogin function to a button click event or form submission
+            const form = document.querySelector("#fileinfo");
+    
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                const name = document.getElementById('nameInput').value;
+                const email = document.getElementById('userSignInEmail').value;
+                const password = document.getElementById('userSignInPassword').value;
+    
+                const response = await fetch("/signup", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ name, email, password }),
+                });
+    
+                // Immediately fetch user data after signing up
+                await fetchAndUpdateUserData();
+            });
+        });
+    
+        async function fetchAndUpdateUserData() {
+            try {
+                const response = await fetch("/user-profile");
+                const userData = await response.json();
+    
+                // Update the welcome message with the user's name
+                const userGreeting = document.querySelector('.welcome h1');
+                if (userData && userData.name) {
+                    userGreeting.textContent = `Welcome Back, ${userData.name}!`;
+                } else {
+                    // Handle the case when there's no user data (user not logged in)
+                    userGreeting.textContent = 'Welcome Back!';
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        }
+    </script>
+    
 </head>
 <body>
     <header>
@@ -100,16 +146,6 @@
     <footer>
         <span>&copy; The ImPastas 2024</span>
     </footer>
-    <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            // Fetch user data from the server
-            const response = await fetch("/user-profile");
-            const userData = await response.json();
-          
-            // Update the welcome message with the user's name
-            const userGreeting = document.querySelector('.welcome h1');
-            userGreeting.textContent = `Welcome Back, ${userData.name}!`;
-        });
-    </script>
+
 </body>
 </html>
