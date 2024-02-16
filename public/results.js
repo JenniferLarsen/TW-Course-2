@@ -123,21 +123,32 @@ const selected_list = {}; //key,value pairs to fill up at the end
 
 search_btn.addEventListener("click", () => {
     console.log("searching...");
+    emptyList();
     fillSelections();
     performSearch();
 });
+
+function emptyList(){
+  for(ctgry in selected_list){
+    if (selected_list.hasOwnProperty(ctgry)) {
+      delete selected_list[ctgry];
+    }
+  }
+  console.log(selected_list);
+}
+
 function fillSelections(){
   selected_group_area.childNodes.forEach( widget => {
     wcName = widget.className;
     //category key doesnt exist
     if(!(wcName in selected_list) && wcName !== undefined){
       // console.log(wcName + " not in list");
-      selected_list[`${wcName}`] = new Array();
+      selected_list[`${wcName}`] = [];
       selected_list[`${wcName}`].push(widget.id);
     } //if it does exist
     else if(wcName !== undefined){
       // console.log(wcName + " ALREADY in list");
-      selected_list[`${wcName}`].add(widget.id);
+      selected_list[`${wcName}`].push(widget.id);
     }
     else{
       // do nothing
@@ -145,21 +156,35 @@ function fillSelections(){
   })
   console.log(selected_list);
 }
-
 function performSearch() {
     const searchTerm = searchInput.value;
     //const ingredients = searchInput.value;
     //const category = categoryDropdown.value;
-    let selections = selected_list[0];
-    console.log(selections);
+    // let selections = selected_list[0];
+    // console.log(selections);
   // Construct the API URL based on the available inputs
   let apiUrl = '/api/search?'
 
   if (searchTerm) {
     console.log(searchTerm);
-    apiUrl += `term=${encodeURIComponent(searchTerm)}&`;
+    apiUrl += `term=${encodeURIComponent(searchTerm)}`;
   }
-  
+  /*https://api.edamam.com/api/recipes/v2?
+  type=public&app_id=IDDIDIDIDDI&app_key=KEEEEYYYYY
+
+  &diet=balanced&diet=high-fiber&diet=high-protein
+  &health=immuno-supportive&health=kidney-friendly
+  &cuisineType=Asian&cuisineType=British&cuisineType=Caribbean&cuisineType=Nordic
+  &mealType=Dinner&mealType=Snack&dishType=Biscuits%20and%20cookies
+  &dishType=Bread&dishType=Cereals&dishType=Salad
+  */
+for(ctgry in selected_list){
+  selected_list[`${ctgry}`].forEach( (li_item) => {
+    //console.log(ctgry,li_item);
+    //console.log(`&${ctgry}=${encodeURIComponent(li_item)}`);
+    apiUrl += `&${ctgry}=${encodeURIComponent(li_item)}`;
+  })
+}
   // if (ingredients) {
   //   apiUrl += `ingredients=${encodeURIComponent(ingredients)}&`;
   // } else if (category === "ingredients" && selections) {
@@ -169,7 +194,7 @@ function performSearch() {
   //     selections
   //   )}&`;
   // }
-
+console.log(apiUrl);
   // Make the API request
   fetch(apiUrl, {
     method: "GET",
@@ -225,13 +250,18 @@ function displayResults(results) {
         img.classList.add("image");
         img.src = result.recipe.image;
         img.alt = recipeName.textContent;
+        
+        //Extract Time
+        // const t_time = document.createElement('span');
+        // t_time.className = "cook-time";
+        // t_time.textContent = results.recipe.totalTime;
 
         // Create a user actions
         const heart_star = document.createElement("div");
         heart_star.classList.add("user-acitons");
         heart_star.innerHTML = `<i class="fa-regular fa-heart"></i>
                                <i class="fa-regular fa-star"></i>`;
-
+        // heart_star.appendChild(t_time);
         //Consturct card for display:
         card.appendChild(img);
         card.appendChild(recipeName);
