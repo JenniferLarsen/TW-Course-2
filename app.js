@@ -76,6 +76,22 @@ app.route("/api/search").get(async (req, res) => {
   }
 });
 
+app.route("/login").post(async (req, res) => {
+  const { username, password } = req.body;
+
+  // Validate username and password (you need to implement this logic)
+  const isValidUser = validateUser(username, password);
+
+  if (isValidUser) {
+    // Store user data in the session
+    req.session.user = { name: username, email: "user@example.com" }; // Change the email accordingly
+
+    res.status(200).json({ success: true });
+  } else {
+    res.status(401).json({ error: "Invalid credentials" });
+  }
+});
+
 // Define a route for handling signin
 app.route("/login").get(async (req, res) => {
   const { username, password } = req.query;
@@ -125,7 +141,8 @@ app.post("/signup", async (req, res) => {
     // Store user data in the session
     req.session.user = { name, email };
 
-    return res.redirect("/user-profile");
+    // Send a JSON response with user data
+    res.status(200).json({ name, email });
   } catch (error) {
     console.error("Error signing up user:", error);
     res.status(500).json({ error: "Internal server error" });
