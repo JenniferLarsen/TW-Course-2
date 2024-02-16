@@ -208,7 +208,9 @@ main{
     padding-right: 5px;
     color:rgb(91, 101, 81);
 }
-
+.isChosen{
+    color: #FCDC4D;
+}
 
 /* content area styling */
 #search-results{
