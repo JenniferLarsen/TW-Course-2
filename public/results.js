@@ -289,24 +289,94 @@ function displayResults(results) {
     }
 }
 
+function getRecipeIdFromElement(element) {
+  // Extract the recipe ID from the element
+  const recipeId = element.dataset.recipeId;
+
+  // Check if the recipe ID is present
+  if (!recipeId) {
+    throw new Error('Recipe ID not found on the element.');
+  }
+
+  return recipeId;
+}
+
   const user_ID = "User-ID";
   const liked_items = [];
   const fav_items = [];
 
-function likes_faves(){
+  async function updateLikesToDatabase(recipeId, isLiked) {
+    try {
+      // Make a request to your server to update the likes in the database
+      const response = await fetch('/api/update-likes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          recipeId: recipeId,
+          isLiked: isLiked,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      // Handle the response if needed
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error updating likes:', error);
+    }
+  }
+  
+  async function updateFavoritesToDatabase(recipeId, isFavorite) {
+    try {
+      // Make a request to your server to update the favorites in the database
+      const response = await fetch('/api/add-to-favorites', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          uri: recipeId,  // Use the recipe URI or identifier
+          image: '',      // Add the recipe image URL if needed
+          isFavorite: isFavorite,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      // Handle the response if needed
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error updating favorites:', error);
+    }
+  }
+  
+
+function likes_faves() {
   const heart_icons = document.querySelectorAll(".fa-heart");
   const star_icons = document.querySelectorAll(".fa-star");
-  console.log(heart_icons);
-  console.log(star_icons);
+
   heart_icons.forEach(liked => {
-    liked.onclick = (e) =>{
-      liked.classList.contains('fa-regular') ? liked.classList.replace('fa-regular', 'fa-solid') : liked.classList.replace('fa-solid','fa-regular');
+    liked.onclick = async (e) => {
+      liked.classList.contains('fa-regular') ? liked.classList.replace('fa-regular', 'fa-solid') : liked.classList.replace('fa-solid', 'fa-regular');
+      const recipeId = getRecipeIdFromElement(e.target);
+      await updateLikesToDatabase(recipeId, liked.classList.contains('fa-solid'));
     }
   });
+
   star_icons.forEach(faved => {
-    faved.onclick = (e) =>{
-      faved.classList.contains('fa-regular') ? faved.classList.replace('fa-regular', 'fa-solid') : faved.classList.replace('fa-solid','fa-regular');
-      // faved.classList.contains('fa-regular') && fav_items. ?
+    faved.onclick = async (e) => {
+      faved.classList.contains('fa-regular') ? faved.classList.replace('fa-regular', 'fa-solid') : faved.classList.replace('fa-solid', 'fa-regular');
+      const recipeId = getRecipeIdFromElement(e.target);
+      await updateFavoritesToDatabase(recipeId, faved.classList.contains('fa-solid'));
     }
   });
 }
+  
