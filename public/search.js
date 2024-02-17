@@ -89,11 +89,6 @@ function performSearch() {
     selections = selectionsDropdown ? selectionsDropdown.value : null;
   }
 
-  console.log("Debug - Search Term:", searchTerm);
-  console.log("Debug - Ingredients:", ingredients);
-  console.log("Debug - Category:", category);
-  console.log("Debug - Selections:", selections);
-
 
   //These are for testing only - remove when testing complete
   console.log("Search Term:", searchTerm);
@@ -101,7 +96,7 @@ function performSearch() {
   console.log("Category:", category);
   console.log("Selections:", selections);
 
-  // Construct the API URL based on the available inputs
+  // Construct the API URL based on the available inputs  --TODO -- Add selected_list as an option
   let apiUrl = '/api/search?'
 
   if (searchTerm) {
