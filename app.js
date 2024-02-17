@@ -37,13 +37,14 @@ app.use(
 // Define a route for handling the search API with both GET and POST methods
 app.route("/api/search").get(async (req, res) => {
   try {
-    const { term, ingredients, category, selections } = req.query;
+    const { term, ingredients, selected_list } = req.query;
     // Add the following debug lines - remove after
     console.log("Query Parameters:", req.query);
     console.log("Search Term:", term);
     console.log("Ingredients:", ingredients);
-    console.log("Category:", category);
-    console.log("Selections:", selections);
+    console.log(selected_list);
+    // console.log("Category:", category);
+    // console.log("Selections:", selections);
 
     let apiUrl;
     if (term) {
@@ -54,10 +55,28 @@ app.route("/api/search").get(async (req, res) => {
       apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(
         ingredients
       )}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
-    } else if (category && selections) {
-      apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&${encodeURIComponent(
-        category)}=${encodeURIComponent(selections)}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
-        
+    } else if (selected_list.length > 0) {
+      for(ctgry in selected_list){
+        selected_list[`${ctgry}`].forEach( (li_item) => {
+          //console.log(ctgry,li_item);
+          console.log(`&${ctgry}=${encodeURIComponent(li_item)}`);
+          apiUrl += `&${ctgry}=${encodeURIComponent(li_item)}`
+        })
+        apiUrl += `&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
+      // apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&${encodeURIComponent(
+      //   category)}=${encodeURIComponent(selections)}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
+       
+//  function getSelected(){
+//   for(ctgry in selected_list){
+//     selected_list[`${ctgry}`].forEach( (li_item) => {
+//       //console.log(ctgry,li_item);
+//       console.log(`&${ctgry}=${encodeURIComponent(li_item)}`);
+//       apiUrl += `&${ctgry}=${encodeURIComponent(li_item)}`
+//       //apiUrl += `&category=${encodeURIComponent(ctgry)}&selections=${encodeURIComponent(li_item)}`;
+//     })
+//   }
+}
+
     } else {
       throw new Error(
         "At least one of search term, ingredients, or category and selection must be provided."
