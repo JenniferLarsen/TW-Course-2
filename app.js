@@ -37,51 +37,68 @@ app.use(
 // Define a route for handling the search API with both GET and POST methods
 app.route("/api/search").get(async (req, res) => {
   try {
-    const { term, ingredients, selected_list } = req.query;
+    // Query Parameter object{ diet: 'high-protein' }
+    //const { term, ingredients, category, selections } = req.query;
+    const { term, diet, health, cuisineType, mealType, dishType } = req.query;
+    const selected_list = {'diet':[diet], 'health':[health], 
+                            'cuisineType':[cuisineType], 'mealType':[mealType],
+                            'dishType':[dishType]};
     // Add the following debug lines - remove after
     console.log("Query Parameters:", req.query);
     console.log("Search Term:", term);
-    console.log("Ingredients:", ingredients);
+    console.log("diet:", diet);
+    console.log("health:", health);
+    console.log("cuisineType:", cuisineType);
+    console.log("mealType:", mealType);
+    console.log("dishType:", dishType);
     console.log(selected_list);
-    // console.log("Category:", category);
-    // console.log("Selections:", selections);
 
-    let apiUrl;
-    if (term) {
-      apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(
-        term
-      )}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
-    } else if (ingredients) {
-      apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(
-        ingredients
-      )}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
-    } else if (selected_list.length > 0) {
+    let apiUrl = `https://api.edamam.com/api/recipes/v2?type=public`;
+    
+    function formatSelected(){
       for(ctgry in selected_list){
-        selected_list[`${ctgry}`].forEach( (li_item) => {
-          //console.log(ctgry,li_item);
-          console.log(`&${ctgry}=${encodeURIComponent(li_item)}`);
-          apiUrl += `&${ctgry}=${encodeURIComponent(li_item)}`
-        })
-        apiUrl += `&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
+        console.log(selected_list[ctgry]);
+        if (selected_list[ctgry]!== undefined){
+            selected_list[ctgry].forEach( (li_item) => {
+              //console.log(ctgry,li_item);
+              console.log(`&${ctgry}=${encodeURIComponent(li_item)}`);
+              (li_item !== undefined) ? apiUrl += `&${ctgry}=${encodeURIComponent(li_item)}`: null;
+            })
+          }
+      }
+    }
+    
+    if (term) {
+      apiUrl += `&q=${encodeURIComponent(term)}`;
+      formatSelected();
+      apiUrl += `&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
+    // } else if (ingredients) {
+    //   apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(
+    //     ingredients
+    //   )}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
+    // } else if (category && selections) {
+    //   apiUrl += `category=${category}&selections=${encodeURIComponent(
+    //     selections
+    //   )}&`;
+    // }
+    //https://api.edamam.com/api/recipes/v2?type=public&app_id=7e56dd2d&app_key=685541325d49119c9bfd59298f854231
+    //&diet=high-protein&diet=low-carb&diet=low-fat
+    //&health=egg-free&health=fish-free
+    //&mealType=Dinner&mealType=Snack 
+    } 
+    else if (selected_list) {
+      formatSelected();
+      apiUrl += `&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
       // apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&${encodeURIComponent(
       //   category)}=${encodeURIComponent(selections)}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
-       
-//  function getSelected(){
-//   for(ctgry in selected_list){
-//     selected_list[`${ctgry}`].forEach( (li_item) => {
-//       //console.log(ctgry,li_item);
-//       console.log(`&${ctgry}=${encodeURIComponent(li_item)}`);
-//       apiUrl += `&${ctgry}=${encodeURIComponent(li_item)}`
-//       //apiUrl += `&category=${encodeURIComponent(ctgry)}&selections=${encodeURIComponent(li_item)}`;
-//     })
-//   }
-}
 
-    } else {
+
+    } 
+    else {
       throw new Error(
         "At least one of search term, ingredients, or category and selection must be provided."
       );
-    }
+      }
 
     console.log("API URL:", apiUrl);
     const edamamResponse = await fetch(apiUrl);
