@@ -9,6 +9,8 @@ const saltRounds = 10
 const password = "Admin@123"
 const saveUserData = require("./justConnect");
 const bodyParser = require("body-parser");
+const FavoriteRecipe = require('./models/recipe');
+const User = require('./models/user');
 
 const app = express();
 const port = 8080;
@@ -33,6 +35,60 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+app.post('/api/update-likes', async (req, res) => {
+  try {
+    const { recipeId, isLiked } = req.body;
+    const userId = req.session.user._id; // Assuming you store user ID in the session
+
+    // Update user's liked list based on isLiked value
+    const updateField = isLiked ? 'liked' : 'fav_items';
+    await User.findByIdAndUpdate(userId, { $addToSet: { [updateField]: recipeId } });
+
+    res.status(200).json({ message: 'Likes updated successfully' });
+  } catch (error) {
+    console.error('Error updating likes:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.post("/api/add-to-favorites", async (req, res) => {
+  try {
+    const { uri, image, isFavorite } = req.body;
+
+    // Check if the user is logged in
+    const user = req.session.user;
+    if (!user) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    // Check if the recipe is already in favorites
+    const existingFavorite = await FavoriteRecipe.findOne({ uri });
+
+    if (existingFavorite) {
+      return res.status(400).json({ error: "Recipe already in favorites" });
+    }
+
+    // Create and save the favorite recipe
+    const newFavorite = new FavoriteRecipe({
+      uri,
+      image,
+    });
+
+    await newFavorite.save();
+
+    // Update the user's favorites list
+    await User.findOneAndUpdate(
+      { email: user.email },
+      { $addToSet: { fav_items: newFavorite._id } }
+    );
+
+    res.status(200).json({ message: "Recipe added to favorites" });
+  } catch (error) {
+    console.error("Error adding recipe to favorites:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 // Define a route for handling the search API with both GET and POST methods
 app.route("/api/search").get(async (req, res) => {
@@ -162,4 +218,5 @@ app.get("/user-profile", (req, res) => {
 
   // Send user data to the client
   res.json({ name: user.name, email: user.email });
+  
 });
