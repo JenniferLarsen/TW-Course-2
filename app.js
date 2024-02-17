@@ -55,7 +55,7 @@ app.route("/api/search").get(async (req, res) => {
       apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(
         ingredients
       )}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
-    } else if (selected_list.length > 0) {
+    } else if (selected_list) {
       for(ctgry in selected_list){
         selected_list[`${ctgry}`].forEach( (li_item) => {
           //console.log(ctgry,li_item);

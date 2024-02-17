@@ -1,19 +1,3 @@
-// // models/user.js
-// const mongoose = require('mongoose');
-// const passportLocalMongoose = require('passport-local-mongoose');
-
-// const userSchema = new mongoose.Schema({
-//   username: String,
-//   password: String,
-// });
-
-// userSchema.plugin(passportLocalMongoose);
-
-// const User = mongoose.model('User', userSchema);
-
-// module.exports = User;
-
-
 // models/User.js
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
@@ -21,8 +5,11 @@ const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
     username: String,
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    liked: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' }],
+    fav_items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' }],
 });
+
 
 // Hash the password before saving
 userSchema.pre('save', async function (next) {
