@@ -8,6 +8,22 @@
     <link rel="stylesheet" href="common.css">    
     <link rel="stylesheet" href="profile.css">
     <title>User Profile Page</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+          // Fetch user data from the server
+          const response = await fetch('/user-profile');
+          const userData = await response.json();
+      
+          // Update the welcome message with the user's name
+          const userGreeting = document.querySelector('.welcome h1');
+          if (userData && userData.name) {
+            userGreeting.textContent = `Welcome Back, ${userData.name}!`;
+          } else {
+            // Handle the case when there's no user data (user not logged in)
+            userGreeting.textContent = 'Welcome Back!';
+          }
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -100,16 +116,6 @@
     <footer>
         <span>&copy; The ImPastas 2024</span>
     </footer>
-    <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            // Fetch user data from the server
-            const response = await fetch("/user-profile");
-            const userData = await response.json();
-          
-            // Update the welcome message with the user's name
-            const userGreeting = document.querySelector('.welcome h1');
-            userGreeting.textContent = `Welcome Back, ${userData.name}!`;
-        });
-    </script>
+
 </body>
 </html>
