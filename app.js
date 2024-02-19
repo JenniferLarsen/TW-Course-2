@@ -120,7 +120,7 @@ app.route("/api/search").get(async (req, res) => {
               console.log(`&${ctgry}=${encodeURIComponent(li_item)}`);
               (li_item !== undefined) ? apiUrl += `&${ctgry}=${encodeURIComponent(li_item)}`: null;
             })
-          }
+        }
       }
     }
     
@@ -128,19 +128,6 @@ app.route("/api/search").get(async (req, res) => {
       apiUrl += `&q=${encodeURIComponent(term)}`;
       formatSelected();
       apiUrl += `&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
-    // } else if (ingredients) {
-    //   apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${encodeURIComponent(
-    //     ingredients
-    //   )}&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
-    // } else if (category && selections) {
-    //   apiUrl += `category=${category}&selections=${encodeURIComponent(
-    //     selections
-    //   )}&`;
-    // }
-    //https://api.edamam.com/api/recipes/v2?type=public&app_id=7e56dd2d&app_key=685541325d49119c9bfd59298f854231
-    //&diet=high-protein&diet=low-carb&diet=low-fat
-    //&health=egg-free&health=fish-free
-    //&mealType=Dinner&mealType=Snack 
     } 
     else if (selected_list) {
       formatSelected();
