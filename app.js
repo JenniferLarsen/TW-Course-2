@@ -9,6 +9,8 @@ const saltRounds = 10
 const password = "Admin@123"
 const saveUserData = require("./justConnect");
 const bodyParser = require("body-parser");
+const FavoriteRecipe = require('./models/recipe');
+const User = require('./models/user');
 
 const app = express();
 const port = 8080;
