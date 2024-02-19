@@ -176,7 +176,7 @@ function performSearch() {
   if (searchTerm) {
     console.log(searchTerm);
     apiUrl += `term=${encodeURIComponent(searchTerm)}`;
-    //getSelected();
+    getSelected();
   } else if (searchTerm == "") {
     console.log(apiUrl);
     getSelected();
@@ -187,10 +187,8 @@ function performSearch() {
 function getSelected(){
   for(ctgry in selected_list){
     selected_list[`${ctgry}`].forEach( (li_item) => {
-      //console.log(ctgry,li_item);
-      console.log(`&${ctgry}=${encodeURIComponent(li_item)}`);
+      //console.log(`&${ctgry}=${encodeURIComponent(li_item)}`);
       apiUrl += `&${ctgry}=${encodeURIComponent(li_item)}`
-      //apiUrl += `&category=${encodeURIComponent(ctgry)}&selections=${encodeURIComponent(li_item)}`;
     })
   }
 }
