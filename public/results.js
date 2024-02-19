@@ -292,47 +292,48 @@ function likes_faves(){
   const star_icons = document.querySelectorAll(".fa-star");
   var uriID;
 
-  // async function updateLikesToDatabase(recipeId, isLiked) {
-  //   try {
-  //     // Make a request to your server to update the likes in the database
-  //     const response = await fetch('/api/update-likes', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         recipeId: recipeId,
-  //         isLiked: isLiked,
-  //       }),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! Status: ${response.status}`);
-  //     }
-
-  //     // Handle the response if needed
-  //     const data = await response.json();
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.error('Error updating likes:', error);
-  //   }
-  // }
-
+  async function updateLikesToDatabase(recipeId, isLiked, isFaved) {
+    try {
+      // Make a request to your server to update the likes and favorites in the database
+      const response = await fetch('/api/update-likes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          recipeId: recipeId,
+          isLiked: isLiked,
+          isFaved: isFaved,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      // Handle the response if needed
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error updating likes:', error);
+    }
+  }
+  
   //heart / faved action + UPDATE on database
   
   heart_icons.forEach(liked => {
-    liked.onclick = async (e) =>{
+    liked.onclick = async (e) => {
       liked.classList.contains('fa-regular') ? liked.classList.replace('fa-regular', 'fa-solid') : liked.classList.replace('fa-solid','fa-regular');
       uriID = liked.parentElement.id;
-      await updateLikesToDatabase(uriID, liked.classList.contains('fa-solid'));
+      await updateLikesToDatabase(uriID, liked.classList.contains('fa-solid'), false);
     }
   });
-
+  
   star_icons.forEach(faved => {
-    faved.onclick = async (e) =>{
+    faved.onclick = async (e) => {
       faved.classList.contains('fa-regular') ? faved.classList.replace('fa-regular', 'fa-solid') : faved.classList.replace('fa-solid','fa-regular');
       uriID = faved.parentElement.id;
-      await updateLikesToDatabase(uriID, liked.classList.contains('fa-solid'));
+      await updateLikesToDatabase(uriID, false, faved.classList.contains('fa-solid'));
     }
   });
 }

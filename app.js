@@ -38,16 +38,21 @@ app.use(
 
 app.post('/api/update-likes', async (req, res) => {
   try {
-    const { recipeId, isLiked } = req.body;
+    const { recipeId, isLiked, isFaved } = req.body;
     const userId = req.session.user._id; // Assuming you store user ID in the session
 
-    // Update user's liked list based on isLiked value
-    const updateField = isLiked ? 'liked' : 'fav_items';
-    await User.findByIdAndUpdate(userId, { $addToSet: { [updateField]: recipeId } });
+    // Update user's liked or favorite list based on isLiked and isFaved values
+    if (isLiked) {
+      await User.findByIdAndUpdate(userId, { $addToSet: { liked: recipeId } });
+    }
 
-    res.status(200).json({ message: 'Likes updated successfully' });
+    if (isFaved) {
+      await User.findByIdAndUpdate(userId, { $addToSet: { fav_items: recipeId } });
+    }
+
+    res.status(200).json({ message: 'Likes and favorites updated successfully' });
   } catch (error) {
-    console.error('Error updating likes:', error);
+    console.error('Error updating likes and favorites:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
