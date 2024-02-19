@@ -4,7 +4,6 @@ const arrow_icon = document.getElementById("arrow");
 const drpDwn_a_list = document.getElementById("a-list");
 const a_list_values = document.querySelectorAll(".dropdown-list li");
 const drpDwn_b_list = document.getElementById("b-list");
-// console.log(drpDwn_b_list);
 const selected_group_area = document.getElementById("selected");
 
 // toggle a-list
@@ -45,8 +44,8 @@ function selectedCategory() {
     for(ctgry of a_list_values){
         let val = ctgry.getAttributeNode("value");
         ctgry.onclick = (e) => {
-            // callback()
-            setRefined(val.nodeValue);
+          console.log(val);
+          (val == 'clear') ? clearWidget(): setRefined(val.nodeValue);
         };
     }
 }
@@ -92,7 +91,7 @@ selected_group_area.onclick = (e) => {
 function addWidget(input){
       var item = input.innerText;
       console.log(item);
-      console.log(selected_group_area.children);
+      //console.log(selected_group_area.children);
       selected_group_area.classList.add(item);
       const new_widget = document.createElement('li');
       new_widget.innerText = item;
@@ -105,7 +104,7 @@ function addWidget(input){
       selected_group_area.appendChild(new_widget);
       console.log(selected_group_area.children);
       //console.log(selected_group_area);  
- }
+}
 function removeWidget(item){
   console.log("remove widget" + item);
   const widget = document.getElementById(item);
@@ -113,6 +112,11 @@ function removeWidget(item){
   selected_group_area.removeChild(widget);
   selected_group_area.classList.remove(item);
   console.log(selected_group_area.children);
+}
+function clearWidget(){
+  while (selected_group_area.firstChild) {
+    selected_group_area.removeChild(parent.firstChild);
+  }
 }
 
 /* SEARCH BAR FUNCTIONALITY */
@@ -127,7 +131,6 @@ search_btn.addEventListener("click", () => {
     fillSelections();
     performSearch();
 });
-
 function emptyList(){
   for(ctgry in selected_list){
     if (selected_list.hasOwnProperty(ctgry)) {
@@ -136,7 +139,6 @@ function emptyList(){
   }
   console.log(selected_list);
 }
-
 function fillSelections(){
   selected_group_area.childNodes.forEach( widget => {
     wcName = widget.className;
@@ -157,22 +159,9 @@ function fillSelections(){
   console.log(selected_list);
 }
 function performSearch() {
-    const searchTerm = searchInput.value;
-    //const ingredients = searchInput.value;
-    //const category = categoryDropdown.value;
-    // let selections = selected_list[0];
-    // console.log(selections);
-  // Construct the API URL based on the available inputs
+  const searchTerm = searchInput.value;
   let apiUrl = '/api/search?'
-/*https://api.edamam.com/api/recipes/v2?
-  type=public&app_id=IDDIDIDIDDI&app_key=KEEEEYYYYY
 
-  &diet=balanced&diet=high-fiber&diet=high-protein
-  &health=immuno-supportive&health=kidney-friendly
-  &cuisineType=Asian&cuisineType=British&cuisineType=Caribbean&cuisineType=Nordic
-  &mealType=Dinner&mealType=Snack&dishType=Biscuits%20and%20cookies
-  &dishType=Bread&dishType=Cereals&dishType=Salad
-  */
   if (searchTerm) {
     console.log(searchTerm);
     apiUrl += `term=${encodeURIComponent(searchTerm)}`;
@@ -180,9 +169,6 @@ function performSearch() {
   } else if (searchTerm == "") {
     console.log(apiUrl);
     getSelected();
-      // apiUrl += `category=${category}&selections=${encodeURIComponent(
-      //   selections
-      // )}&`;
   }
 function getSelected(){
   for(ctgry in selected_list){
@@ -192,15 +178,7 @@ function getSelected(){
     })
   }
 }
-  // if (ingredients) {
-  //   apiUrl += `ingredients=${encodeURIComponent(ingredients)}&`;
-  // } else if (category === "ingredients" && selections) {
-  //   apiUrl += `ingredients=${encodeURIComponent(selections)}&`;
-  // } else if (category && selections) {
-  //   apiUrl += `category=${category}&selections=${encodeURIComponent(
-  //     selections
-  //   )}&`;
-  // }
+
 console.log(apiUrl);
   // Make the API request
   fetch(apiUrl, {
@@ -219,8 +197,6 @@ console.log(apiUrl);
     .catch((error) => console.error("Error:", error));
     
 }
-
-//console.log(searchResultsContainer);
 function displayResults(results) {
     // Clear previous results
     searchResultsContainer.innerHTML = "";
@@ -253,6 +229,7 @@ function displayResults(results) {
   
         // Extract the recipe ID from the URI
        const recipeId = result.recipe.uri.split("_")[1];
+       console.log(recipeId);
 
         // Extract the Image
         const img = document.createElement("img")
@@ -263,7 +240,8 @@ function displayResults(results) {
         //Extract Time
         // const t_time = document.createElement('span');
         // t_time.className = "cook-time";
-        // t_time.textContent = results.recipe.totalTime;
+        // t_time.textContent = result.recipe.totalTime;
+        console.log(result.recipe.totalTime);
 
         // Create a user actions
         const heart_star = document.createElement("div");
@@ -286,16 +264,33 @@ function displayResults(results) {
     //   searchResultsContainer.appendChild(ul);
     }
 }
-
+document.addEventListener("search", async () => {
+  // Fetch user data from the server
+  const response = await fetch('/results-page');
+  const userData = await response.json();
+  console.log(userData);
+});
   const user_ID = "User-ID";
+  const user_name = "name";
   const liked_items = [];
   const fav_items = [];
+  function recipeURI(uriID){
+   return `https://api.edamam.com/api/recipes/v2/by-uri?type=public&uri=http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_
+    ${uriID}` ;
+  }
+  /** single uri element */
+  //https://api.edamam.com/api/recipes/v2/by-uri?type=public&uri=http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_
+  //{the recipe URI ID}&app_id=IDDDDD&app_key=KEEEEEY
+
+  /** multiple uri element [seperated by ',' until the last one] */
+  //https://api.edamam.com/api/recipes/v2/by-uri?type=public&uri=http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_{RECIPE URI},
+  //http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_{RECIPE URI},
+  //http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_{RECIPE URI}
+  //&app_id=7e56dd2d&app_key=685541325d49119c9bfd59298f854231
 
 function likes_faves(){
   const heart_icons = document.querySelectorAll(".fa-heart");
   const star_icons = document.querySelectorAll(".fa-star");
-  console.log(heart_icons);
-  console.log(star_icons);
   heart_icons.forEach(liked => {
     liked.onclick = (e) =>{
       liked.classList.contains('fa-regular') ? liked.classList.replace('fa-regular', 'fa-solid') : liked.classList.replace('fa-solid','fa-regular');
