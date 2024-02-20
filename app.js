@@ -46,20 +46,18 @@ app.post("/api/update-likes", async (req, res) => {
   
     // Update user's liked or favorite list based on isLiked and isFaved values
     if (isLiked) {
-      
-      console.log(User.findByIdAndUpdate);
-      let doc = await User.findOneAndUpdate({_id: userId},{
-      // await User.findByIdAndUpdate(userId, {
-        $addToSet: { liked: recipeId },
-      });
-      console.log(doc);
-      
+      const result = await User.updateOne(
+        { _id: userId },
+        { $push: { liked: recipeId } }
+      );
+      console.log(result);
     }
 
     if (isFaved) {
-      await User.findByIdAndUpdate(userId, {
-        $addToSet: { fav_items: recipeId },
-      });
+      await User.updateOne(
+        { _id: userId },
+        { $push: { fav_items: recipeId } }
+      );
     }
 
     res
