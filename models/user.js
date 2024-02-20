@@ -6,8 +6,8 @@ const userSchema = new mongoose.Schema({
     username: String,
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    likedRecipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' }],
-    favoriteRecipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' }],
+    liked: [{ type: String }],
+    fav_items: [{ type: String }],
 });
 
 
