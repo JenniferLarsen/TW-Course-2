@@ -9,9 +9,8 @@ const saltRounds = 10;
 const password = "Admin@123";
 const modules = require("./justConnect");
 const saveUserData = modules.saveData;
-const updateLikeFav = modules.updateLikeFav;
 const bodyParser = require("body-parser");
-const FavoriteRecipe = require("./models/recipe");
+
 const User = require("./models/user");
 const { default: mongoose} = require("mongoose");
 
@@ -53,15 +52,12 @@ app.post("/api/update-likes", async (req, res) => {
       //   { $push: { liked: recipeId } }
       // );
 
-      updateLikeFav(userId, recipeId);
+      modules.updateLike(userId, recipeId);
       console.log(result);
     }
 
     if (isFaved) {
-      await User.updateOne(
-        { _id: userId },
-        { $push: { fav_items: recipeId } }
-      );
+      modules.updateFav(userId, recipeId);
     }
 
     res

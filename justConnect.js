@@ -44,7 +44,7 @@ async function saveData(username, email, password) {
 }
 }
 
-async function updateLikeFav(id, recipeId) {
+async function updateLike(id, recipeId) {
   userId = new ObjectId(id); 
   const db = client.db("TheNoodles");
   const collection = db.collection("UserInfo");
@@ -54,7 +54,26 @@ async function updateLikeFav(id, recipeId) {
     console.log(user);
     const result = await collection.updateOne(
       { _id: userId },
-      { $push: { liked: recipeId } }
+      { $push: { liked: recipeId } },
+    );
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error("Error saving data:", error);
+  }
+}
+
+async function updateFav(id, recipeId) {
+  userId = new ObjectId(id); 
+  const db = client.db("TheNoodles");
+  const collection = db.collection("UserInfo");
+
+  try {
+    const user = await collection.findOne({_id: userId})
+    console.log(user);
+    const result = await collection.updateOne(
+      { _id: userId },
+      { $push: { faved: recipeId } },
     );
     console.log(result);
     return result;
@@ -70,5 +89,6 @@ main().then(console.log).catch(console.error);
 //module.exports = updateLikeFav;
 module.exports = {
   saveData,
-  updateLikeFav
+  updateLike,
+  updateFav
 };
