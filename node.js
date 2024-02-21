@@ -13,7 +13,7 @@ const client = new MongoClient(uri, {
 
 //const User = require("./models/user");
 // const { default: mongoose } = require("mongoose");
-// mongoose.connect("mongodb+srv://djlarsen1999:PantryCookbook@thenoodles.zm3zex4.mongodb.net/").then(async () => {
+
 //   userId = "65cad587cadb126767de025b";
 //   recipeId = "62f902aa94f7c6040c736bb8550a107f";
 
