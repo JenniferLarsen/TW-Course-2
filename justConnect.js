@@ -49,4 +49,4 @@ async function saveData(username, email, password) {
 // Example usage
 main().then(console.log).catch(console.error);
 
-module.exports = saveData;
+module.exports = (saveData, likeFav);
