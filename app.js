@@ -64,44 +64,6 @@ app.post("/api/update-likes", async (req, res) => {
   }
 });
 
-// app.post("/api/add-to-favorites", async (req, res) => {
-//   try {
-//     const { uri, image, isFavorite } = req.body;
-
-//     // Check if the user is logged in
-//     const user = req.session.user;
-//     if (!user) {
-//       return res.status(401).json({ error: "Unauthorized" });
-//     }
-
-//     // Check if the recipe is already in favorites
-//     const existingFavorite = await FavoriteRecipe.findOne({ uri });
-
-//     if (existingFavorite) {
-//       return res.status(400).json({ error: "Recipe already in favorites" });
-//     }
-
-//     // Create and save the favorite recipe
-//     const newFavorite = new FavoriteRecipe({
-//       uri,
-//       image,
-//     });
-
-//     await newFavorite.save();
-
-//     // Update the user's favorites list
-//     await User.findOneAndUpdate(
-//       { email: user.email },
-//       { $addToSet: { fav_items: newFavorite._id } }
-//     );
-
-//     res.status(200).json({ message: "Recipe added to favorites" });
-//   } catch (error) {
-//     console.error("Error adding recipe to favorites:", error);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
-
 // Define a route for handling the search API with both GET and POST methods
 app.route("/api/search").get(async (req, res) => {
   try {
@@ -185,15 +147,6 @@ app.route("/login").post(async (req, res) => {
   }
 });
 
-// // Define a route for handling signin
-// app.route("/login").get(async (req, res) => {
-//   const { username, password } = req.query;
-
-//   console.log("Username:", username);
-//   console.log("Password:", password);
-
-// });
-
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 
@@ -250,6 +203,28 @@ app.get("/user-profile", (req, res) => {
 
   // Send user data to the client
   res.json({ name: user.name, email: user.email });
+});
+
+app.get('/logout', (req, res) => {
+  // Destroy the user session
+  if (req.session) {
+    req.session.destroy((err) => {
+      if (err) {
+        // Handle error case
+        res.status(500).json({ error: "Could not log out, please try again" });
+      } else {
+        // Optionally redirect to login page or send a success response
+        //res.status(200).send('Logged out successfully');
+        // For redirecting to login page, you can use:
+        res.redirect('/login.html');
+      }
+    });
+  } else {
+    // If there's no session, just send a logged out message or redirect
+    //res.status(200).send('Logged out successfully');
+    // Or for redirect:
+    res.redirect('/login');
+  }
 });
 
 mongoose.connect(process.env.NOODLE_DB).then(() => {

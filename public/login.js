@@ -96,3 +96,13 @@ function validateSignUpForm() {
         console.log("Please fill out the 'confirm password' field.")
     }
 }
+
+document.getElementById('logoutButton').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default action to not follow the link
+    fetch('/logout', { method: 'GET' }) // Make sure to match the method used on the server
+      .then(() => {
+          // Assuming you want to redirect to the login page after logout
+          window.location.href = '/login.html'; // Adjust the path as necessary
+      })
+      .catch(error => console.error('Error logging out:', error));
+});
