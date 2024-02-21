@@ -30,7 +30,6 @@ async function main() {
   } 
 }
 
-
 async function saveData(username, email, password) {
   const db = client.db('TheNoodles');
   const collection = db.collection('UserInfo');
@@ -82,11 +81,8 @@ async function updateFav(id, recipeId) {
   }
 }
 
-// Example usage
 main().then(console.log).catch(console.error);
 
-//module.exports = saveData; 
-//module.exports = updateLikeFav;
 module.exports = {
   saveData,
   updateLike,
