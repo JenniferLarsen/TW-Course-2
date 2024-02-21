@@ -63,9 +63,10 @@ body {
 }
 
 .image-container img {
-    height: auto;
+    height: fit-content;
     width: 26.67vw; /* Adjust the width of the images */
-    margin: 0 0.3vw; /* Adjust the margin between the images */
+    margin: 0 0.3vw 5vh 0.3vw; /* Adjust the margin between the images */
+    
 }
 
 .search-container {
@@ -99,6 +100,12 @@ button {
     color: white;
     height: 3.3vh;
     font-size: 1.3vw;
+}
+
+.search-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #category{
