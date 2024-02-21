@@ -252,7 +252,7 @@ app.get("/user-profile", (req, res) => {
   res.json({ name: user.name, email: user.email });
 });
 
-mongoose.connect("mongodb://127.0.0.1:27017/TheNoodles").then(() => {
+mongoose.connect(process.env.NOODLE_DB).then(() => {
   app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
   });
