@@ -45,7 +45,7 @@ async function saveData(username, email, password) {
 }
 
 async function updateLikeFav(id, recipeId) {
-  userId = new ObjectId(id);
+  userId = new ObjectId(id); 
   const db = client.db("TheNoodles");
   const collection = db.collection("UserInfo");
 
@@ -66,4 +66,9 @@ async function updateLikeFav(id, recipeId) {
 // Example usage
 main().then(console.log).catch(console.error);
 
-module.exports = (saveData, updateLikeFav);
+//module.exports = saveData; 
+//module.exports = updateLikeFav;
+module.exports = {
+  saveData,
+  updateLikeFav
+};

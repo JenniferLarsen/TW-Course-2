@@ -7,7 +7,9 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const password = "Admin@123";
-const saveUserData = require("./justConnect");
+const modules = require("./justConnect");
+const saveUserData = modules.saveData;
+const updateLikeFav = modules.updateLikeFav;
 const bodyParser = require("body-parser");
 const FavoriteRecipe = require("./models/recipe");
 const User = require("./models/user");
@@ -223,6 +225,7 @@ function validateUser(hash) {
 // Define a route for handling sign-up requests
 app.post("/signup", async (req, res) => {
   try {
+  
     const { name, email, password } = req.body;
 
     const hashedPassword = await bcrypt.hash(password, saltRounds);
