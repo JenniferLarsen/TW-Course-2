@@ -241,27 +241,26 @@ function displayResults(results) {
         // const t_time = document.createElement('span');
         // t_time.className = "cook-time";
         // t_time.textContent = result.recipe.totalTime;
-        console.log(result.recipe.totalTime);
+        // console.log(result.recipe.totalTime);
 
         // Create a user actions
         const heart_star = document.createElement("div");
         heart_star.classList.add("user-acitons");
+        heart_star.id = recipeId;
         heart_star.innerHTML = `<i class="fa-regular fa-heart"></i>
                                <i class="fa-regular fa-star"></i>`;
-        
         // heart_star.appendChild(t_time);
+
         //Consturct card for display:
         card.appendChild(img);
         card.appendChild(recipeName);
         card.appendChild(heart_star);
-        //console.log(card);
   
         //add to container
         searchResultsContainer.appendChild(card);
         
       });
       likes_faves();
-    //   searchResultsContainer.appendChild(ul);
     }
 }
 document.addEventListener("search", async () => {
@@ -286,20 +285,55 @@ document.addEventListener("search", async () => {
   //https://api.edamam.com/api/recipes/v2/by-uri?type=public&uri=http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_{RECIPE URI},
   //http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_{RECIPE URI},
   //http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_{RECIPE URI}
-  //&app_id=7e56dd2d&app_key=685541325d49119c9bfd59298f854231
+  //&app_id=iddddddd&app_key=kkkkkeeeeyyyyyy
 
 function likes_faves(){
   const heart_icons = document.querySelectorAll(".fa-heart");
   const star_icons = document.querySelectorAll(".fa-star");
+  var uriID;
+
+  async function updateLikesToDatabase(recipeId, isLiked, isFaved) {
+    try {
+      // Make a request to your server to update the likes and favorites in the database
+      const response = await fetch('/api/update-likes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          recipeId: recipeId,
+          isLiked: isLiked,
+          isFaved: isFaved,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      // Handle the response if needed
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error updating likes:', error);
+    }
+  }
+  
+  //heart / faved action + UPDATE on database
+  
   heart_icons.forEach(liked => {
-    liked.onclick = (e) =>{
+    liked.onclick = async (e) => {
       liked.classList.contains('fa-regular') ? liked.classList.replace('fa-regular', 'fa-solid') : liked.classList.replace('fa-solid','fa-regular');
+      uriID = liked.parentElement.id;
+      await updateLikesToDatabase(uriID, liked.classList.contains('fa-solid'), false);
     }
   });
+  
   star_icons.forEach(faved => {
-    faved.onclick = (e) =>{
+    faved.onclick = async (e) => {
       faved.classList.contains('fa-regular') ? faved.classList.replace('fa-regular', 'fa-solid') : faved.classList.replace('fa-solid','fa-regular');
-      // faved.classList.contains('fa-regular') && fav_items. ?
+      uriID = faved.parentElement.id;
+      await updateLikesToDatabase(uriID, false, faved.classList.contains('fa-solid'));
     }
   });
 }
