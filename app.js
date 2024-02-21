@@ -7,9 +7,10 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const password = "Admin@123";
-const saveUserData = require("./justConnect");
+const modules = require("./justConnect");
+const saveUserData = modules.saveData;
 const bodyParser = require("body-parser");
-const FavoriteRecipe = require("./models/recipe");
+
 const User = require("./models/user");
 const { default: mongoose} = require("mongoose");
 
@@ -46,18 +47,17 @@ app.post("/api/update-likes", async (req, res) => {
   
     // Update user's liked or favorite list based on isLiked and isFaved values
     if (isLiked) {
-      const result = await User.updateOne(
-        { _id: userId },
-        { $push: { liked: recipeId } }
-      );
+      // const result = await User.updateOne(
+      //   { _id: userId },
+      //   { $push: { liked: recipeId } }
+      // );
+
+      modules.updateLike(userId, recipeId);
       console.log(result);
     }
 
     if (isFaved) {
-      await User.updateOne(
-        { _id: userId },
-        { $push: { fav_items: recipeId } }
-      );
+      modules.updateFav(userId, recipeId);
     }
 
     res
@@ -223,6 +223,7 @@ function validateUser(hash) {
 // Define a route for handling sign-up requests
 app.post("/signup", async (req, res) => {
   try {
+  
     const { name, email, password } = req.body;
 
     const hashedPassword = await bcrypt.hash(password, saltRounds);
