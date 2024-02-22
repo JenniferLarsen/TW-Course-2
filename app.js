@@ -139,8 +139,8 @@ app.route("/login").post(async (req, res) => {
 
     // const hashedPassword = await bcrypt.hash(password, saltRounds);
     console.log("email:" + email)
-    const result = await checkUserExistence(email);
-    console.log(result);
+    const userData = await checkUserExistence(email);
+    console.log(userData);
 
     // Store user data in the session
     // req.session.user = { _id: result.insertedId, email };

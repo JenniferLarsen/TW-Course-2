@@ -21,7 +21,7 @@ async function main() {
     console.log("Collection name:", collection.collectionName);
 
       // Query the collection to find the example user
-      const exampleUser = await collection.findOne({ username: "Taylor" });
+      const exampleUser = await collection.findOne({ username: "example_user" });
       console.log("Example User:", exampleUser);
     
     return "done.";
@@ -51,14 +51,14 @@ async function checkUserExistence(email) {
     const user = await collection.findOne({ email: email });
     if (user) {
       console.log(`User ${email} exists in the database.`);
-      return true;
+      return user;
     } else {
       console.log(`User ${email} does not exist in the database.`);
-      return false;
+      return {};
     }
   } catch (error) {
     console.error('Error checking user existence:', error);
-    return false;
+    return {};
   }
 }
 
