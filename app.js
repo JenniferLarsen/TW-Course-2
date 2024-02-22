@@ -49,7 +49,7 @@ app.post("/api/update-likes", async (req, res) => {
     // Update user's liked or favorite list based on isLiked and isFaved values
     if (isLiked) {
       modules.updateLike(userId, recipeId);
-      console.log(result);
+      console.log(res);
     }
 
     if (isFaved) {
