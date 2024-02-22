@@ -63,6 +63,7 @@ body {
 }
 
 .image-container img {
+    border-radius: 5px;
     height: fit-content;
     width: 26.67vw; /* Adjust the width of the images */
     margin: 0 0.3vw 5vh 0.3vw; /* Adjust the margin between the images */
