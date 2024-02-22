@@ -97,11 +97,19 @@ body {
 }
 
 button {
-    background-color:  #5f0f40ff;
-    color: white;
-    height: 3.3vh;
+    background-color: #9D6989;
+    color: #5f0f40ff;
+    font-family: 'content';
+    height: 6vh;
     font-size: 1.3vw;
+    margin-top: 1vh;
+    border-radius: 5px;
 }
+
+button:hover{
+    background-color:  #5f0f40ff;
+    color: #9D6989;
+} 
 
 .search-button {
     display: flex;
