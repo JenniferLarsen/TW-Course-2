@@ -1,36 +1,44 @@
 body {
     margin: 0;
+    background-color: #cef7ce;
 }
 
 h1 {
     text-align: center;
-    background-color: #cef7ce;
+    font-size: 1.6vw; 
 }
 
 #recipes {
     display: inline-flex;
     flex-direction: row;
-    text-align: center; 
-    background-color: #FBE1C9; 
+    
+ 
 }
 
 ul, li {
     text-align: left;
 }
 
-#ddl {
-    height: 265px;
-    width: 98%;
+body p, li {
+    font-family: 'content';
+    font-size: 1vh;
 }
 
 #card {
-    margin: 12px;
-    width: 180px;
-    background-color: #cef7ce;
+    padding: 0vh 2vw 0vh 2vw;
+    text-align: center;
+    height: auto;
+    width: 100%;
+    margin: 2vh 1vw 2vh 1vw;
+    background-color: rgb(250, 242, 235);
     color: #5F0F40;
-    padding-bottom: 30px;
+    margin-bottom: 12vh;
+    border-radius: 5px;
+
 }
 
 #img{
-    width: 175px;
+    height: auto;
+    width: 100%;
+    border-radius: 0 0 5px 5px;
 }
