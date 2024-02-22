@@ -27,7 +27,18 @@ form.addEventListener("submit", async (event) => {
   
 });
 
-signInButtonRelocator.addEventListener('click', () => {
+signInButtonRelocator.addEventListener('click', async () => {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+  
+
+  const response = await fetch("/login", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+      },
+    body: JSON.stringify({email, password}),
+  });
 });
 
 signUpButton.addEventListener('click', () => {
