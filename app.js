@@ -132,6 +132,29 @@ app.route("/api/search").get(async (req, res) => {
   }
 });
 
+// Search for recipies using a fully created URI for Profile page
+app.route("api/search").get(async (req, res) => {
+  let apiURI = "";
+  const fullURI = req.query;
+  try{
+    apiURI += fullURI;
+    apiURI += `&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
+
+    console.log(apiURI);
+
+    const edamamResponse = await fetch(apiUrl);
+    const edamamData = await edamamResponse.json();
+    console.log("Edamam Data:", edamamData);
+
+    res.status(200).json({ hits: edamamData.hits });
+
+
+  }catch (error){
+    console.error("error making Edamam API search based on URI: ", error);
+    res.status(500).json({error: "Internal server error" });
+  }
+});
+
 app.route("/login").post(async (req, res) => {
   try {
     const { email, password } = req.body;
