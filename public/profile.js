@@ -16,9 +16,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Populate Liked and Favorited Sections
-
-    // const modules = require("./justConnect");
-    // const liked_faves = modules.getInfo(userData);
     const container = document.getElementById("content-box");
     const tabs = document.querySelectorAll(".tabs h3");
     var selected_tab = document.getElementsByClassName("selected-tab");

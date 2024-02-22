@@ -139,7 +139,8 @@ app.route("api/search").get(async (req, res) => {
     apiURI += fullURI;
     apiURI += `&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
 
-    
+    console.log(apiURI);
+
     const edamamResponse = await fetch(apiUrl);
     const edamamData = await edamamResponse.json();
     console.log("Edamam Data:", edamamData);
