@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+}
+
 h1 {
     text-align: center;
     background-color: #cef7ce;
@@ -10,11 +14,6 @@ h1 {
     background-color: #FBE1C9; 
 }
 
-div {
-    margin: 12px;
-}
-
-
 ul, li {
     text-align: left;
 }
@@ -25,6 +24,7 @@ ul, li {
 }
 
 #card {
+    margin: 12px;
     width: 180px;
     background-color: #cef7ce;
     color: #5F0F40;
