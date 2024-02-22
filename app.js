@@ -42,14 +42,14 @@ app.post("/api/update-likes", async (req, res) => {
   try {
     const { recipeId, isLiked, isFaved } = req.body;
     const userId = req.session.user._id; // Assuming you store user ID in the session
-    console.log({ recipeId, isLiked, isFaved });
-    console.log(req.session.user);
-    console.log(userId);
+    // console.log({ recipeId, isLiked, isFaved });
+    // console.log(req.session.user);
+    // console.log(userId);
   
     // Update user's liked or favorite list based on isLiked and isFaved values
     if (isLiked) {
       modules.updateLike(userId, recipeId);
-      console.log(res);
+      //console.log(res);
     }
 
     if (isFaved) {
@@ -132,6 +132,20 @@ app.route("/api/search").get(async (req, res) => {
   }
 });
 
+app.get("/db",  async (req, res) =>{
+ // Access user data from the database
+ const user = req.NOODLE_DB.user;
+
+ // Check if the user is logged in
+ if (!user) {
+   return res.status(401).json({ error: "Unauthorized" });
+ }
+
+ // Send user data to the client
+ res.json({ name: user.name, email: user.email, liked: user.liked, faved: user.faved});
+});
+app.post("/user-profile");
+
 // Search for recipies using a fully created URI for Profile page
 app.route("api/search").get(async (req, res) => {
   let apiURI = "";
@@ -159,6 +173,7 @@ app.route("/login").post(async (req, res) => {
   try {
     const { email, password } = req.body;
     const userData = await checkUserExistence(email);
+    console.log("app.js - line 162");
     console.log(userData);
 
     if (!userData) {
@@ -244,7 +259,7 @@ app.get("/user-profile", (req, res) => {
   }
 
   // Send user data to the client
-  res.json({ name: user.name, email: user.email });
+  res.json({ name: user.name, email: user.email});
 });
 
 app.get('/logout', (req, res) => {
