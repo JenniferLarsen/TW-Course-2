@@ -134,19 +134,31 @@ app.route("/api/search").get(async (req, res) => {
 
 app.route("/login").post(async (req, res) => {
   try {
-    console.log("starting login");
     const { email, password } = req.body;
-
-    // const hashedPassword = await bcrypt.hash(password, saltRounds);
-    console.log("email:" + email)
     const userData = await checkUserExistence(email);
     console.log(userData);
 
-    // Store user data in the session
-    // req.session.user = { _id: result.insertedId, email };
-    // console.log(req.session.user._id);
+    if (!userData) {
+      // User not found with the given email
+      return res.status(404).json({ error: "User not found" });
+    }
+
+
+    // Compare the hashed password in the database with the provided password
+    const passwordMatch = await bcrypt.compare(password, userData.password);
+
+    if (!passwordMatch) {
+      // Passwords do not match
+      console.log("passwords do not match");
+      return res.status(401).json({ error: "Invalid password" });
+    }
+
+    // Passwords match, set user data in session
+    req.session.user = { _id: userData._id, name: userData.name, email: userData.email };
+    console.log(`user logged in: ${JSON.stringify(req.session.user)}`);
+
     // Send a JSON response with user data
-    res.status(200).json({email });
+    res.status(200).json({ name: userData.name, email: userData.email });
   } catch (error) {
     console.error("Error signing up user:", error);
     res.status(500).json({ error: "Internal server error" });
