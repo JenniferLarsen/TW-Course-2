@@ -138,7 +138,7 @@ app.route("/login").post(async (req, res) => {
     const { email, password } = req.body;
 
     // const hashedPassword = await bcrypt.hash(password, saltRounds);
-
+    console.log("email:" + email)
     const result = await checkUserExistence(email);
     console.log(result);
 

@@ -21,7 +21,7 @@ async function main() {
     console.log("Collection name:", collection.collectionName);
 
       // Query the collection to find the example user
-      const exampleUser = await collection.findOne({ username: "example_user" });
+      const exampleUser = await collection.findOne({ username: "Taylor" });
       console.log("Example User:", exampleUser);
     
     return "done.";
@@ -43,17 +43,17 @@ async function saveData(username, email, password) {
 }
 }
 
-async function checkUserExistence(username) {
+async function checkUserExistence(email) {
   const db = client.db('TheNoodles');
   const collection = db.collection('UserInfo');
 
   try {
-    const user = await collection.findOne({ username });
+    const user = await collection.findOne({ email: email });
     if (user) {
-      console.log(`User ${username} exists in the database.`);
+      console.log(`User ${email} exists in the database.`);
       return true;
     } else {
-      console.log(`User ${username} does not exist in the database.`);
+      console.log(`User ${email} does not exist in the database.`);
       return false;
     }
   } catch (error) {
