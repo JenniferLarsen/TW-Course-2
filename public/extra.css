@@ -30,7 +30,7 @@ body p, li {
     height: auto;
     width: 100%;
     margin: 2vh 1vw 2vh 1vw;
-    background-color: white;
+    background-color: rgb(250, 242, 235);
     color: #5F0F40;
     margin-bottom: 12vh;
     border-radius: 5px;
