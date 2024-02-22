@@ -9,6 +9,7 @@ const saltRounds = 10;
 const password = "Admin@123";
 const modules = require("./justConnect");
 const saveUserData = modules.saveData;
+const checkUserExistence = modules.checkUserExistence;
 const bodyParser = require("body-parser");
 
 const User = require("./models/user");
@@ -48,7 +49,7 @@ app.post("/api/update-likes", async (req, res) => {
     // Update user's liked or favorite list based on isLiked and isFaved values
     if (isLiked) {
       modules.updateLike(userId, recipeId);
-      console.log(result);
+      console.log(res);
     }
 
     if (isFaved) {
@@ -155,18 +156,36 @@ app.route("api/search").get(async (req, res) => {
 });
 
 app.route("/login").post(async (req, res) => {
-  const { username, password } = req.body;
-  console.log("sanityCheck");
-  // Validate username and password (you need to implement this logic)
-  const isValidUser = validateUser(username, password);
+  try {
+    const { email, password } = req.body;
+    const userData = await checkUserExistence(email);
+    console.log(userData);
 
-  if (isValidUser) {
-    // Store user data in the session
-    req.session.user = { _id: username, email: "user@example.com" }; // Change the email accordingly
+    if (!userData) {
+      // User not found with the given email
+      return res.status(404).json({ error: "User not found" });
+    }
 
-    res.status(200).json({ success: true });
-  } else {
-    res.status(401).json({ error: "Invalid credentials" });
+
+    // Compare the hashed password in the database with the provided password
+    const passwordMatch = await bcrypt.compare(password, userData.password);
+
+    if (!passwordMatch) {
+      // Passwords do not match
+      console.log("passwords do not match");
+      return res.status(401).json({ error: "Invalid password" });
+    }
+
+    // Passwords match, set user data in session
+    req.session.user = { _id: userData._id, name: userData.name, email: userData.email };
+    console.log(`user logged in: ${JSON.stringify(req.session.user)}`);
+
+
+    // Send a JSON response with user data
+    res.status(200).json({ name: userData.name, email: userData.email });
+  } catch (error) {
+    console.error("Error signing up user:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
