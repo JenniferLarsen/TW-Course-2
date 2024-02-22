@@ -106,11 +106,6 @@ button {
     font-family: 'content';
 }
 
-#category-label {
-    font-family: 'content';
-}
-
-
 
 /* Responsive design: Adjusts the navbar for smaller screens */
 @media (max-width: 600px) {
