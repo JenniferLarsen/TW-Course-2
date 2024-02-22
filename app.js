@@ -48,6 +48,7 @@ app.post("/api/update-likes", async (req, res) => {
     // Update user's liked or favorite list based on isLiked and isFaved values
     if (isLiked) {
       modules.updateLike(userId, recipeId);
+      console.log(result);
     }
 
     if (isFaved) {
@@ -215,12 +216,12 @@ app.get('/logout', (req, res) => {
         // Optionally redirect to login page or send a success response
         //res.status(200).send('Logged out successfully');
         // For redirecting to login page, you can use:
-        res.redirect('/login');
+        res.redirect('/login.html');
       }
     });
   } else {
     // If there's no session, just send a logged out message or redirect
-    res.status(200).send('Logged out successfully');
+    //res.status(200).send('Logged out successfully');
     // Or for redirect:
     res.redirect('/login');
   }
