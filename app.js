@@ -157,6 +157,7 @@ app.route("/login").post(async (req, res) => {
     req.session.user = { _id: userData._id, name: userData.name, email: userData.email };
     console.log(`user logged in: ${JSON.stringify(req.session.user)}`);
 
+
     // Send a JSON response with user data
     res.status(200).json({ name: userData.name, email: userData.email });
   } catch (error) {
