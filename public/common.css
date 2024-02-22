@@ -123,8 +123,7 @@ h1, h2, h3, h4 {
     }
 }
 
-footer, .footer{
-    
+footer, .footer{    
     font-family: 'content';
     display: flex; 
     position: fixed;
