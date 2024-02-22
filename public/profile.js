@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       userGreeting.textContent = 'Welcome Back!';
     }
 
+    // Populate Liked and Favorited Sections
+
     // const modules = require("./justConnect");
     // const liked_faves = modules.getInfo(userData);
     const container = document.getElementById("content-box");
@@ -28,12 +30,39 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log(tabs);
     console.log(selected_tab);
     //console.log(liked_faves);
+    const fullURI = "https://api.edamam.com/api/recipes/v2/by-uri?type=public&uri=" ;
 
-    // Fill "Like tab"
-    
+    // get Data hits from edamam
+    function buildUri(list) {
+        for (recipeID in list){
+            fullURI += `http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_${recipeID},`;
+        }
+    }
+    console.log(fullURI);
+
+    fetch(fullURI, {
+        method: "GET",
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data.hits);
+          //displayResults(data.hits);
+        })
+        .catch((error) => console.error("Error:", error));
 
   });
-  
-const callLiked = () =>{
-      console.log(liked);
-  }
+
+/** single uri element */
+  //https://api.edamam.com/api/recipes/v2/by-uri?type=public&uri=http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_
+  //{the recipe URI ID}&app_id=IDDDDD&app_key=KEEEEEY
+
+/** multiple uri element [seperated by ',' until the last one] */
+  //https://api.edamam.com/api/recipes/v2/by-uri?type=public&uri=http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_{RECIPE URI},
+  //http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_{RECIPE URI},
+  //http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_{RECIPE URI}
+  //&app_id=iddddddd&app_key=kkkkkeeeeyyyyyy
