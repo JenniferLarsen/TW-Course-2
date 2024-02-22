@@ -154,8 +154,13 @@ h2 {
     border-radius: 20%;
 }
 
-.qrCode {
+.qrCode, .qrCode a {
     margin-top: 5vh;
+    text-decoration: none;
+}
+
+.qrCode h2:hover {
+    color: #568f56;
 }
 
 .qrCode img {
