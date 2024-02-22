@@ -73,7 +73,7 @@ p{
     color: white;
 }
 
-#liked_section, #favorites_section, #history{
+#likes_section, #favorites_section, #history{
     grid-area: items;
     display: flex;
     justify-content: flex-end;
