@@ -38,13 +38,13 @@ html, body {
     font-size: 2.5vh;    
 }
 
-.navbar p {
+/*.navbar p {
     margin-top: auto;
     margin-bottom: auto;     
     font-size: 4vh;
     font-family: 'cookbook', sans-serif;
     color: hsla(323, 73%, 22%, 1);
-}
+}*/
 
 .navbar a:hover {
     background-color:#FBE1C9;
