@@ -39,6 +39,7 @@ signInButtonRelocator.addEventListener('click', async () => {
       },
     body: JSON.stringify({email, password}),
   });
+  window.location.href = "./user-profile.html";
 });
 
 signUpButton.addEventListener('click', () => {
