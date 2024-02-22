@@ -222,6 +222,8 @@ main{
     /* background-color: #9D6989; */
 }
 .search-results-container{
+    text-align: center;
+    justify-content: center;
     width: 75vw;
     /* background-color: grey; */
     display: flex;
@@ -252,6 +254,12 @@ main{
     padding-bottom: 0.5rem;
     width: 500px;
     max-height: 300px;
+}
+.card:hover {
+    background-color: #cef7ce;
+    .meal-name{
+        color: #568F56;
+    }
 }
 .my-card__media {
     background-image: url("./images/pasta.jpg");
