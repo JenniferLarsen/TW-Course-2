@@ -149,8 +149,8 @@ app.route("/api/id-search").get(async (req, res) => {
     console.log(apiURI);
 
     const edamamResponse = await fetch(apiURI);
-    const edamamData = await edamamResponse.json();
-    console.log("Edamam Data:", edamamData);
+    const hit = await edamamResponse.json();
+    console.log("Edamam Data:", hit);
 
     res.status(200).json({ edamamData });
 
