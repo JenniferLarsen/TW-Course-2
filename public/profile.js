@@ -50,12 +50,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   function performSearch(list, htmlElement) {
     htmlElement.innerHTML = "";
     let likesRow = document.createElement("div");
+    htmlElement.innerHTML = "";
+    let favesRow = document.createElement("div");
     for (let i = 0; i < list.length; i++) {
-    //   if (list.length % 3 === 0) {
-        //const para = document.createElement("p")
+       if (list.length % 3 === 0) {
         likesRow = document.createElement("div");
         htmlElement.appendChild(likesRow);
-    //   }
+        favesRow = document.createElement("div");
+        htmlElement.appendChild(favesRow);
+       }
       let buildURI = "/api/id-search?";
       // list.forEach(recipeID => {
       const recipeID = list[i];
