@@ -99,18 +99,6 @@ async function updateFav(id, recipeId) {
     console.error("Error saving data:", error);
   }
 }
-async function getInfo(userData){
-  const db = client.db("TheNoodles");
-  const collection = db.collection("UserInfo");
-
-  try {
-    const values = await collection.findOne({name: userData.name}, {email: userData.email});
-    console.log(values);
-    return values;
-  } catch (error) {
-    console.error("Error no user data:", error);
-  }
-}
 
 main().then(console.log).catch(console.error);
 
@@ -118,7 +106,5 @@ module.exports = {
   saveData,
   updateLike,
   updateFav,
-  getInfo,
   checkUserExistence
-
 };
