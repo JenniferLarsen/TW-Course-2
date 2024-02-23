@@ -226,6 +226,11 @@ main{
     scrollbar-width: 5px;
     scrollbar-color: #5BCB5B;
 }
+#search-results-container h3 {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
 /* card styling */
 .image{
     /* width: 200px;
