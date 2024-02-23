@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     /** place the following in a click event for the respective tabs (even the population of search) */
 
     const faveHits = {
-        hits: 0,
+        length: 0,
         // obj.length is automatically incremented
         // every time an element is added.
         addElem(elem) {
