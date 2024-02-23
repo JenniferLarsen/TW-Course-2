@@ -132,28 +132,18 @@ app.route("/api/search").get(async (req, res) => {
   }
 });
 
-// app.get("/db", async (req, res) => {
-//   // Access user data from the database
-//   const user = req.NOODLE_DB.user;
-
-//   // Check if the user is logged in
-//   if (!user) {
-//     return res.status(401).json({ error: "Unauthorized" });
-//   }
-
-//   // Send user data to the client
-//   res.json({ name: user.name, email: user.email, liked: user.liked, faved: user.faved });
-// });
-// app.post("/user-profile");
-
-// Search for recipies using a fully created URI for Profile page
-
-app.route("api/search").get(async (req, res) => {
-  let apiURI = "";
-  const {fullURI} = req.query;
-  console.log(fullURI);
+app.route("/api/id-search").get(async (req, res) => {
   try {
-    apiURI += fullURI;
+    let apiURI = "https://api.edamam.com/api/recipes/v2/";
+    const recipeID  = req.query.id;
+    //let extract = {id: pair};
+    //const recipeID = extract.id;
+    console.log(req.query.id);
+    console.log("recipe: ");
+    console.log(recipeID);
+
+
+    apiURI += `${recipeID}?type=public`;
     apiURI += `&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
 
     console.log(apiURI);
@@ -162,7 +152,7 @@ app.route("api/search").get(async (req, res) => {
     const edamamData = await edamamResponse.json();
     console.log("Edamam Data:", edamamData);
 
-    res.status(200).json({ hits: edamamData.hits });
+    res.status(200).json({ edamamData });
 
 
   } catch (error) {
