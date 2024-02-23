@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: #cef7ce;
+    background-color: #FBE1C9;
 }
 
 h1 {
@@ -8,12 +8,26 @@ h1 {
     font-size: 1.6vw; 
 }
 
-#recipes {
-    display: inline-flex;
-    flex-direction: row;
-    
- 
+h4 {
+    text-align: center;
 }
+
+#recipes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    margin: 0 auto;
+    max-width: 1200px; /* You can adjust the max-width to your preference */
+}
+
+.card {
+    flex-basis: calc(25% - 2vw); /* Adjust the width and margin as needed */
+    box-sizing: border-box;
+    margin: 2vh 1vw;
+}
+
+
 
 ul, li {
     text-align: left;
@@ -21,12 +35,13 @@ ul, li {
 
 body p, li {
     font-family: 'content';
-    font-size: 1vh;
+    font-size: 16px;
 }
 
 #card {
-    padding: 0vh 2vw 0vh 2vw;
-    text-align: center;
+    /* padding: 0vh 2vw 0vh 2vw; */
+    /* text-align: center; */
+    text-align: left;
     height: auto;
     width: 100%;
     margin: 2vh 1vw 2vh 1vw;
@@ -34,11 +49,15 @@ body p, li {
     color: #5F0F40;
     margin-bottom: 12vh;
     border-radius: 5px;
-
+    border-style: solid;
+    border-color: rgb(250, 242, 235);
+    border-width: 5px;
 }
 
 #img{
     height: auto;
     width: 100%;
-    border-radius: 0 0 5px 5px;
-}
+    border-radius: 10% 10% 0% 0%;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
