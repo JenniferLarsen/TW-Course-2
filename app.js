@@ -78,15 +78,15 @@ app.route("/api/search").get(async (req, res) => {
       mealType: [mealType],
       dishType: [dishType],
     };
-    // Add the following debug lines - remove after
-    console.log("Query Parameters:", req.query);
-    console.log("Search Term:", term);
-    console.log("diet:", diet);
-    console.log("health:", health);
-    console.log("cuisineType:", cuisineType);
-    console.log("mealType:", mealType);
-    console.log("dishType:", dishType);
-    console.log(selected_list);
+    //{ Add the following debug lines - remove after
+    // console.log("Query Parameters:", req.query);
+    // console.log("Search Term:", term);
+    // console.log("diet:", diet);
+    // console.log("health:", health);
+    // console.log("cuisineType:", cuisineType);
+    // console.log("mealType:", mealType);
+    // console.log("dishType:", dishType);
+    // console.log(selected_list);}
 
     let apiUrl = `https://api.edamam.com/api/recipes/v2?type=public`;
 
@@ -132,35 +132,27 @@ app.route("/api/search").get(async (req, res) => {
   }
 });
 
-app.get("/db", async (req, res) => {
-  // Access user data from the database
-  const user = req.NOODLE_DB.user;
-
-  // Check if the user is logged in
-  if (!user) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-
-  // Send user data to the client
-  res.json({ name: user.name, email: user.email, liked: user.liked, faved: user.faved });
-});
-app.post("/user-profile");
-
-// Search for recipies using a fully created URI for Profile page
-app.route("api/search").get(async (req, res) => {
-  let apiURI = "";
-  const fullURI = req.query;
+app.route("/api/id-search").get(async (req, res) => {
   try {
-    apiURI += fullURI;
+    let apiURI = "https://api.edamam.com/api/recipes/v2/";
+    const recipeID  = req.query.id;
+    //let extract = {id: pair};
+    //const recipeID = extract.id;
+    console.log(req.query.id);
+    console.log("recipe: ");
+    console.log(recipeID);
+
+
+    apiURI += `${recipeID}?type=public`;
     apiURI += `&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
 
     console.log(apiURI);
 
-    const edamamResponse = await fetch(apiUrl);
-    const edamamData = await edamamResponse.json();
-    console.log("Edamam Data:", edamamData);
+    const edamamResponse = await fetch(apiURI);
+    const hit = await edamamResponse.json();
+    console.log("Edamam Data:", hit);
 
-    res.status(200).json({ hits: edamamData.hits });
+    res.status(200).json({ hit });
 
 
   } catch (error) {
@@ -226,7 +218,7 @@ function validateUser(hash) {
 }
 
 // Define a route for handling sign-up requests
-app.post("/signup", async (req, res) => {
+app.post("/signup").get(async (req, res) => {
   try {
 
     const { name, email, password } = req.body;
@@ -261,7 +253,6 @@ app.get('/user-profile', async (req, res) => {
     return res.status(401).json({ error: "Unauthorized" });
   }
 });
-
 app.get('/logout', (req, res) => {
   // Destroy the user session
   if (req.session) {
