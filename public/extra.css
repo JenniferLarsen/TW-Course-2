@@ -1,36 +1,63 @@
 body {
     margin: 0;
+    background-color: #cef7ce;
 }
 
 h1 {
     text-align: center;
-    background-color: #cef7ce;
+    font-size: 1.6vw; 
+}
+
+h4 {
+    text-align: center;
 }
 
 #recipes {
-    display: inline-flex;
-    flex-direction: row;
-    text-align: center; 
-    background-color: #FBE1C9; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    margin: 0 auto;
+    max-width: 1200px; /* You can adjust the max-width to your preference */
+}
+
+.card {
+    flex-basis: calc(25% - 2vw); /* Adjust the width and margin as needed */
+    box-sizing: border-box;
+    margin: 2vh 1vw;
 }
 
 ul, li {
     text-align: left;
 }
 
-#ddl {
-    height: 265px;
-    width: 98%;
+body p, li {
+    font-family: 'content';
+    font-size: 16px;
 }
 
 #card {
-    margin: 12px;
-    width: 180px;
-    background-color: #cef7ce;
+    /* padding: 0vh 2vw 0vh 2vw; */
+    /* text-align: center; */
+    text-align: left;
+    height: auto;
+    width: 100%;
+    margin: 2vh 1vw 2vh 1vw;
+    background-color: rgb(250, 242, 235);
     color: #5F0F40;
-    padding-bottom: 30px;
+    margin-bottom: 12vh;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: rgb(250, 242, 235);
+    border-width: 5px;
+
 }
 
 #img{
-    width: 175px;
+    height: auto;
+    width: 100%;
+    border-radius: 10% 10% 0% 0%;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
 }
