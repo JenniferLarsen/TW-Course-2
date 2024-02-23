@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log(userData);
     // Update the welcome message with the user's name
     const userGreeting = document.querySelector('.welcome h1');
-    if (userData && userData.name) {
-      userGreeting.textContent = `Welcome Back, ${userData.name}!`;
+    if (userData && userData.username) {
+      userGreeting.textContent = `Welcome Back, ${userData.username}!`;
     } else {
       // Handle the case when there's no user data (user not logged in)
       userGreeting.textContent = 'Welcome Back!';
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log(container);
     console.log(tabs);
     console.log(selected_tab);
-    console.log(fullData);
+    //console.log(fullData);
     const fullURI = "https://api.edamam.com/api/recipes/v2/by-uri?type=public&uri=" ;
 
     // get Data hits from edamam

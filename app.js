@@ -13,7 +13,7 @@ const checkUserExistence = modules.checkUserExistence;
 const bodyParser = require("body-parser");
 
 const User = require("./models/user");
-const { default: mongoose} = require("mongoose");
+const { default: mongoose } = require("mongoose");
 
 const app = express();
 const port = 8080;
@@ -45,7 +45,7 @@ app.post("/api/update-likes", async (req, res) => {
     // console.log({ recipeId, isLiked, isFaved });
     // console.log(req.session.user);
     // console.log(userId);
-  
+
     // Update user's liked or favorite list based on isLiked and isFaved values
     if (isLiked) {
       modules.updateLike(userId, recipeId);
@@ -132,17 +132,17 @@ app.route("/api/search").get(async (req, res) => {
   }
 });
 
-app.get("/db",  async (req, res) =>{
- // Access user data from the database
- const user = req.NOODLE_DB.user;
+app.get("/db", async (req, res) => {
+  // Access user data from the database
+  const user = req.NOODLE_DB.user;
 
- // Check if the user is logged in
- if (!user) {
-   return res.status(401).json({ error: "Unauthorized" });
- }
+  // Check if the user is logged in
+  if (!user) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
 
- // Send user data to the client
- res.json({ name: user.name, email: user.email, liked: user.liked, faved: user.faved});
+  // Send user data to the client
+  res.json({ name: user.name, email: user.email, liked: user.liked, faved: user.faved });
 });
 app.post("/user-profile");
 
@@ -150,7 +150,7 @@ app.post("/user-profile");
 app.route("api/search").get(async (req, res) => {
   let apiURI = "";
   const fullURI = req.query;
-  try{
+  try {
     apiURI += fullURI;
     apiURI += `&app_id=${edamamAppId}&app_key=${edamamAppKey}`;
 
@@ -163,9 +163,9 @@ app.route("api/search").get(async (req, res) => {
     res.status(200).json({ hits: edamamData.hits });
 
 
-  }catch (error){
+  } catch (error) {
     console.error("error making Edamam API search based on URI: ", error);
-    res.status(500).json({error: "Internal server error" });
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
@@ -173,7 +173,7 @@ app.route("/login").post(async (req, res) => {
   try {
     const { email, password } = req.body;
     const userData = await checkUserExistence(email);
-    console.log("app.js - line 162");
+    //console.log();
     console.log(userData);
 
     if (!userData) {
@@ -228,7 +228,7 @@ function validateUser(hash) {
 // Define a route for handling sign-up requests
 app.post("/signup", async (req, res) => {
   try {
-  
+
     const { name, email, password } = req.body;
 
     const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -249,17 +249,17 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-app.get("/user-profile", (req, res) => {
+app.get('/user-profile', async (req, res) => {
   // Access user data from the session
-  const user = req.session.user;
-
-  // Check if the user is logged in
-  if (!user) {
+  //const user = req.session.user;
+  try {
+    const userEmail = req.session.user.email;
+    const { username, email, liked, faved } = await checkUserExistence(userEmail);
+    // Send user data to the client
+    res.json({ username, email, liked, faved });
+  }catch (error){
     return res.status(401).json({ error: "Unauthorized" });
   }
-
-  // Send user data to the client
-  res.json({ name: user.name, email: user.email});
 });
 
 app.get('/logout', (req, res) => {
