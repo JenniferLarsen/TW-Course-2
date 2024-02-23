@@ -8,22 +8,22 @@
     <link rel="stylesheet" href="common.css">    
     <link rel="stylesheet" href="profile.css">
     <title>User Profile Page</title>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-          // Fetch user data from the server
-          const response = await fetch('/user-profile');
-          const userData = await response.json();
+    <!-- <script>
+        // document.addEventListener('DOMContentLoaded', async () => {
+        //   // Fetch user data from the server
+        //   const response = await fetch('/user-profile');
+        //   const userData = await response.json();
       
-          // Update the welcome message with the user's name
-          const userGreeting = document.querySelector('.welcome h1');
-          if (userData && userData.name) {
-            userGreeting.textContent = `Welcome Back, ${userData.name}!`;
-          } else {
-            // Handle the case when there's no user data (user not logged in)
-            userGreeting.textContent = 'Welcome Back!';
-          }
-        });
-    </script>
+        //   // Update the welcome message with the user's name
+        //   const userGreeting = document.querySelector('.welcome h1');
+        //   if (userData && userData.name) {
+        //     userGreeting.textContent = `Welcome Back, ${userData.name}!`;
+        //   } else {
+        //     // Handle the case when there's no user data (user not logged in)
+        //     userGreeting.textContent = 'Welcome Back!';
+        //   }
+        // });
+    </script> -->
 </head>
 <body>
     <header>
@@ -44,9 +44,9 @@
         </div>
         <div>
             <div class="tabs">
-                <h3>Saved</h3>
-                <h3 id="selected-tab">Favorites</h3>  
-                <h3>History</h3>
+                <h3 class="unselected">Likes</h3>
+                <h3 class="selected-tab">Favorites</h3>  
+                <h3 class="unselected">History</h3>
             </div> 
             <section id="content-box">
                 <!-- <section id="user-info">
@@ -54,7 +54,7 @@
                     <h2 data-value="username">CynCity098</h2>
                     <p>Member since: January2024</p>
                 </section> -->
-                <section id="saved">
+                <section id="likes_section">
                     <div id="row1">
                         <div>
                             <img src="./images/pasta.jpg" alt="Food Image">
@@ -93,7 +93,7 @@
             </section> <!-- end saved-->
         </div>
         
-            <!-- <section id="favorites">
+            <!-- <section id="favorites_section">
                 <div>user faves 1</div>
                 <div>user faves 2</div>
                 <div>user faves 3</div>
@@ -117,6 +117,6 @@
     <footer>
         <span>&copy; The ImPastas 2024</span>
     </footer>
-
+    <script src="profile.js"></script>
 </body>
 </html>

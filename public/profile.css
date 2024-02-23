@@ -56,8 +56,6 @@ p{
 }
 .tabs h3{
     display: inline;
-    background-color: #5f0f40ff;
-    color: white;
     font-size: 16px;
     /* width: 25px; */
     margin-left: 10px;
@@ -66,12 +64,16 @@ p{
     border-radius: 10px 10px 0px 0px;
 }
 
-#selected-tab{
+.selected-tab {
     background-color: white;
     color: #5f0f40ff;
 }
+.unselected {
+    background-color: #5f0f40ff;
+    color: white;
+}
 
-#saved, #favorites, #history{
+#likes_section, #favorites_section, #history{
     grid-area: items;
     display: flex;
     justify-content: flex-end;

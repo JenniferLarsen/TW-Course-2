@@ -43,6 +43,25 @@ async function saveData(username, email, password) {
 }
 }
 
+async function checkUserExistence(email) {
+  const db = client.db('TheNoodles');
+  const collection = db.collection('UserInfo');
+
+  try {
+    const user = await collection.findOne({ email: email });
+    if (user) {
+      console.log(`User ${email} exists in the database.`);
+      return user;
+    } else {
+      console.log(`User ${email} does not exist in the database.`);
+      return {};
+    }
+  } catch (error) {
+    console.error('Error checking user existence:', error);
+    return {};
+  }
+}
+
 async function updateLike(id, recipeId) {
   userId = new ObjectId(id); 
   const db = client.db("TheNoodles");
@@ -80,11 +99,26 @@ async function updateFav(id, recipeId) {
     console.error("Error saving data:", error);
   }
 }
+async function getInfo(userData){
+  const db = client.db("TheNoodles");
+  const collection = db.collection("UserInfo");
+
+  try {
+    const values = await collection.findOne({name: userData.name}, {email: userData.email});
+    console.log(values);
+    return values;
+  } catch (error) {
+    console.error("Error no user data:", error);
+  }
+}
 
 main().then(console.log).catch(console.error);
 
 module.exports = {
   saveData,
   updateLike,
-  updateFav
+  updateFav,
+  getInfo,
+  checkUserExistence
+
 };

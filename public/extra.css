@@ -27,6 +27,8 @@ h4 {
     margin: 2vh 1vw;
 }
 
+
+
 ul, li {
     text-align: left;
 }
@@ -50,7 +52,6 @@ body p, li {
     border-style: solid;
     border-color: rgb(250, 242, 235);
     border-width: 5px;
-
 }
 
 #img{
@@ -60,4 +61,3 @@ body p, li {
     border-style: solid;
     border-color: black;
     border-width: 3px;
-}
