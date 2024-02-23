@@ -28,14 +28,6 @@ main{
     width: 650px;
     /* background-color: salmon; */
 }
-#search-results{
-    display: inline-flex;
-    padding: 20px;
-}
-#search-results div {
-    margin: 20px 40px 20px 20px;
-}
-
  /* filter button and dropdown styling */
 .dropdown{
     position: relative;
@@ -211,25 +203,54 @@ main{
 .isChosen{
     color: #FCDC4D;
 }
-
+.tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: hsla(29, 85%, 59%, .08);
+    color: #568F56;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
 /* content area styling */
 #search-results{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    overflow-wrap: normal;
+    /* align-items: center; */
     width: 100%;
     /* background-color: #9D6989; */
 }
+#search-results div {
+    margin-left: 20px;
+}
 .search-results-container{
     text-align: center;
-    justify-content: center;
+    /* justify-content: center; */
     width: 75vw;
     /* background-color: grey; */
     display: flex;
     overflow-x: auto;
     scrollbar-width: 5px;
     scrollbar-color: #5BCB5B;
+}
+#search-results-container h3 {
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 /* card styling */
 .image{
@@ -238,7 +259,8 @@ main{
     max-height: 200px; */
     width: 200px;
     border-radius: 65% 3% 0 0;
-    max-height: 150px
+    max-height: 150px;
+    border-left: 2px solid #5BCB5B;
 }
 .card{
     /* flex-direction: column;
@@ -254,6 +276,7 @@ main{
     padding-bottom: 0.5rem;
     width: 500px;
     max-height: 300px;
+    border: 1px solid #5BCB5B;
 }
 .card:hover {
     background-color: #cef7ce;
