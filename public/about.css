@@ -173,6 +173,7 @@ h2 {
     margin: 2vh 0;
     font-size: 1vw;
     text-align: center;
+    color: hsla(323, 73%, 22%, 1);
 }
 
 /* Responsive design: Adjusts the page for smaller screens */
