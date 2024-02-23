@@ -89,9 +89,8 @@ selected_group_area.onclick = (e) => {
   removeWidget(e.target.parentNode.id);
 }
 function addWidget(input){
-      var item = input.innerText;
+  var item = input.innerText.replace(/\s+/g, '_'); // Replace spaces with underscores
       console.log(item);
-      //console.log(selected_group_area.children);
       selected_group_area.classList.add(item);
       const new_widget = document.createElement('li');
       new_widget.innerText = item;
@@ -173,7 +172,7 @@ function performSearch() {
 function getSelected(){
   for(ctgry in selected_list){
     selected_list[`${ctgry}`].forEach( (li_item) => {
-      //console.log(`&${ctgry}=${encodeURIComponent(li_item)}`);
+      console.log(`&${ctgry}=${encodeURIComponent(li_item)}`);
       apiUrl += `&${ctgry}=${encodeURIComponent(li_item)}`
     })
   }
