@@ -152,7 +152,7 @@ app.route("/api/id-search").get(async (req, res) => {
     const hit = await edamamResponse.json();
     console.log("Edamam Data:", hit);
 
-    res.status(200).json({ edamamData });
+    res.status(200).json({ hit });
 
 
   } catch (error) {
