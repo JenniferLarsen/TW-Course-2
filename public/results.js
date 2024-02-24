@@ -89,7 +89,7 @@ selected_group_area.onclick = (e) => {
   removeWidget(e.target.parentNode.id);
 }
 function addWidget(input){
-      var item = input.innerText;
+      var item = input.innerText.replace(/\s+/g, '_'); // Replace spaces with underscores
       console.log(item);
       //console.log(selected_group_area.children);
       selected_group_area.classList.add(item);
