@@ -96,7 +96,7 @@ function addWidget(input){
       const new_widget = document.createElement('li');
       new_widget.innerText = item;
       new_widget.textContent = `| ${item.toLowerCase()}`;
-      new_widget.innerHTML = `<i id="x_btn" class="fa-solid fa-xmark">| ${item}</i>`;
+      new_widget.innerHTML = `<i id="x_btn" class="fa-solid fa-xmark"><span class="widget-text"> | ${item}</span></i>`;
       new_widget.id = item;
       new_widget.classList.add(input.id.toString());
       console.log("new widget: ");

@@ -2,6 +2,10 @@
     [align-] effects vertiacl axis
     [justify-] effects horizontal axis
 */
+@font-face {
+    font-family: 'sub';
+    src: url('fonts/Montserrat-Regular.ttf') format('truetype');
+}
 main{
     padding: 0%;
 }
@@ -9,10 +13,11 @@ main{
 img{
     /* display: block; Make the image a block element to control its size */
     /* margin: 0 auto 10px; Center the image and add some space below it */
-    width: 150px;
+    width: 200px;
     height: auto;
     /* height: 125px; */
     border-radius: 10% 10% 0 0;
+    border-bottom: 2px solid white;
     /* border: none; */
 }
 .userImg{
@@ -24,6 +29,7 @@ img{
 p{
     color: var(--lght-purple);
     color: #9D6989;
+    text-wrap: wrap;
 }
 .welcome{
     text-align: left;
@@ -48,6 +54,9 @@ p{
     /* height: auto;
     flex-grow: 5%; */
     grid-template: "info items"
+}
+#fave_section div, #likes_section div{
+
 }
 .tabs{
     text-align: right;
@@ -76,7 +85,7 @@ p{
 .like_fav_container{
     grid-area: items;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     flex-wrap: wrap;
     visibility: hidden;
     position: absolute;
@@ -91,15 +100,28 @@ p{
     position: relative;
 }
 .card{
-    background-color: #c2f8c2;
-    border-radius: 0 0 10% 10%;
+    padding-bottom: 0.5rem;
+    margin: 1rem  ;
+    width: 200px;
+    min-height: 300px;
+    background-color: #cef7ce;
+    border-radius: 10% 10% 7% 7%; 
+    border: 1px solid #a7f1a7;
+    text-align: center;
 }
-/* #row1{
-    grid-area: r1;
+.meal-name a{
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 900;
+    font-family: 'sub';
+    font-weight: 900;
+    padding: 0px 5px;
+    color: #4a7b4a;
+    text-wrap: wrap;
 }
-#row2{
-    grid-area: r2;
-} */
+.meal-name a:hover{
+    color: #5BCB5B;
+}
 #row1, #row2{
     display: flex;
     flex-direction: row;
