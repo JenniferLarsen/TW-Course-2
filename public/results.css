@@ -260,7 +260,7 @@ main{
     padding: 20px;
 }
 #search-results div {
-    margin-left: 20px;
+    margin: 0px 15px;
 }
 .container-styling{
     /* nothing within: just necessary for 
@@ -269,7 +269,7 @@ main{
 .search-results-container{
     text-align: center;
     /* justify-content: center; */
-    width: 75vw;
+    width: 85vw;
     /* background-color: grey; */
     display: flex;
     overflow-x: auto;
