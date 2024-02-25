@@ -64,7 +64,7 @@ p{
     border-radius: 10px 10px 0px 0px;
 }
 
-.selected-tab {
+.selected{
     background-color: white;
     color: #5f0f40ff;
 }
@@ -73,16 +73,22 @@ p{
     color: white;
 }
 
-#likes_section, #favorites_section, #history{
+.like_fav_container{
     grid-area: items;
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
+    visibility: hidden;
+    position: absolute;
     /* display: grid; */
     /* justify-content:center; */
     /* grid-template: 
     "r1" 
     "r2"; */
+}
+.show{
+    visibility: visible;
+    position: relative;
 }
 .card{
     background-color: #c2f8c2;
