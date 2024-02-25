@@ -52,14 +52,14 @@
             
 
             <!-- search bar section -->
-            <div class="search-box">
-              <input type="text" id="search-input" placeholder="Search by ingredients or recipe name....">
+            <div class="search-box" data-tooltip ="Separate multiple inputs with a comma.">
+              <input type="text" id="search-input" placeholder="Search by ingredients or recipe name...">
               <div id="search-icon" class="search-icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </div>
-              <div class="tooltip">
+              <!-- <div class="tooltip">
                 <span class="tooltiptext">Separate multiple items with commas.</span>
-                Search Tip
+                Search Tip -->
             </div>
             </div>
           </div> <!-- end search bar group-->
@@ -69,7 +69,7 @@
           <div class="filters-page-container" >
             <div id ="selected" class="selected-filters">
                 <!-- <li><i class="fa-solid fa-xmark"></i>| vegan</li>
-                <li><i id="x_btn" class="fa-solid fa-xmark"></i>| gluten free</li>
+                <li><i id="x_btn" class="fa-solid fa-xmark"></i><span class="widget-text">| gluten free</span></li>
                 <li><i id="x_btn" class="fa-solid fa-xmark"></i>| dairy</li> -->
             </div>
             <!-- <div class="pagination"> ...pagination... </div> -->
@@ -77,6 +77,7 @@
       </section>
 
       <section id="search-results">
+        <div class="container-styling">
           <div id="search-results-container" class="search-results-container">
             <h3 style="color: #b0acae;"> ... Results will appear here ...</h3>  
             <!-- <div class="card">
@@ -90,6 +91,8 @@
             </div> -->
             
           </div>
+
+        </div>
       </section>
 
   </main>

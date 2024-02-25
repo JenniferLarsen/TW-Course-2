@@ -2,6 +2,10 @@
     font-family: 'heading';
     src: url('fonts/Quicksand-Regular.ttf') format('truetype');
 }
+@font-face {
+    font-family: 'sub';
+    src: url('fonts/Montserrat-Regular.ttf') format('truetype');
+}
 *{
     font-family: 'heading';
 }
@@ -142,6 +146,20 @@ main{
     outline: none;
     font-size: 16px;
 }
+.search-box:hover::after, .search-box:focus::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    text-align: center;
+    justify-self: baseline;
+    top: 10.2rem;
+    right: 40%;
+    width: 200px;
+    padding: 5px;
+    background-color:hsla(29, 85%, 59%, .08);
+    color: hsla(120, 25%, 45%, .5);
+    border-radius: 6px;
+    z-index: 1;
+}
 .search-icon {
     background-color: #cef7ce;
     padding: .35rem;
@@ -160,15 +178,16 @@ main{
 
 /* filter item area styling */
 #filters-section{
-    display:inline-block;
-    min-width: 100%;
+    display:inline-flex;
+    max-width: 100%;
+    align-items: center; 
     /* delete later */
     /* background-color: aqua; */
 }
 .filters-page-container {
     display: flex;
     justify-content: space-between;     /* X-axis alignment*/
-    align-items: self-end;              /* Y-axis alignment*/
+    align-items: flex-end;              /* Y-axis alignment*/
     margin: auto;
     padding: 1rem;
     padding-top: 2.5rem;
@@ -199,11 +218,15 @@ main{
 .selected-filters i{
     padding-right: 5px;
     color:rgb(91, 101, 81);
+    font-size: .95rem;
+}
+.widget-text{
+    font-family: 'sub';
 }
 .isChosen{
     color: #FCDC4D;
 }
-.tooltip {
+/* .tooltip {
     position: relative;
     display: inline-block;
   }
@@ -216,28 +239,32 @@ main{
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
-  
+   */
     /* Position the tooltip */
-    position: absolute;
+    /* position: absolute;
     z-index: 1;
   }
   .tooltip:hover .tooltiptext {
     visibility: visible;
-  }
+  } */
 /* content area styling */
 #search-results{
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     overflow-wrap: normal;
-    /* align-items: center; */
+    align-items: center;
     width: 100%;
     /* background-color: #9D6989; */
-    margin: 10px;
-    padding: 10px;
+    margin: 10px 0px;
+    padding: 20px;
 }
 #search-results div {
     margin-left: 20px;
+}
+.container-styling{
+    /* nothing within: just necessary for 
+        centering purposes */
 }
 .search-results-container{
     text-align: center;

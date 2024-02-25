@@ -46,18 +46,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   //         [].push.call(this, elem);
   //     },
   // };
+  
+  
   // Get data hits from edamam and push to hits{}
   function performSearch(list, htmlElement) {
-    //htmlElement.innerHTML = "";
+    htmlElement.innerHTML = "";
     let likesRow = document.createElement("div");
-    //htmlElement.innerHTML = "";
+    htmlElement.innerHTML = "";
     let favesRow = document.createElement("div");
     for (let i = 0; i < list.length; i++) {
       //    if (list.length % 3 === 0) {
-      likesRow = document.createElement("div");
-      htmlElement.appendChild(likesRow);
-      favesRow = document.createElement("div");
-      htmlElement.appendChild(favesRow);
+      // likesRow = document.createElement("div");
+      // htmlElement.appendChild(likesRow);
+      // favesRow = document.createElement("div");
+      // htmlElement.appendChild(favesRow);
       //}
       let buildURI = "/api/id-search?";
       // list.forEach(recipeID => {
@@ -76,76 +78,104 @@ document.addEventListener("DOMContentLoaded", async () => {
         })
         .then((data) => {
           console.log(data);
-          const elem = document.createElement("div");
+          display(data.hit, htmlElement);
+          //{
+           // const elem = document.createElement("div");
+           
+           // const label = document.createElement("p");
+           // elem.appendChild(label);
+           // label.classList.add("meal-name");
+           // label.id = "meal-name";
+           // label.title = data.hit.recipe.label;
+           
+           // // Make the label a clickable link
+           // label.innerHTML = `<a href="${data.hit.recipe.url}" target="_blank" title="Recipe Link">${data.hit.recipe.label}</a>`;
 
-          const label = document.createElement("p");
-          elem.appendChild(label);
-          label.classList.add("meal-name");
-          label.id = "meal-name";
-          label.title = data.hit.recipe.label;
-
-          // Make the label a clickable link
-          label.innerHTML = `<a href="${data.hit.recipe.url}" target="_blank" title="Recipe Link">${data.hit.recipe.label}</a>`;
-
-          // add an element for image
-          const image = document.createElement("img");
-          elem.appendChild(image);
-          image.src = data.hit.recipe.image;
-
-          // //add an element for image
-          // const image = document.createElement("img");
-          // elem.appendChild(image);
-          // image.src = data.hit.recipe.image;
-
-          // // add an element for url
-          // const url = document.createElement("a");
-          // elem.appendChild(url);
-          // const link = document.createTextNode("Click for Recipe");
-          // url.appendChild(link);
-          // url.title = "Recipe Link";
-          // url.href = data.hit.recipe.url;
-          // url.target = "_blank";
-
-          // // add an element for label
-          // const label = document.createElement("p");
-          // label.appendChild(url);
-          // elem.appendChild(label);
-          // label.classList.add("meal-name");
-          // label.id = "meal-name";
-          // label.title = data.hit.recipe.label;
-          // label.textContent = data.hit.recipe.label;
-
-          // add the items to the elem
-          likesRow.appendChild(elem);
-          favesRow.appendChild(elem);
-
-          //data.hit.recipe.label, url, images.THUMBNAIL
-          //hitContain.addElem(data);
-          // console.log(likeHits);
-          //displayResults(data.hits);
-        })
-        .catch((error) => console.error("Error:", error));
+           // // add an element for image
+           // const image = document.createElement("img");
+           // elem.appendChild(image);
+           // image.src = data.hit.recipe.image;
+           
+           // //add an element for image
+           // const image = document.createElement("img");
+           // elem.appendChild(image);
+           // image.src = data.hit.recipe.image;
+           
+           // // add an element for url
+           // const url = document.createElement("a");
+           // elem.appendChild(url);
+           // const link = document.createTextNode("Click for Recipe");
+           // url.appendChild(link);
+           // url.title = "Recipe Link";
+           // url.href = data.hit.recipe.url;
+           // url.target = "_blank";
+           
+           // // add an element for label
+           // const label = document.createElement("p");
+           // label.appendChild(url);
+           // elem.appendChild(label);
+           // label.classList.add("meal-name");
+           // label.id = "meal-name";
+           // label.title = data.hit.recipe.label;
+           // label.textContent = data.hit.recipe.label;
+           
+           // add the items to the elem
+           // likesRow.appendChild(elem);
+           // favesRow.appendChild(elem);
+           
+           //data.hit.recipe.label, url, images.THUMBNAIL
+           //hitContain.addElem(data);
+           // console.log(likeHits);
+           //displayResults(data.hits);
+            //} 
+          })
+          .catch((error) => console.error("Error:", error));
     } //**end for loop
   }
   performSearch(liked_items, likesHtml);
   performSearch(fav_items, favesHtml);
 
+  container.appendChild(favesHtml);
+  container.appendChild(likesHtml);
+
+  function display(result, sectHtml){
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    //Create a link for each recipe
+    const link = document.createElement("a");
+    link.classList.add("meal-name");
+    // Construct the link using the recipe ID
+    link.href = result.recipe.url;
+    link.target = "_blank"; // Open link in a new tab
+    link.textContent = result.recipe.label
+
+    const recipeName = document.createElement("p");
+    recipeName.classList.add("meal-name");
+    recipeName.id = "meal-name";
+    recipeName.appendChild(link);
+
+    // Extract the Image
+    const img = document.createElement("img")
+    img.classList.add("image");
+    img.src = result.recipe.image;
+    img.alt = recipeName.textContent;
+
+    card.appendChild(img);
+    card.appendChild(recipeName);
+    sectHtml.appendChild(card);
+  }
+
+
   // Change selected tab on click
   /** iterate the tabs and assign them to variables that correspond to their innerhtml.toLowerCase(); */
 
-  // const cbox = document.querySelectorAll(".box");
-
-  //  for (let i = 0; i < cbox.length; i++) {
-  //      cbox[i].addEventListener("click", function() {
-  //        cbox[i].classList.toggle("red");
-  //      });
-  //  }
   const lkTab = tabs.item(0);
   const fvTab = tabs.item(1);
   console.log(lkTab);
   console.log(fvTab);
 
-  //   const pending = document.createTextNode(". . .Brewing in the Kitchen . . .");
+  //   const pending = document.createTextNode(". . . Brewing in the Kitchen . . .");
   //   let st = `{.hide {visibility: "hidden";}`;
   // //   pending.classList.add("brew");
   //   pending.insertRule(st,0);
