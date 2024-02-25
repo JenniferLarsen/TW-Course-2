@@ -126,14 +126,14 @@ main{
 .search-box{
     display: flex;
     align-items: center;
-    width: 60%;
+    width: 80%;
     height: 3rem;
     color: white; /* changes color of maginfying glass */
     
 }
 .search-box input{
     padding: .5rem;
-    padding-left: 2rem;
+    /* padding-left: 2rem; */
     width: 100%;
     box-shadow: none;
     border: 2px solid;
